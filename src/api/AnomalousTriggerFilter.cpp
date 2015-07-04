@@ -47,9 +47,8 @@ float CAnomalousTriggerFilter::Filter(float value)
 
       if (IsAnomalousTrigger())
         dsyslog("Anomalous trigger detected on axis %u (initial value = %f)", axisIndex, value);
-
-      m_state = STATE_CENTER_KNOWN;
     }
+    m_state = STATE_CENTER_KNOWN;
   }
 
   if (IsAnomalousTrigger())
