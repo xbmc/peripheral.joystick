@@ -40,9 +40,16 @@ namespace JOYSTICK
   struct EnumWindowsCallbackArgs
   {
     DWORD pid;
-    HWND* handle;
+    std::set<HWND> handles;
   };
 }
+
+CJoystickInterfaceDirectInput::CJoystickInterfaceDirectInput(void)
+  : m_hWnd(NULL),
+    m_pDirectInput(NULL),
+    m_bInitialized(false)
+{ }
+
 const char* CJoystickInterfaceDirectInput::Name(void) const
 {
   return INTERFACE_DIRECTINPUT;
@@ -50,6 +57,31 @@ const char* CJoystickInterfaceDirectInput::Name(void) const
 
 bool CJoystickInterfaceDirectInput::Initialize(void)
 {
+  if (m_bInitialized)
+    return true;
+
+  // get the main window
+  if (m_hWnd == NULL)
+  {
+    // get all window handles of our process
+    std::set<HWND> hWnds = GetMainWindowHandles();
+    if (hWnds.empty())
+      return true; // return true even if it failed because we can still initialize in ScanForJoysticks()
+
+    // check if one of the windows is visible
+    for (std::set<HWND>::const_iterator hwnd = hWnds.begin(); hwnd != hWnds.end(); ++hwnd)
+    {
+      if (IsWindowVisible(*hwnd))
+      {
+        m_hWnd = *hwnd;
+        break;
+      }
+    }
+
+    if (m_hWnd == NULL)
+      return true; // return true even if it failed because we can still initialize in ScanForJoysticks()
+  }
+
   HRESULT hr;
 
   hr = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, reinterpret_cast<VOID**>(&m_pDirectInput), NULL);
@@ -59,16 +91,23 @@ bool CJoystickInterfaceDirectInput::Initialize(void)
     return false;
   }
 
+  m_bInitialized = true;
   return true;
 }
 
 void CJoystickInterfaceDirectInput::Deinitialize(void)
 {
   SAFE_RELEASE(m_pDirectInput);
+
+  m_hWnd = NULL;
+  m_bInitialized = false;
 }
 
 bool CJoystickInterfaceDirectInput::ScanForJoysticks(std::vector<CJoystick*>& joysticks)
 {
+  if (!Initialize() || !m_bInitialized)
+    return false;
+
   HRESULT hr;
 
   hr = m_pDirectInput->EnumDevices(DI8DEVCLASS_GAMECTRL, EnumJoysticksCallback, this, DIEDFL_ATTACHEDONLY);
@@ -114,16 +153,9 @@ BOOL CALLBACK CJoystickInterfaceDirectInput::EnumJoysticksCallback(const DIDEVIC
     return DIENUM_CONTINUE;
   }
 
-  HWND hWnd = GetMainWindowHandle();
-
-  dsyslog("********** HWND: %p", hWnd); // TODO: temporary
-
-  if (!hWnd || !IsWindow(hWnd))
-    return DIENUM_CONTINUE;
-
   // Set the cooperative level to let DInput know how this device should
   // interact with the system and with other DInput applications.
-  hr = pJoystick->SetCooperativeLevel(hWnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
+  hr = pJoystick->SetCooperativeLevel(context->m_hWnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
   if (FAILED(hr))
   {
     esyslog("%s: Failed to SetCooperativeLevel on: %s", __FUNCTION__, pdidInstance->tszProductName);
@@ -260,15 +292,13 @@ bool CJoystickInterfaceDirectInput::IsXInputDevice(const GUID* pGuidProductFromD
   return bIsXinputDevice;
 }
 
-HWND CJoystickInterfaceDirectInput::GetMainWindowHandle(void)
+std::set<HWND> CJoystickInterfaceDirectInput::GetMainWindowHandles(void)
 {
-  HWND hWnd = NULL;
-
-  EnumWindowsCallbackArgs args = { ::GetCurrentProcessId(), &hWnd };
+  EnumWindowsCallbackArgs args = { ::GetCurrentProcessId() };
   if (::EnumWindows(&EnumWindowsCallback, (LPARAM)&args) == FALSE)
     esyslog("Failed to get main window handle");
 
-  return hWnd;
+  return args.handles;
 }
 
 BOOL CALLBACK CJoystickInterfaceDirectInput::EnumWindowsCallback(HWND hnd, LPARAM lParam)
@@ -277,8 +307,8 @@ BOOL CALLBACK CJoystickInterfaceDirectInput::EnumWindowsCallback(HWND hnd, LPARA
 
   DWORD windowPID;
   (void)::GetWindowThreadProcessId(hnd, &windowPID);
-  if (windowPID == args->pid && args->handle)
-    *args->handle = hnd;
+  if (windowPID == args->pid && IsWindow(hnd))
+    args->handles.insert(hnd);
 
   return TRUE;
 }
