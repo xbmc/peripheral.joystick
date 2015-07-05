@@ -75,6 +75,23 @@ bool CJoystickDirectInput::Initialize(void)
   SetHatCount(diDevCaps.dwPOVs);
   SetAxisCount(diDevCaps.dwAxes);
 
+  // Get vendor and product ID
+  DIPROPDWORD diDevProperty;
+  diDevProperty.diph.dwSize = sizeof(DIPROPDWORD);
+  diDevProperty.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+  diDevProperty.diph.dwObj = 0; // device property
+  diDevProperty.diph.dwHow = DIPH_DEVICE;
+
+  hr = m_joystickDevice->GetProperty(DIPROP_VIDPID, &diDevProperty.diph);
+  if (FAILED(hr))
+  {
+    esyslog("%s: Failed to GetProperty for: %s", __FUNCTION__, Name().c_str());
+    return false;
+  }
+
+  SetVendorID(LOWORD(diDevProperty.dwData));
+  SetProductID(HIWORD(diDevProperty.dwData));
+
   // Initialize axes
   // Enumerate the joystick objects. The callback function enables user
   // interface elements for objects that are found, and sets the min/max
