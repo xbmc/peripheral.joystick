@@ -60,7 +60,7 @@ bool CDirectoryCache::GetDirectory(const std::string& path, std::vector<ADDON::C
 
   if (itItemList != m_cache.end())
   {
-    const ItemListRecord& record = itItemList->second;
+    const ItemListRecord record = itItemList->second;
 
     // Check timestamp for stale data
     const int64_t timestamp = record.first;
@@ -81,13 +81,13 @@ void CDirectoryCache::UpdateDirectory(const std::string& path, const std::vector
   if (!m_callbacks)
     return;
 
-  ItemListRecord& record = m_cache[path];
+  ItemListRecord record = m_cache[path];
 
-  int64_t& timestamp = record.first;
-  ItemList& cachedItems = record.second;
+  int64_t timestamp = record.first;
+  ItemList cachedItems = record.second;
 
   // Remove missing items
-  for (ItemList::iterator itOldItem = cachedItems.begin(); itOldItem != cachedItems.end(); ++itOldItem)
+  for (ItemList::const_iterator itOldItem = cachedItems.begin(); itOldItem != cachedItems.end(); ++itOldItem)
   {
     if (!HasPath(items, itOldItem->Path()))
     {
@@ -106,6 +106,6 @@ void CDirectoryCache::UpdateDirectory(const std::string& path, const std::vector
     }
   }
 
-  timestamp = PLATFORM::GetTimeMs();
-  cachedItems = items;
+  m_cache[path].first = PLATFORM::GetTimeMs();
+  m_cache[path].second = items;
 }
