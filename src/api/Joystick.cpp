@@ -57,6 +57,9 @@ void CJoystick::SetName(const std::string& strName)
 {
   std::string strSanitizedFilename(strName);
 
+  // Remove Bluetooth MAC address as seen in Sony Playstation controllers
+  StringUtils::RemoveMACAddress(strSanitizedFilename);
+
   StringUtils::Trim(strSanitizedFilename);
 
   ADDON::Joystick::SetName(strSanitizedFilename);
