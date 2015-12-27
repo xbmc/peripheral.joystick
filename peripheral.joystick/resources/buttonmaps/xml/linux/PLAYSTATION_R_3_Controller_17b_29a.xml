@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="PLAYSTATION(R)3 Controller" provider="linux" buttoncount="17" axiscount="29">
+        <controller id="game.controller.default">
+            <feature name="a" button="14" />
+            <feature name="b" button="13" />
+            <feature name="back" button="0" />
+            <feature name="down" button="6" />
+            <feature name="guide" button="16" />
+            <feature name="left" button="7" />
+            <feature name="leftbumper" button="10" />
+            <feature name="leftstick">
+                <up axis="-1" />
+                <right axis="+0" />
+            </feature>
+            <feature name="leftthumb" button="1" />
+            <feature name="lefttrigger" button="8" />
+            <feature name="right" button="5" />
+            <feature name="rightbumper" button="11" />
+            <feature name="rightstick">
+                <up axis="-3" />
+                <right axis="+2" />
+            </feature>
+            <feature name="rightthumb" button="2" />
+            <feature name="righttrigger" button="9" />
+            <feature name="start" button="3" />
+            <feature name="up" button="4" />
+            <feature name="x" button="15" />
+            <feature name="y" button="12" />
+        </controller>
+        <controller id="game.controller.gba">
+            <feature name="a" button="14" />
+            <feature name="b" button="15" />
+            <feature name="down" button="6" />
+            <feature name="left" button="7" />
+            <feature name="leftbumper" button="10" />
+            <feature name="right" button="5" />
+            <feature name="rightbumper" button="11" />
+            <feature name="select" button="0" />
+            <feature name="start" button="3" />
+            <feature name="up" button="4" />
+        </controller>
+        <controller id="game.controller.genesis">
+            <feature name="a" button="15" />
+            <feature name="b" button="14" />
+            <feature name="c" button="13" />
+            <feature name="down" button="14" />
+            <feature name="left" button="11" />
+            <feature name="mode" button="0" />
+            <feature name="right" button="12" />
+            <feature name="start" button="3" />
+            <feature name="up" button="13" />
+            <feature name="x" button="10" />
+            <feature name="y" button="12" />
+            <feature name="z" button="11" />
+        </controller>
+        <controller id="game.controller.n64">
+            <feature name="a" button="14" />
+            <feature name="b" button="15" />
+            <feature name="cdown" axis="+3" />
+            <feature name="cleft" axis="-2" />
+            <feature name="cright" axis="+2" />
+            <feature name="cup" axis="-3" />
+            <feature name="down" button="6" />
+            <feature name="left" button="7" />
+            <feature name="leftbumper" button="10" />
+            <feature name="right" button="5" />
+            <feature name="rightbumper" button="11" />
+            <feature name="start" button="3" />
+            <feature name="up" button="4" />
+            <feature name="z" button="8" />
+        </controller>
+        <controller id="game.controller.nes">
+            <feature name="a" button="14" />
+            <feature name="b" button="15" />
+            <feature name="down" button="6" />
+            <feature name="left" button="7" />
+            <feature name="right" button="5" />
+            <feature name="select" button="0" />
+            <feature name="start" button="3" />
+            <feature name="up" button="4" />
+        </controller>
+        <controller id="game.controller.ps">
+            <feature name="circle" button="13" />
+            <feature name="cross" button="14" />
+            <feature name="down" button="6" />
+            <feature name="left" button="7" />
+            <feature name="leftbumper" button="10" />
+            <feature name="lefttrigger" button="8" />
+            <feature name="right" button="5" />
+            <feature name="rightbumper" button="11" />
+            <feature name="righttrigger" button="9" />
+            <feature name="select" button="0" />
+            <feature name="square" button="15" />
+            <feature name="start" button="3" />
+            <feature name="triangle" button="12" />
+            <feature name="up" button="4" />
+        </controller>
+        <controller id="game.controller.snes">
+            <feature name="a" button="13" />
+            <feature name="b" button="14" />
+            <feature name="down" button="6" />
+            <feature name="left" button="7" />
+            <feature name="leftbumper" button="10" />
+            <feature name="right" button="5" />
+            <feature name="rightbumper" button="11" />
+            <feature name="select" button="0" />
+            <feature name="start" button="3" />
+            <feature name="up" button="4" />
+            <feature name="x" button="12" />
+            <feature name="y" button="15" />
+        </controller>
+    </device>
+</buttonmap>

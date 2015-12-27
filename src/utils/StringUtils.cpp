@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <cctype>
 #include <functional>
+#include <regex>
 
 using namespace JOYSTICK;
 
@@ -60,6 +61,12 @@ std::string StringUtils::MakeSafeUrl(const std::string& str)
     });
 
   return safeUrl;
+}
+
+std::string& StringUtils::RemoveMACAddress(std::string& str)
+{
+  std::regex mac("[\\(\\[]?([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})[\\)\\]]?");
+  str = std::regex_replace(str, mac, "");
 }
 
 std::string& StringUtils::Trim(std::string& str)

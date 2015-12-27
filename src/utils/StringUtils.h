@@ -40,6 +40,13 @@ namespace JOYSTICK
      */
     static std::string MakeSafeUrl(const std::string& str);
 
+    /*!
+     * \brief Removes a MAC address from a given string
+     * \param str The string containing a MAC address
+     * \return The string without the MAC address (for chaining)
+     */
+    static std::string& RemoveMACAddress(std::string& str);
+
     static std::string& Trim(std::string& str);
     static std::string& TrimLeft(std::string& str);
     static std::string& TrimRight(std::string& str);
