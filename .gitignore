@@ -66,3 +66,4 @@ addons/*/project/VS2010Express/Release
 addons/*/*.so
 addons/*/addon/*.dll
 addons/*/addon/addon.xml
+peripheral.joystick
