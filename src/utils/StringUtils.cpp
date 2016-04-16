@@ -24,7 +24,7 @@
 #include <iterator>
 #include <cctype>
 #include <functional>
-#include <pcrecpp.h>
+#include <regex>
 #include <stdio.h>
 
 using namespace JOYSTICK;
@@ -69,8 +69,8 @@ std::string StringUtils::MakeSafeUrl(const std::string& str)
 
 std::string& StringUtils::RemoveMACAddress(std::string& str)
 {
-  pcrecpp::RE re("[\\(\\[]?([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})[\\)\\]]?");
-  re.GlobalReplace("", &str);
+  std::regex re(R"([\(\[]?([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})[\)\]]?)");
+  str = std::regex_replace(str, re, "");
   return str;
 }
 
