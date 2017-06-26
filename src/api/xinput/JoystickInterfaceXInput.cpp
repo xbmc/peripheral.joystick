@@ -34,12 +34,12 @@ using namespace JOYSTICK;
 
 ButtonMap CJoystickInterfaceXInput::m_buttonMap = {
     std::make_pair("game.controller.default", FeatureVector{
-        ADDON::JoystickFeature("leftmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
-        ADDON::JoystickFeature("rightmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
+        kodi::addon::JoystickFeature("leftmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
+        kodi::addon::JoystickFeature("rightmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
     }),
     std::make_pair("game.controller.ps", FeatureVector{
-        ADDON::JoystickFeature("strongmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
-        ADDON::JoystickFeature("weakmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
+        kodi::addon::JoystickFeature("strongmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
+        kodi::addon::JoystickFeature("weakmotor", JOYSTICK_FEATURE_TYPE_MOTOR),
     }),
 };
 
@@ -91,12 +91,12 @@ bool CJoystickInterfaceXInput::ScanForJoysticks(JoystickVector& joysticks)
 const ButtonMap& CJoystickInterfaceXInput::GetButtonMap()
 {
   auto& dflt = m_buttonMap["game.controller.default"];
-  dflt[CJoystickXInput::MOTOR_LEFT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, ADDON::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_LEFT));
-  dflt[CJoystickXInput::MOTOR_RIGHT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, ADDON::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_RIGHT));
+  dflt[CJoystickXInput::MOTOR_LEFT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, kodi::addon::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_LEFT));
+  dflt[CJoystickXInput::MOTOR_RIGHT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, kodi::addon::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_RIGHT));
 
   auto& ps = m_buttonMap["game.controller.ps"];
-  ps[CJoystickXInput::MOTOR_LEFT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, ADDON::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_LEFT));
-  ps[CJoystickXInput::MOTOR_RIGHT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, ADDON::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_RIGHT));
+  ps[CJoystickXInput::MOTOR_LEFT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, kodi::addon::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_LEFT));
+  ps[CJoystickXInput::MOTOR_RIGHT].SetPrimitive(JOYSTICK_MOTOR_PRIMITIVE, kodi::addon::DriverPrimitive::CreateMotor(CJoystickXInput::MOTOR_RIGHT));
 
   return m_buttonMap;
 }
