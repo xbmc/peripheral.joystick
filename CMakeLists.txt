@@ -300,3 +300,5 @@ endif()
 file(READ ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/resources/settings.xml.include settings_file)
 string(CONFIGURE "${settings_file}" settings_file_conf @ONLY)
 file(GENERATE OUTPUT ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/resources/settings.xml CONTENT "${settings_file_conf}")
+
+include(CPack)
