@@ -226,10 +226,6 @@ endif()
 
 # ------------------------------------------------------------------------------
 
-build_addon(peripheral.joystick JOYSTICK DEPLIBS)
-
-# ------------------------------------------------------------------------------
-
 set(LINUX_SELECT_LINE "\
         <setting id=\"driver_linux\" type=\"integer\" label=\"30001\">
           <default>0</default>
@@ -297,8 +293,8 @@ else()
   endif()
 endif()
 
-file(READ ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/resources/settings.xml.include settings_file)
-string(CONFIGURE "${settings_file}" settings_file_conf @ONLY)
-file(GENERATE OUTPUT ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/resources/settings.xml CONTENT "${settings_file_conf}")
+# ------------------------------------------------------------------------------
+
+build_addon(peripheral.joystick JOYSTICK DEPLIBS)
 
 include(CPack)
