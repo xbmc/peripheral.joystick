@@ -30,7 +30,7 @@
 #if defined(HAVE_XINPUT)
   #include "xinput/JoystickInterfaceXInput.h"
 #endif
-#if defined(HAVE_SDL)
+#if defined(HAVE_SDL_GAMEPAD)
   #include "sdl/JoystickInterfaceSDL.h"
 #endif
 #if defined(HAVE_LINUX_JOYSTICK)
@@ -119,7 +119,7 @@ const std::vector<EJoystickInterface>& CJoystickManager::GetSupportedInterfaces(
 #endif
 
   // Linux
-#if defined(HAVE_SDL)
+#if defined(HAVE_SDL_GAMEPAD)
     supportedInterfaces.push_back(EJoystickInterface::SDL);
 #endif
 #if defined(HAVE_LINUX_JOYSTICK)
@@ -151,7 +151,7 @@ IJoystickInterface* CJoystickManager::CreateInterface(EJoystickInterface iface)
 #if defined(HAVE_LINUX_JOYSTICK)
   case EJoystickInterface::LINUX: return new CJoystickInterfaceLinux;
 #endif
-#if defined(HAVE_SDL)
+#if defined(HAVE_SDL_GAMEPAD)
   case EJoystickInterface::SDL: return new CJoystickInterfaceSDL;
 #endif
 #if defined(HAVE_UDEV)
