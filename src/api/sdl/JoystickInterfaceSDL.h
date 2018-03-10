@@ -35,5 +35,8 @@ namespace JOYSTICK
     virtual bool Initialize(void) override;
     virtual void Deinitialize(void) override;
     virtual bool ScanForJoysticks(JoystickVector& joysticks) override;
+
+  private:
+    bool m_bInitialScan = true;
   };
 }
