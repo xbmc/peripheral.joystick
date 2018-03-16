@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="Gamepad" provider="linux" buttoncount="17" axiscount="8">
+        <controller id="game.controller.default">
+            <feature name="a" button="0" />
+            <feature name="b" button="1" />
+            <feature name="back" button="10" />
+            <feature name="down" axis="+7" />
+            <feature name="left" axis="-6" />
+            <feature name="leftbumper" button="6" />
+            <feature name="leftstick">
+                <up axis="-1" />
+                <down axis="+1" />
+                <right axis="+0" />
+                <left axis="-0" />
+            </feature>
+            <feature name="leftthumb" button="13" />
+            <feature name="lefttrigger" button="8" />
+            <feature name="right" axis="+6" />
+            <feature name="rightbumper" button="7" />
+            <feature name="rightstick">
+                <up axis="-3" />
+                <down axis="+3" />
+                <right axis="+2" />
+                <left axis="-2" />
+            </feature>
+            <feature name="rightthumb" button="14" />
+            <feature name="righttrigger" button="9" />
+            <feature name="start" button="11" />
+            <feature name="up" axis="-7" />
+            <feature name="x" button="3" />
+            <feature name="y" button="4" />
+        </controller>
+    </device>
+</buttonmap>
