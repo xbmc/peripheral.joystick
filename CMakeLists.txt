@@ -10,14 +10,12 @@ include(CheckIncludeFiles)
 find_package(Kodi REQUIRED)
 find_package(kodiplatform REQUIRED)
 find_package(p8-platform REQUIRED)
-find_package(PCRE REQUIRED)
 
 include_directories(${INCLUDES}
                     ${PROJECT_SOURCE_DIR}/src
                     ${KODI_INCLUDE_DIR}/.. # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
                     ${kodiplatform_INCLUDE_DIRS}
-                    ${p8-platform_INCLUDE_DIRS}
-                    ${PCRE_INCLUDE_DIRS})
+                    ${p8-platform_INCLUDE_DIRS})
 
 set(JOYSTICK_SOURCES src/addon.cpp
                      src/api/IJoystickInterface.cpp
@@ -126,9 +124,7 @@ if(HAVE_SYSLOG)
 endif()
 
 list(APPEND DEPLIBS ${kodiplatform_LIBRARIES}
-                    ${p8-platform_LIBRARIES}
-                    ${PCRE_LIBRARIES})
-add_definitions(${PCRE_DEFINITIONS})
+                    ${p8-platform_LIBRARIES})
 
 # --- SDL2 ---------------------------------------------------------------------
 

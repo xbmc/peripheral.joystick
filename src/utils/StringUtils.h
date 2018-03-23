@@ -56,7 +56,7 @@ namespace JOYSTICK
      * \param str The string containing a MAC address
      * \return The string without the MAC address (for chaining)
      */
-    static std::string& RemoveMACAddress(std::string& str);
+    static std::string RemoveMACAddress(std::string& str);
 
     static std::string& Trim(std::string& str);
     static std::string& TrimLeft(std::string& str);

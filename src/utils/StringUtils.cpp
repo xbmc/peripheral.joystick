@@ -24,7 +24,7 @@
 #include <iterator>
 #include <cctype>
 #include <functional>
-#include <pcrecpp.h>
+#include <regex>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -82,11 +82,10 @@ std::string StringUtils::MakeSafeString(std::string str)
   return str;
 }
 
-std::string& StringUtils::RemoveMACAddress(std::string& str)
+std::string StringUtils::RemoveMACAddress(std::string& str)
 {
-  pcrecpp::RE re("[\\(\\[]?([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})[\\)\\]]?");
-  re.GlobalReplace("", &str);
-  return str;
+  std::regex re(R"mac([\(\[]?([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})[\)\]]?)mac");
+  return std::regex_replace(str, re, "", std::regex_constants::format_default);
 }
 
 std::string& StringUtils::Trim(std::string& str)
