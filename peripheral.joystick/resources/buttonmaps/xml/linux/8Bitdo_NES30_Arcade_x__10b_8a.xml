@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="8Bitdo NES30 Arcade(x)" provider="linux" buttoncount="10" axiscount="8">
+        <configuration>
+            <axis index="2" center="-1" range="2" />
+            <axis index="5" center="-1" range="2" />
+        </configuration>
+        <controller id="game.controller.default">
+            <feature name="a" button="0" />
+            <feature name="b" button="1" />
+            <feature name="back" button="4" />
+            <feature name="down" axis="+1" />
+            <feature name="guide" button="7" />
+            <feature name="left" axis="-0" />
+            <feature name="leftbumper" axis="+5" />
+            <feature name="right" axis="+0" />
+            <feature name="rightbumper" axis="+2" />
+            <feature name="start" button="5" />
+            <feature name="up" axis="-1" />
+            <feature name="x" button="2" />
+            <feature name="y" button="3" />
+        </controller>
+        <controller id="game.controller.genesis.6button">
+            <feature name="a" button="0" />
+            <feature name="b" button="1" />
+            <feature name="c" axis="+5" />
+            <feature name="down" axis="+1" />
+            <feature name="left" axis="-0" />
+            <feature name="mode" button="6" />
+            <feature name="right" axis="+0" />
+            <feature name="start" button="7" />
+            <feature name="up" axis="-1" />
+            <feature name="x" button="2" />
+            <feature name="y" button="3" />
+            <feature name="z" button="5" />
+        </controller>
+        <controller id="game.controller.nes">
+            <feature name="a" button="0" />
+            <feature name="b" button="1" />
+            <feature name="down" axis="+1" />
+            <feature name="left" axis="-0" />
+            <feature name="right" axis="+0" />
+            <feature name="select" button="3" />
+            <feature name="start" button="2" />
+            <feature name="up" axis="-1" />
+        </controller>
+        <controller id="game.controller.ps.gamepad">
+            <feature name="circle" button="0" />
+            <feature name="cross" button="1" />
+            <feature name="down" axis="+1" />
+            <feature name="left" axis="-0" />
+            <feature name="leftbumper" button="5" />
+            <feature name="lefttrigger" axis="+5" />
+            <feature name="right" axis="+0" />
+            <feature name="rightbumper" button="4" />
+            <feature name="righttrigger" axis="+2" />
+            <feature name="select" button="6" />
+            <feature name="square" button="3" />
+            <feature name="start" button="7" />
+            <feature name="triangle" button="2" />
+            <feature name="up" axis="-1" />
+        </controller>
+    </device>
+</buttonmap>
