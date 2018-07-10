@@ -39,13 +39,14 @@ namespace addon
 namespace JOYSTICK
 {
   class CJoystickFamilyManager;
+  class CStringRegistry;
 
   class CControllerTransformer : public IDatabaseCallbacks
   {
   public:
     CControllerTransformer(CJoystickFamilyManager& familyManager);
 
-    virtual ~CControllerTransformer() = default;
+    virtual ~CControllerTransformer();
 
     // implementation of IDatabaseCallbacks
     virtual void OnAdd(const DevicePtr& driverInfo, const ButtonMap& buttonMap) override;
@@ -80,5 +81,6 @@ namespace JOYSTICK
     ControllerMap           m_controllerMap;
     DeviceSet               m_observedDevices;
     CJoystickFamilyManager& m_familyManager;
+    std::unique_ptr<CStringRegistry> m_controllerIds;
   };
 }

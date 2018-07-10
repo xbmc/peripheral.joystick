@@ -20,6 +20,7 @@
 
 #include "ControllerTransformer.h"
 #include "ButtonMapUtils.h"
+#include "StringRegistry.h"
 #include "storage/Device.h"
 #include "utils/CommonMacros.h"
 
@@ -54,9 +55,12 @@ namespace JOYSTICK
 // --- CControllerTransformer --------------------------------------------------
 
 CControllerTransformer::CControllerTransformer(CJoystickFamilyManager& familyManager) :
-  m_familyManager(familyManager)
+  m_familyManager(familyManager),
+  m_controllerIds(new CStringRegistry)
 {
 }
+
+CControllerTransformer::~CControllerTransformer() = default;
 
 void CControllerTransformer::OnAdd(const DevicePtr& driverInfo, const ButtonMap& buttonMap)
 {
@@ -101,8 +105,11 @@ void CControllerTransformer::AddControllerMap(const std::string& controllerFrom,
 {
   const bool bSwap = (controllerFrom >= controllerTo);
 
-  ControllerTranslation key = { bSwap ? controllerTo : controllerFrom,
-                                bSwap ? controllerFrom : controllerTo };
+  const unsigned int fromController = m_controllerIds->RegisterString(controllerFrom);
+  const unsigned int toController = m_controllerIds->RegisterString(controllerTo);
+
+  ControllerTranslation key = { bSwap ? toController : fromController,
+                                bSwap ? fromController : toController };
 
   FeatureMaps& featureMaps = m_controllerMap[key];
 
@@ -171,8 +178,11 @@ void CControllerTransformer::TransformFeatures(const kodi::addon::Joystick& driv
 {
   const bool bSwap = (fromController >= toController);
 
-  ControllerTranslation key = { bSwap ? toController : fromController,
-                                bSwap ? fromController : toController };
+  const unsigned int controllerFrom = m_controllerIds->RegisterString(fromController);
+  const unsigned int controllerTo = m_controllerIds->RegisterString(toController);
+
+  ControllerTranslation key = { bSwap ? controllerTo : controllerFrom,
+                                bSwap ? controllerFrom : controllerTo };
 
   const FeatureMaps& featureMaps = m_controllerMap[key];
 
