@@ -31,6 +31,7 @@ set(JOYSTICK_SOURCES src/addon.cpp
                      src/buttonmapper/ControllerTransformer.cpp
                      src/buttonmapper/DriverGeometry.cpp
                      src/buttonmapper/JoystickFamily.cpp
+                     src/buttonmapper/StringRegistry.cpp
                      src/filesystem/DirectoryCache.cpp
                      src/filesystem/DirectoryUtils.cpp
                      src/filesystem/Filesystem.cpp
@@ -72,6 +73,7 @@ set(JOYSTICK_HEADERS src/addon.h
                      src/buttonmapper/ControllerTransformer.h
                      src/buttonmapper/DriverGeometry.h
                      src/buttonmapper/JoystickFamily.h
+                     src/buttonmapper/StringRegistry.h
                      src/filesystem/DirectoryCache.h
                      src/filesystem/DirectoryUtils.h
                      src/filesystem/Filesystem.h

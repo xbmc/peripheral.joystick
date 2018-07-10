@@ -89,8 +89,8 @@ namespace JOYSTICK
    */
   struct ControllerTranslation
   {
-    std::string fromController;
-    std::string toController;
+    unsigned int fromController;
+    unsigned int toController;
 
     bool operator<(const ControllerTranslation& other) const
     {
