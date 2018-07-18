@@ -14,7 +14,5 @@
     <summary lang="en_GB">Kodi Joystick Library</summary>
     <description lang="en_GB">This library provides joystick drivers and button maps. Multiple joystick APIs are supported, including DirectX, XInput, SDL and the Linux Joystick API.</description>
     <platform>@PLATFORM@</platform>
-    <noicon>true</noicon>
-    <nofanart>true</nofanart>
   </extension>
 </addon>
