@@ -22,6 +22,7 @@
 #include "JoystickInterfaceSDL.h"
 #include "JoystickSDL.h"
 #include "api/JoystickTypes.h"
+#include "log/Log.h"
 
 #include <SDL2/SDL.h>
 
@@ -44,13 +45,24 @@ void CJoystickInterfaceSDL::Deinitialize(void)
 
 bool CJoystickInterfaceSDL::ScanForJoysticks(JoystickVector& joysticks)
 {
-  for (int i = 0; i < SDL_NumJoysticks(); i++)
+  const int count = SDL_NumJoysticks();
+
+  if (m_bInitialScan)
+    dsyslog("SDL: Initial scan: %d joystick%s", count, count == 1 ? "" : "s");
+
+  for (int i = 0; i < count; i++)
   {
     if (!SDL_IsGameController(i))
+    {
+      if (m_bInitialScan)
+        dsyslog("SDL: Joystick %d is not a game controller", i);
       continue;
+    }
 
     joysticks.push_back(JoystickPtr(new CJoystickSDL(i)));
   }
+
+  m_bInitialScan = false;
 
   return true;
 }
