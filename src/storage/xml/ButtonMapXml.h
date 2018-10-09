@@ -63,6 +63,6 @@ namespace JOYSTICK
     static bool SerializeFeature(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive, const char* tagName);
     static bool SerializePrimitiveTag(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive, const char* tagName);
     static void SerializePrimitive(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive);
-    static bool DeserializePrimitive(const TiXmlElement* pElement, kodi::addon::DriverPrimitive& primitive, const std::string& featureName);
+    static bool DeserializePrimitive(const TiXmlElement* pElement, kodi::addon::DriverPrimitive& primitive);
   };
 }

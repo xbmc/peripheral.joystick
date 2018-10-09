@@ -421,7 +421,7 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
     JOYSTICK_FEATURE_TYPE type;
 
     kodi::addon::DriverPrimitive primitive;
-    if (DeserializePrimitive(pFeature, primitive, strName))
+    if (DeserializePrimitive(pFeature, primitive))
     {
       type = JOYSTICK_FEATURE_TYPE_SCALAR;
     }
@@ -473,25 +473,25 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
 
         bool bSuccess = true;
 
-        if (pUp && !DeserializePrimitive(pUp, up, strName))
+        if (pUp && !DeserializePrimitive(pUp, up))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_UP);
           bSuccess = false;
         }
 
-        if (pDown && !DeserializePrimitive(pDown, down, strName))
+        if (pDown && !DeserializePrimitive(pDown, down))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_DOWN);
           bSuccess = false;
         }
 
-        if (pRight && !DeserializePrimitive(pRight, right, strName))
+        if (pRight && !DeserializePrimitive(pRight, right))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_RIGHT);
           bSuccess = false;
         }
 
-        if (pLeft && !DeserializePrimitive(pLeft, left, strName))
+        if (pLeft && !DeserializePrimitive(pLeft, left))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_LEFT);
           bSuccess = false;
@@ -516,25 +516,25 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
 
         bool bSuccess = true;
 
-        if (pUp && !DeserializePrimitive(pUp, up, strName))
+        if (pUp && !DeserializePrimitive(pUp, up))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_UP);
           bSuccess = false;
         }
 
-        if (pDown && !DeserializePrimitive(pDown, down, strName))
+        if (pDown && !DeserializePrimitive(pDown, down))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_DOWN);
           bSuccess = false;
         }
 
-        if (pRight && !DeserializePrimitive(pRight, right, strName))
+        if (pRight && !DeserializePrimitive(pRight, right))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_RIGHT);
           bSuccess = false;
         }
 
-        if (pLeft && !DeserializePrimitive(pLeft, left, strName))
+        if (pLeft && !DeserializePrimitive(pLeft, left))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_LEFT);
           bSuccess = false;
@@ -558,19 +558,19 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
 
         bool bSuccess = true;
 
-        if (pPositiveX && !DeserializePrimitive(pPositiveX, positiveY, strName))
+        if (pPositiveX && !DeserializePrimitive(pPositiveX, positiveY))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_POSITIVE_X);
           bSuccess = false;
         }
 
-        if (pPositiveY && !DeserializePrimitive(pPositiveY, positiveY, strName))
+        if (pPositiveY && !DeserializePrimitive(pPositiveY, positiveY))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_POSITIVE_Y);
           bSuccess = false;
         }
 
-        if (pPositiveZ && !DeserializePrimitive(pPositiveZ, positiveZ, strName))
+        if (pPositiveZ && !DeserializePrimitive(pPositiveZ, positiveZ))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_POSITIVE_Z);
           bSuccess = false;
@@ -597,13 +597,13 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
 
         bool bSuccess = true;
 
-        if (pRight && !DeserializePrimitive(pRight, right, strName))
+        if (pRight && !DeserializePrimitive(pRight, right))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_RIGHT);
           bSuccess = false;
         }
 
-        if (pLeft && !DeserializePrimitive(pLeft, left, strName))
+        if (pLeft && !DeserializePrimitive(pLeft, left))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_LEFT);
           bSuccess = false;
@@ -624,13 +624,13 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
 
         bool bSuccess = true;
 
-        if (pUp && !DeserializePrimitive(pUp, up, strName))
+        if (pUp && !DeserializePrimitive(pUp, up))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_UP);
           bSuccess = false;
         }
 
-        if (pDown && !DeserializePrimitive(pDown, down, strName))
+        if (pDown && !DeserializePrimitive(pDown, down))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_DOWN);
           bSuccess = false;
@@ -659,7 +659,7 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
   return true;
 }
 
-bool CButtonMapXml::DeserializePrimitive(const TiXmlElement* pElement, kodi::addon::DriverPrimitive& primitive, const std::string& featureName)
+bool CButtonMapXml::DeserializePrimitive(const TiXmlElement* pElement, kodi::addon::DriverPrimitive& primitive)
 {
   std::vector<std::pair<const char*, JOYSTICK_DRIVER_PRIMITIVE_TYPE>> types = {
     { BUTTONMAP_XML_ATTR_FEATURE_BUTTON, JOYSTICK_DRIVER_PRIMITIVE_TYPE_BUTTON },
