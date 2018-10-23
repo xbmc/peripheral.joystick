@@ -36,7 +36,7 @@ unsigned int CStringRegistry::RegisterString(const std::string& str)
   // Append string
   m_strings.emplace_back(str);
 
-  return m_strings.size() - 1;
+  return static_cast<unsigned int>(m_strings.size()) - 1;
 }
 
 const std::string &CStringRegistry::GetString(unsigned int handle)
@@ -53,7 +53,7 @@ bool CStringRegistry::FindString(const std::string &str, unsigned int &handle) c
   auto it = std::find(m_strings.begin(), m_strings.end(), str);
   if (it != m_strings.end())
   {
-    handle = std::distance(m_strings.begin(), it);
+    handle = static_cast<unsigned int>(std::distance(m_strings.begin(), it));
     return true;
   }
 
