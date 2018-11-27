@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="Xbox 360 Wireless Receiver" provider="android" vid="045E" pid="02A1" buttoncount="23" axiscount="6">
+        <configuration />
+        <controller id="game.controller.default">
+            <feature name="a" button="0" />
+            <feature name="b" button="1" />
+            <feature name="back" button="6" />
+            <feature name="down" button="20" />
+            <feature name="left" button="21" />
+            <feature name="leftbumper" button="12" />
+            <feature name="leftstick">
+                <up axis="-1" />
+                <down axis="+1" />
+                <right axis="+0" />
+                <left axis="-0" />
+            </feature>
+            <feature name="leftthumb" button="16" />
+            <feature name="lefttrigger" axis="+2" />
+            <feature name="right" button="19" />
+            <feature name="rightbumper" button="13" />
+            <feature name="rightstick">
+                <up axis="-4" />
+                <down axis="+4" />
+                <right axis="+3" />
+                <left axis="-3" />
+            </feature>
+            <feature name="rightthumb" button="17" />
+            <feature name="righttrigger" axis="+5" />
+            <feature name="start" button="11" />
+            <feature name="up" button="18" />
+            <feature name="x" button="3" />
+            <feature name="y" button="4" />
+        </controller>
+    </device>
+</buttonmap>
