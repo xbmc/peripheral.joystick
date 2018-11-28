@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="OUYA Game Controller" provider="android" vid="2836" pid="0001" buttoncount="23" axiscount="6">
+        <configuration>
+            <axis index="2" center="-1" range="2" />
+            <axis index="5" center="-1" range="2" />
+        </configuration>
+        <controller id="game.controller.default">
+            <feature name="a" button="0" />
+            <feature name="b" button="3" />
+            <feature name="down" button="15" />
+            <feature name="left" button="9" />
+            <feature name="leftbumper" button="4" />
+            <feature name="leftstick">
+                <up axis="-1" />
+                <down axis="+1" />
+                <right axis="+0" />
+                <left axis="-0" />
+            </feature>
+            <feature name="leftthumb" button="12" />
+            <feature name="lefttrigger" axis="+2" />
+            <feature name="right" button="11" />
+            <feature name="rightbumper" button="5" />
+            <feature name="rightstick">
+                <up axis="-4" />
+                <down axis="+4" />
+                <right axis="+3" />
+                <left axis="-3" />
+            </feature>
+            <feature name="rightthumb" button="13" />
+            <feature name="righttrigger" button="16" />
+            <feature name="start" button="17" />
+            <feature name="up" button="14" />
+            <feature name="x" button="1" />
+            <feature name="y" button="2" />
+        </controller>
+    </device>
+</buttonmap>
