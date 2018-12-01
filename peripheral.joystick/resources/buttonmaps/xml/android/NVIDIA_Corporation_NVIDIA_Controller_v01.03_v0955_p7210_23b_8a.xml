@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <buttonmap>
-    <device name="NVIDIA Corporation NVIDIA Controller v01.03" provider="android" vid="0955" pid="7210" buttoncount="18" axiscount="8">
+    <device name="NVIDIA Corporation NVIDIA Controller v01.03" provider="android" vid="0955" pid="7210" buttoncount="23" axiscount="8">
         <controller id="game.controller.default">
             <feature name="a" button="0" />
             <feature name="b" button="1" />
