@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon
   id="peripheral.joystick"
-  version="1.4.6"
+  version="1.4.7"
   name="Joystick Support"
   provider-name="Team-Kodi">
   <requires>@ADDON_DEPENDS@</requires>
