@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="virtual-remote" provider="android" buttoncount="23">
+        <controller id="game.controller.default">
+            <feature name="a" button="22" />
+            <feature name="b" button="6" />
+            <feature name="down" button="20" />
+            <feature name="left" button="21" />
+            <feature name="right" button="19" />
+            <feature name="up" button="18" />
+        </controller>
+    </device>
+</buttonmap>
