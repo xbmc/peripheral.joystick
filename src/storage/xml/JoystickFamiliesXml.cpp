@@ -22,7 +22,7 @@
 #include "JoystickFamilyDefinitions.h"
 #include "log/Log.h"
 
-#include "tinyxml.h"
+#include <tinyxml.h>
 
 using namespace JOYSTICK;
 
