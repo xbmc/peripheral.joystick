@@ -8,14 +8,12 @@ include(CheckIncludeFiles)
 # --- Add-on Dependencies ------------------------------------------------------
 
 find_package(Kodi REQUIRED)
-find_package(kodiplatform REQUIRED)
 find_package(p8-platform REQUIRED)
 find_package(TinyXML REQUIRED)
 
 include_directories(${INCLUDES}
                     ${PROJECT_SOURCE_DIR}/src
                     ${KODI_INCLUDE_DIR}/.. # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
-                    ${kodiplatform_INCLUDE_DIRS}
                     ${p8-platform_INCLUDE_DIRS}
                     ${TINYXML_INCLUDE_DIRS})
 
@@ -127,8 +125,7 @@ if(HAVE_SYSLOG)
   list(APPEND JOYSTICK_HEADERS src/log/LogSyslog.h)
 endif()
 
-list(APPEND DEPLIBS ${kodiplatform_LIBRARIES}
-                    ${p8-platform_LIBRARIES} ${TINYXML_LIBRARIES})
+list(APPEND DEPLIBS ${p8-platform_LIBRARIES} ${TINYXML_LIBRARIES})
 
 # --- SDL2 ---------------------------------------------------------------------
 
