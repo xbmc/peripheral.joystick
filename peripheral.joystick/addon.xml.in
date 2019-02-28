@@ -3,7 +3,7 @@
   id="peripheral.joystick"
   version="1.4.7"
   name="Joystick Support"
-  provider-name="Team-Kodi">
+  provider-name="Team Kodi">
   <requires>@ADDON_DEPENDS@</requires>
   <extension
     point="kodi.peripheral"
