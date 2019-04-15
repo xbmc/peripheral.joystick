@@ -1,1 +1,1 @@
-buildPlugin(deploy: ['ubuntu-ppa'])
+buildPlugin(version: "Leia", deploy: ['ubuntu-ppa'])
