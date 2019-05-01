@@ -27,18 +27,17 @@
 #include "log/Log.h"
 
 #include <kodi/addon-instance/PeripheralUtils.h>
-#include "p8-platform/util/timeutils.h"
 
 #include <algorithm>
+#include <chrono>
 
 using namespace JOYSTICK;
 
-#define RESOURCE_LIFETIME_MS  2000 // 2 seconds
+static constexpr std::chrono::seconds RESOURCE_LIFETIME = std::chrono::seconds(2);
 
 CButtonMap::CButtonMap(const std::string& strResourcePath, IControllerHelper *controllerHelper) :
   m_strResourcePath(strResourcePath),
   m_device(std::move(std::make_shared<CDevice>())),
-  m_timestamp(-1),
   m_bModified(false),
   m_controllerHelper(controllerHelper)
 {
@@ -47,7 +46,6 @@ CButtonMap::CButtonMap(const std::string& strResourcePath, IControllerHelper *co
 CButtonMap::CButtonMap(const std::string& strResourcePath, const DevicePtr& device, IControllerHelper *controllerHelper) :
   m_strResourcePath(strResourcePath),
   m_device(device),
-  m_timestamp(-1),
   m_bModified(false),
   m_controllerHelper(controllerHelper)
 {
@@ -94,7 +92,7 @@ bool CButtonMap::SaveButtonMap()
 {
   if (Save())
   {
-    m_timestamp = P8PLATFORM::GetTimeMs();
+    m_timestamp = std::chrono::steady_clock::now();
     m_originalButtonMap.clear();
     m_bModified = false;
     return true;
@@ -129,8 +127,8 @@ bool CButtonMap::ResetButtonMap(const std::string& controllerId)
 
 bool CButtonMap::Refresh(void)
 {
-  const int64_t expires = m_timestamp + RESOURCE_LIFETIME_MS;
-  const int64_t now = P8PLATFORM::GetTimeMs();
+  const std::chrono::steady_clock::time_point expires = m_timestamp + RESOURCE_LIFETIME;
+  const std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
 
   if (now >= expires)
   {

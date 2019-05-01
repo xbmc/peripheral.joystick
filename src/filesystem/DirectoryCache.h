@@ -21,6 +21,7 @@
 
 #include <kodi/Filesystem.h>
 
+#include <chrono>
 #include <map>
 #include <stdint.h>
 #include <string>
@@ -50,7 +51,7 @@ namespace JOYSTICK
     IDirectoryCacheCallback* m_callbacks;
 
     typedef std::vector<kodi::vfs::CDirEntry>     ItemList;
-    typedef std::pair<int64_t, ItemList>          ItemListRecord;
+    typedef std::pair<std::chrono::steady_clock::time_point, ItemList> ItemListRecord;
     typedef std::map<std::string, ItemListRecord> ItemMap;
 
     ItemMap m_cache;
