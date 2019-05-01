@@ -70,31 +70,12 @@ When developing, compiling from a git repo is more convenient than repeatedly pu
 
 ### Developing on Linux
 
-The add-on requires p8-platform dependency to build properly. Like Kodi's build system, you can perform a system install or a local one (demonstrated here).
-
-First, clone p8-platform and build per standard CMake:
-
-```shell
-git clone https://github.com/Pulse-Eight/platform.git
-cd platform
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Debug \
-      -DCMAKE_INSTALL_PREFIX=$HOME/kodi \
-      ..
-make
-make install
-```
-
-With this dependency in place, the add-on can be built:
-
 ```shell
 git clone https://github.com/xbmc/peripheral.joystick.git
 cd peripheral.joystick
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Debug \
-      -DCMAKE_PREFIX_PATH=$HOME/kodi \
       -DCMAKE_INSTALL_PREFIX=$HOME/workspace/kodi/addons \
       -DPACKAGE_ZIP=1 \
       ..

@@ -51,7 +51,6 @@
 #include <iterator>
 
 using namespace JOYSTICK;
-using namespace P8PLATFORM;
 
 // --- Utility functions -------------------------------------------------------
 
@@ -169,7 +168,7 @@ IJoystickInterface* CJoystickManager::CreateInterface(EJoystickInterface iface)
 
 bool CJoystickManager::Initialize(IScannerCallback* scanner)
 {
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
 
   m_scanner = scanner;
 
@@ -191,12 +190,12 @@ bool CJoystickManager::Initialize(IScannerCallback* scanner)
 void CJoystickManager::Deinitialize(void)
 {
   {
-    CLockObject lock(m_joystickMutex);
+    std::lock_guard<std::mutex> lock(m_joystickMutex);
     m_joysticks.clear();
   }
 
   {
-    CLockObject lock(m_interfacesMutex);
+    std::lock_guard<std::mutex> lock(m_interfacesMutex);
     for (auto pInterface : m_interfaces)
       SetEnabled(pInterface->Type(), false);
     safe_delete_vector(m_interfaces);
@@ -207,7 +206,7 @@ void CJoystickManager::Deinitialize(void)
 
 bool CJoystickManager::SupportsRumble(void) const
 {
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
   for (auto pInterface : m_enabledInterfaces)
   {
     if (pInterface->SupportsRumble())
@@ -219,7 +218,7 @@ bool CJoystickManager::SupportsRumble(void) const
 
 bool CJoystickManager::SupportsPowerOff(void) const
 {
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
   for (auto pInterface : m_enabledInterfaces)
   {
     if (pInterface->SupportsPowerOff())
@@ -231,7 +230,7 @@ bool CJoystickManager::SupportsPowerOff(void) const
 
 bool CJoystickManager::HasInterface(EJoystickInterface iface) const
 {
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
   for (auto pInterface : m_interfaces)
   {
     if (pInterface->Type() == iface)
@@ -243,7 +242,7 @@ bool CJoystickManager::HasInterface(EJoystickInterface iface) const
 
 void CJoystickManager::SetEnabled(EJoystickInterface iface, bool bEnabled)
 {
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
 
   for (auto pInterface : m_interfaces)
   {
@@ -274,7 +273,7 @@ void CJoystickManager::SetEnabled(EJoystickInterface iface, bool bEnabled)
 
 bool CJoystickManager::IsEnabled(IJoystickInterface* iface)
 {
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
   return m_enabledInterfaces.find(iface) != m_enabledInterfaces.end();
 }
 
@@ -282,13 +281,13 @@ bool CJoystickManager::PerformJoystickScan(JoystickVector& joysticks)
 {
   JoystickVector scanResults;
   {
-    CLockObject lock(m_interfacesMutex);
+    std::lock_guard<std::mutex> lock(m_interfacesMutex);
     // Scan for joysticks (this can take a while, don't block)
     for (auto pInterface : m_enabledInterfaces)
       pInterface->ScanForJoysticks(scanResults);
   }
 
-  CLockObject lock(m_joystickMutex);
+  std::lock_guard<std::mutex> lock(m_joystickMutex);
 
   // Unregister removed joysticks
   for (int i = (int)m_joysticks.size() - 1; i >= 0; i--)
@@ -330,7 +329,7 @@ bool CJoystickManager::PerformJoystickScan(JoystickVector& joysticks)
 
 JoystickPtr CJoystickManager::GetJoystick(unsigned int index) const
 {
-  CLockObject lock(m_joystickMutex);
+  std::lock_guard<std::mutex> lock(m_joystickMutex);
 
   for (JoystickVector::const_iterator it = m_joysticks.begin(); it != m_joysticks.end(); ++it)
   {
@@ -345,7 +344,7 @@ JoystickVector CJoystickManager::GetJoysticks(const kodi::addon::Joystick& joyst
 {
   JoystickVector result;
 
-  CLockObject lock(m_joystickMutex);
+  std::lock_guard<std::mutex> lock(m_joystickMutex);
 
   for (const auto& joystick : m_joysticks)
   {
@@ -361,7 +360,7 @@ JoystickVector CJoystickManager::GetJoysticks(const kodi::addon::Joystick& joyst
 
 bool CJoystickManager::GetEvents(std::vector<kodi::addon::PeripheralEvent>& events)
 {
-  CLockObject lock(m_joystickMutex);
+  std::lock_guard<std::mutex> lock(m_joystickMutex);
 
   for (JoystickVector::iterator it = m_joysticks.begin(); it != m_joysticks.end(); ++it)
     (*it)->GetEvents(events);
@@ -373,7 +372,7 @@ bool CJoystickManager::SendEvent(const kodi::addon::PeripheralEvent& event)
 {
   bool bHandled = false;
 
-  CLockObject lock(m_joystickMutex);
+  std::lock_guard<std::mutex> lock(m_joystickMutex);
 
   for (const JoystickPtr& joystick : m_joysticks)
   {
@@ -390,7 +389,7 @@ bool CJoystickManager::SendEvent(const kodi::addon::PeripheralEvent& event)
 
 void CJoystickManager::ProcessEvents()
 {
-  CLockObject lock(m_joystickMutex);
+  std::lock_guard<std::mutex> lock(m_joystickMutex);
 
   for (const JoystickPtr& joystick : m_joysticks)
     joystick->ProcessEvents();
@@ -398,7 +397,7 @@ void CJoystickManager::ProcessEvents()
 
 void CJoystickManager::SetChanged(bool bChanged)
 {
-  CLockObject lock(m_changedMutex);
+  std::lock_guard<std::mutex> lock(m_changedMutex);
   m_bChanged = bChanged;
 }
 
@@ -406,7 +405,7 @@ void CJoystickManager::TriggerScan(void)
 {
   bool bChanged;
   {
-    CLockObject lock(m_changedMutex);
+    std::lock_guard<std::mutex> lock(m_changedMutex);
     bChanged = m_bChanged;
     m_bChanged = false;
   }
@@ -419,7 +418,7 @@ const ButtonMap& CJoystickManager::GetButtonMap(const std::string& provider)
 {
   static ButtonMap empty;
 
-  CLockObject lock(m_interfacesMutex);
+  std::lock_guard<std::mutex> lock(m_interfacesMutex);
 
   for (auto pInterface : m_interfaces)
   {

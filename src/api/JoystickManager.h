@@ -23,8 +23,8 @@
 #include "buttonmapper/ButtonMapTypes.h"
 
 #include <kodi/addon-instance/PeripheralUtils.h>
-#include "p8-platform/threads/mutex.h"
 
+#include <mutex>
 #include <set>
 #include <vector>
 
@@ -162,8 +162,8 @@ namespace JOYSTICK
     JoystickVector                   m_joysticks;
     unsigned int                     m_nextJoystickIndex;
     bool                             m_bChanged;
-    mutable P8PLATFORM::CMutex       m_changedMutex;
-    mutable P8PLATFORM::CMutex         m_interfacesMutex;
-    mutable P8PLATFORM::CMutex         m_joystickMutex;
+    mutable std::mutex m_changedMutex;
+    mutable std::mutex m_interfacesMutex;
+    mutable std::mutex m_joystickMutex;
   };
 }

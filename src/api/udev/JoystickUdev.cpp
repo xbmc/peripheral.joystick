@@ -101,13 +101,12 @@ void CJoystickUdev::Deinitialize(void)
 
 void CJoystickUdev::ProcessEvents(void)
 {
-  using namespace P8PLATFORM;
 
   std::array<uint16_t, MOTOR_COUNT> motors;
   std::array<uint16_t, MOTOR_COUNT> previousMotors;
 
   {
-    CLockObject lock(m_mutex);
+    std::lock_guard<std::mutex> lock(m_mutex);
     motors         = m_motors;
     previousMotors = m_previousMotors;
   }
@@ -143,7 +142,7 @@ void CJoystickUdev::ProcessEvents(void)
   }
 
   {
-    CLockObject lock(m_mutex);
+    std::lock_guard<std::mutex> lock(m_mutex);
     m_previousMotors = motors;
   }
 }
@@ -346,7 +345,6 @@ bool CJoystickUdev::GetProperties()
 
 bool CJoystickUdev::SetMotor(unsigned int motorIndex, float magnitude)
 {
-  using namespace P8PLATFORM;
 
   if (!m_bInitialized)
     return false;
@@ -359,7 +357,7 @@ bool CJoystickUdev::SetMotor(unsigned int motorIndex, float magnitude)
 
   uint16_t strength = std::min(0xffff, static_cast<int>(magnitude * 0xffff));
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::mutex> lock(m_mutex);
 
   m_motors[motorIndex] = strength;
 

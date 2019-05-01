@@ -19,8 +19,7 @@
  */
 #pragma once
 
-#include "p8-platform/threads/mutex.h"
-
+#include <mutex>
 #include <string>
 #include <windows.h>
 #include <Xinput.h>
@@ -111,6 +110,6 @@ namespace JOYSTICK
     FnXInputGetCapabilities m_getCaps;
     FnXInputGetBatteryInformation m_getBatteryInfo;
     FnXInputPowerOffController m_powerOff;
-    P8PLATFORM::CMutex m_mutex;
+    std::mutex m_mutex;
   };
 }
