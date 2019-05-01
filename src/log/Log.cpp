@@ -31,7 +31,6 @@
 #include <stdio.h>
 
 using namespace JOYSTICK;
-using namespace P8PLATFORM;
 
 #define MAXSYSLOGBUF (256)
 
