@@ -46,29 +46,9 @@ namespace JOYSTICK
     void SetName(const std::string& strName);
 
     /*!
-     * The time that this joystick was discovered
-     */
-    int64_t DiscoverTimeMs(void) const { return m_discoverTimeMs; }
-
-    /*!
-     * The time that this joystick received its first input
-     */
-    int64_t ActivateTimeMs(void) const { return m_activateTimeMs; }
-
-    /*!
      * Check if this joystick has received any input
      */
-    bool IsActive(void) const { return m_activateTimeMs >= 0; }
-
-    /*!
-     * The time that this joystick delivered its first event
-     */
-    int64_t FirstEventTimeMs(void) const { return m_firstEventTimeMs; }
-
-    /*!
-     * The most recent time that this joystick delivered an event
-     */
-    int64_t LastEventTimeMs(void) const { return m_lastEventTimeMs; }
+    bool IsActive(void) const { return m_isActive; }
 
     /*!
      * Initialize the joystick object. Joystick will be initialized before the
@@ -122,14 +102,6 @@ namespace JOYSTICK
     void GetHatEvents(std::vector<kodi::addon::PeripheralEvent>& events);
     void GetAxisEvents(std::vector<kodi::addon::PeripheralEvent>& events);
 
-    void UpdateTimers(void);
-
-    /*!
-     * Normalize the axis to the closed interval [-1.0, 1.0].
-     */
-    static float NormalizeAxis(long value, long maxAxisAmount);
-    static float ScaleDeadzone(float value);
-
     struct JoystickAxis
     {
       JOYSTICK_STATE_AXIS state = 0.0f;
@@ -145,9 +117,6 @@ namespace JOYSTICK
 
     JoystickState                     m_state;
     JoystickState                     m_stateBuffer;
-    int64_t                           m_discoverTimeMs;
-    int64_t                           m_activateTimeMs;
-    int64_t                           m_firstEventTimeMs;
-    int64_t                           m_lastEventTimeMs;
+    bool m_isActive = false;
   };
 }

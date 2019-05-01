@@ -27,17 +27,11 @@
 #include "utils/CommonMacros.h"
 #include "utils/StringUtils.h"
 
-#include "p8-platform/util/timeutils.h"
-
 using namespace JOYSTICK;
 
 #define ANALOG_EPSILON  0.0001f
 
 CJoystick::CJoystick(EJoystickInterface interfaceType)
- : m_discoverTimeMs(P8PLATFORM::GetTimeMs()),
-   m_activateTimeMs(-1),
-   m_firstEventTimeMs(-1),
-   m_lastEventTimeMs(-1)
 {
   SetProvider(JoystickTranslator::GetInterfaceProvider(interfaceType));
 }
@@ -104,8 +98,6 @@ bool CJoystick::GetEvents(std::vector<kodi::addon::PeripheralEvent>& events)
     GetHatEvents(events);
     GetAxisEvents(events);
 
-    UpdateTimers();
-
     return true;
   }
 
@@ -134,7 +126,7 @@ void CJoystick::Activate()
 {
   if (!IsActive())
   {
-    m_activateTimeMs = P8PLATFORM::GetTimeMs();
+    m_isActive = true;
 
     if (CJoystickUtils::IsGhostJoystick(*this))
     {
@@ -218,16 +210,4 @@ void CJoystick::SetAxisValue(unsigned int axisIndex, long value, long maxAxisAmo
     SetAxisValue(axisIndex, (float)value / (float)maxAxisAmount);
   else
     SetAxisValue(axisIndex, 0.0f);
-}
-
-void CJoystick::UpdateTimers(void)
-{
-  if (m_firstEventTimeMs < 0)
-    m_firstEventTimeMs = P8PLATFORM::GetTimeMs();
-  m_lastEventTimeMs = P8PLATFORM::GetTimeMs();
-}
-
-float CJoystick::NormalizeAxis(long value, long maxAxisAmount)
-{
-  return 1.0f * CONSTRAIN(-maxAxisAmount, value, maxAxisAmount) / maxAxisAmount;
 }
