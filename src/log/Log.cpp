@@ -27,8 +27,6 @@
 #include "LogSyslog.h"
 #endif
 
-#include "p8-platform/threads/threads.h"
-
 #include <stdarg.h>
 #include <stdio.h>
 
