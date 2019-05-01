@@ -109,7 +109,6 @@ set(JOYSTICK_HEADERS src/addon.h
                      src/storage/xml/DeviceXml.h
                      src/storage/xml/JoystickFamiliesXml.h
                      src/storage/xml/JoystickFamilyDefinitions.h
-                     src/utils/CommonIncludes.h
                      src/utils/CommonMacros.h
                      src/utils/StringUtils.h)
 
