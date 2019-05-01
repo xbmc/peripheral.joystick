@@ -70,7 +70,7 @@ When developing, compiling from a git repo is more convenient than repeatedly pu
 
 ### Developing on Linux
 
-The add-on requires several dependencies to build properly. Like Kodi's build system, you can perform a system install or a local one (demonstrated here).
+The add-on requires p8-platform dependency to build properly. Like Kodi's build system, you can perform a system install or a local one (demonstrated here).
 
 First, clone p8-platform and build per standard CMake:
 
@@ -86,15 +86,7 @@ make
 make install
 ```
 
-The kodi-platform library was split from p8-platform. Do the same as above for this library:
-
-```
-git clone https://github.com/xbmc/kodi-platform.git
-cd kodi-platform
-...
-```
-
-With these dependencies in place, the add-on can be built:
+With this dependency in place, the add-on can be built:
 
 ```shell
 git clone https://github.com/xbmc/peripheral.joystick.git
