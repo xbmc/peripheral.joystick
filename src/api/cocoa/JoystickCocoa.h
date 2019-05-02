@@ -26,8 +26,7 @@
 #include <IOKit/hid/IOHIDBase.h>
 #include <IOKit/hid/IOHIDKeys.h>
 #include <IOKit/hid/IOHIDManager.h>
-
-#include "p8-platform/threads/mutex.h"
+#include <mutex>
 
 namespace JOYSTICK
 {
@@ -69,6 +68,6 @@ namespace JOYSTICK
     CJoystickInterfaceCocoa* const m_api;
     std::vector<IOHIDElementRef> m_buttons;
     std::vector<CocoaAxis>       m_axes;
-    P8PLATFORM::CMutex m_mutex;
+    std::mutex m_mutex;
   };
 }

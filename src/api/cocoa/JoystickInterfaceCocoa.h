@@ -21,13 +21,11 @@
 
 #include "api/IJoystickInterface.h"
 
-#include "p8-platform/threads/mutex.h"
-
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/hid/IOHIDBase.h>
 #include <IOKit/hid/IOHIDKeys.h>
 #include <IOKit/hid/IOHIDManager.h>
-
+#include <mutex>
 #include <utility>
 #include <vector>
 
@@ -84,7 +82,7 @@ namespace JOYSTICK
     std::vector<IOHIDDeviceRef> m_discoveredDevices;
     std::vector<DeviceHandle>   m_registeredDevices;
 
-    P8PLATFORM::CMutex m_deviceDiscoveryMutex;
-    P8PLATFORM::CMutex m_deviceInputMutex;
+    std::mutex m_deviceDiscoveryMutex;
+    std::mutex m_deviceInputMutex;
   };
 }

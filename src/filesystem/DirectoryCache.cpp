@@ -20,13 +20,12 @@
 
 #include "DirectoryCache.h"
 
-#include "p8-platform/util/timeutils.h"
-
 #include <algorithm>
+#include <chrono>
 
 using namespace JOYSTICK;
 
-#define DIRECTORY_LIFETIME_MS  2000 // 2 seconds
+static constexpr std::chrono::seconds DIRECTORY_LIFETIME = std::chrono::seconds(2);
 
 // --- Helper function ---------------------------------------------------------
 
@@ -63,10 +62,10 @@ bool CDirectoryCache::GetDirectory(const std::string& path, std::vector<kodi::vf
     const ItemListRecord& record = itItemList->second;
 
     // Check timestamp for stale data
-    const int64_t timestamp = record.first;
-    const int64_t expires = timestamp + DIRECTORY_LIFETIME_MS;
+    const std::chrono::steady_clock::time_point timestamp = record.first;
+    const std::chrono::steady_clock::time_point expires = timestamp + DIRECTORY_LIFETIME;
 
-    if (expires <= P8PLATFORM::GetTimeMs())
+    if (expires <= std::chrono::steady_clock::now())
     {
       items = record.second;
       return true;
@@ -83,7 +82,7 @@ void CDirectoryCache::UpdateDirectory(const std::string& path, const std::vector
 
   ItemListRecord& record = m_cache[path];
 
-  int64_t& timestamp = record.first;
+  std::chrono::steady_clock::time_point& timestamp = record.first;
   ItemList& cachedItems = record.second;
 
   // Remove missing items
@@ -106,6 +105,6 @@ void CDirectoryCache::UpdateDirectory(const std::string& path, const std::vector
     }
   }
 
-  timestamp = P8PLATFORM::GetTimeMs();
+  timestamp = std::chrono::steady_clock::now();
   cachedItems = items;
 }

@@ -26,7 +26,6 @@
 #include <algorithm>
 
 using namespace JOYSTICK;
-using namespace P8PLATFORM;
 
 // --- MatchingDictionary ------------------------------------------------------
 
@@ -140,7 +139,7 @@ void CJoystickInterfaceCocoa::Deinitialize(void)
 
 bool CJoystickInterfaceCocoa::ScanForJoysticks(JoystickVector& joysticks)
 {
-  CLockObject lock(m_deviceDiscoveryMutex);
+  std::lock_guard<std::mutex> lock(m_deviceDiscoveryMutex);
 
   for (auto it = m_discoveredDevices.begin(); it != m_discoveredDevices.end(); ++it)
     joysticks.push_back(JoystickPtr(new CJoystickCocoa(*it, this)));
@@ -153,7 +152,7 @@ void CJoystickInterfaceCocoa::DeviceAdded(IOHIDDeviceRef device)
   bool bDeviceAdded = false;
 
   {
-    CLockObject lock(m_deviceDiscoveryMutex);
+    std::lock_guard<std::mutex> lock(m_deviceDiscoveryMutex);
 
     if (std::find(m_discoveredDevices.begin(), m_discoveredDevices.end(), device) == m_discoveredDevices.end())
     {
@@ -172,7 +171,7 @@ void CJoystickInterfaceCocoa::DeviceAdded(IOHIDDeviceRef device)
 void CJoystickInterfaceCocoa::DeviceRemoved(IOHIDDeviceRef device)
 {
   {
-    CLockObject lock(m_deviceDiscoveryMutex);
+    std::lock_guard<std::mutex> lock(m_deviceDiscoveryMutex);
     m_discoveredDevices.erase(std::remove(m_discoveredDevices.begin(), m_discoveredDevices.end(), device), m_discoveredDevices.end());
   }
 
@@ -185,7 +184,7 @@ void CJoystickInterfaceCocoa::InputValueChanged(IOHIDValueRef newValue)
   IOHIDElementRef element = IOHIDValueGetElement(newValue);
   IOHIDDeviceRef device = IOHIDElementGetDevice(element);
 
-  CLockObject lock(m_deviceInputMutex);
+  std::lock_guard<std::mutex> lock(m_deviceInputMutex);
 
   for (std::vector<DeviceHandle>::iterator it = m_registeredDevices.begin(); it != m_registeredDevices.end(); ++it)
   {
@@ -196,14 +195,14 @@ void CJoystickInterfaceCocoa::InputValueChanged(IOHIDValueRef newValue)
 
 void CJoystickInterfaceCocoa::RegisterInputCallback(ICocoaInputCallback* callback, IOHIDDeviceRef device)
 {
-  CLockObject lock(m_deviceInputMutex);
+  std::lock_guard<std::mutex> lock(m_deviceInputMutex);
 
   m_registeredDevices.push_back(std::make_pair(device, callback));
 }
 
 void CJoystickInterfaceCocoa::UnregisterInputCallback(ICocoaInputCallback* callback)
 {
-  CLockObject lock(m_deviceInputMutex);
+  std::lock_guard<std::mutex> lock(m_deviceInputMutex);
 
   for (std::vector<DeviceHandle>::iterator it = m_registeredDevices.begin(); it != m_registeredDevices.end(); )
   {

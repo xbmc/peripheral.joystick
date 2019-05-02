@@ -22,6 +22,7 @@
 #include "StorageTypes.h"
 #include "buttonmapper/ButtonMapTypes.h"
 
+#include <chrono>
 #include <set>
 #include <stdint.h>
 #include <string>
@@ -74,7 +75,7 @@ namespace JOYSTICK
     ButtonMap         m_originalButtonMap;
 
   private:
-    int64_t m_timestamp;
+    std::chrono::steady_clock::time_point m_timestamp;
     bool    m_bModified;
   };
 }

@@ -27,13 +27,10 @@
 #include "LogSyslog.h"
 #endif
 
-#include "p8-platform/threads/threads.h"
-
 #include <stdarg.h>
 #include <stdio.h>
 
 using namespace JOYSTICK;
-using namespace P8PLATFORM;
 
 #define MAXSYSLOGBUF (256)
 
@@ -56,7 +53,7 @@ CLog::~CLog(void)
 
 bool CLog::SetType(SYS_LOG_TYPE type)
 {
-  P8PLATFORM::CLockObject lock(m_mutex);
+  std::lock_guard<std::mutex> lock(m_mutex);
   if (m_pipe && m_pipe->Type() == type)
     return true; // Already set
 
@@ -84,7 +81,7 @@ bool CLog::SetType(SYS_LOG_TYPE type)
 
 void CLog::SetPipe(ILog* pipe)
 {
-  P8PLATFORM::CLockObject lock(m_mutex);
+  std::lock_guard<std::mutex> lock(m_mutex);
 
   const SYS_LOG_TYPE newType = pipe   ? pipe->Type()   : SYS_LOG_TYPE_NULL;
   const SYS_LOG_TYPE oldType = m_pipe ? m_pipe->Type() : SYS_LOG_TYPE_NULL;
@@ -95,7 +92,7 @@ void CLog::SetPipe(ILog* pipe)
 
 void CLog::SetLevel(SYS_LOG_LEVEL level)
 {
-  P8PLATFORM::CLockObject lock(m_mutex);
+  std::lock_guard<std::mutex> lock(m_mutex);
 
   const SYS_LOG_LEVEL newLevel = level;
   const SYS_LOG_LEVEL oldLevel = m_level;
@@ -114,7 +111,7 @@ void CLog::Log(SYS_LOG_LEVEL level, const char* format, ...)
   vsnprintf(buf, MAXSYSLOGBUF - 1, fmt, ap);
   va_end(ap);
 
-  P8PLATFORM::CLockObject lock(m_mutex);
+  std::lock_guard<std::mutex> lock(m_mutex);
 
   if (level > m_level)
     return;

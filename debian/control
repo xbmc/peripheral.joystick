@@ -2,7 +2,7 @@ Source: kodi-peripheral-joystick
 Priority: extra
 Maintainer: wsnipex <wsnipex@a1.net>
 Build-Depends: debhelper (>= 9.0.0), cmake (>= 3.1), libtinyxml-dev,
-               kodi-addon-dev, pkg-config, libp8-platform-dev, libudev-dev
+               kodi-addon-dev, pkg-config, libudev-dev
 Standards-Version: 3.9.6
 Section: libs
 
