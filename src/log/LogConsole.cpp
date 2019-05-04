@@ -29,7 +29,7 @@ void CLogConsole::Log(SYS_LOG_LEVEL level, const char* logline)
 {
   // TODO: Prepend current date
 
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   printf("%s\n", logline);
 }

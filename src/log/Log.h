@@ -61,6 +61,6 @@ namespace JOYSTICK
   private:
     ILog*            m_pipe;
     SYS_LOG_LEVEL    m_level;
-    std::mutex m_mutex;
+    std::recursive_mutex m_mutex;
   };
 }

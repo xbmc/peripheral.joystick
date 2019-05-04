@@ -162,8 +162,8 @@ namespace JOYSTICK
     JoystickVector                   m_joysticks;
     unsigned int                     m_nextJoystickIndex;
     bool                             m_bChanged;
-    mutable std::mutex m_changedMutex;
-    mutable std::mutex m_interfacesMutex;
-    mutable std::mutex m_joystickMutex;
+    mutable std::recursive_mutex m_changedMutex;
+    mutable std::recursive_mutex m_interfacesMutex;
+    mutable std::recursive_mutex m_joystickMutex;
   };
 }

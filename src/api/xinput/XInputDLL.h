@@ -110,6 +110,6 @@ namespace JOYSTICK
     FnXInputGetCapabilities m_getCaps;
     FnXInputGetBatteryInformation m_getBatteryInfo;
     FnXInputPowerOffController m_powerOff;
-    std::mutex m_mutex;
+    std::recursive_mutex m_mutex;
   };
 }

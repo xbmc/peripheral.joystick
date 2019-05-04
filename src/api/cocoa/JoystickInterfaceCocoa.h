@@ -82,7 +82,7 @@ namespace JOYSTICK
     std::vector<IOHIDDeviceRef> m_discoveredDevices;
     std::vector<DeviceHandle>   m_registeredDevices;
 
-    std::mutex m_deviceDiscoveryMutex;
-    std::mutex m_deviceInputMutex;
+    std::recursive_mutex m_deviceDiscoveryMutex;
+    std::recursive_mutex m_deviceInputMutex;
   };
 }

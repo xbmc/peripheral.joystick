@@ -42,7 +42,7 @@ CXInputDLL& CXInputDLL::Get(void)
 
 bool CXInputDLL::Load(void)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   m_strVersion = "1.4";
 #if !defined(WINAPI_FAMILY) || (WINAPI_FAMILY != WINAPI_FAMILY_APP)
@@ -106,7 +106,7 @@ bool CXInputDLL::Load(void)
 
 void CXInputDLL::Unload(void)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
 #if !defined(WINAPI_FAMILY) || (WINAPI_FAMILY != WINAPI_FAMILY_APP)
   if (m_dll)
@@ -135,7 +135,7 @@ bool CXInputDLL::SupportsPowerOff(void) const
 
 bool CXInputDLL::GetState(unsigned int controllerId, XINPUT_STATE& state)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_getState)
     return false;
@@ -153,7 +153,7 @@ bool CXInputDLL::GetState(unsigned int controllerId, XINPUT_STATE& state)
 
 bool CXInputDLL::GetStateWithGuide(unsigned int controllerId, XINPUT_STATE_EX& state)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_getStateEx)
     return false;
@@ -171,7 +171,7 @@ bool CXInputDLL::GetStateWithGuide(unsigned int controllerId, XINPUT_STATE_EX& s
 
 bool CXInputDLL::SetState(unsigned int controllerId, XINPUT_VIBRATION& vibration)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_setState)
     return false;
@@ -191,7 +191,7 @@ bool CXInputDLL::SetState(unsigned int controllerId, XINPUT_VIBRATION& vibration
 
 bool CXInputDLL::GetCapabilities(unsigned int controllerId, XINPUT_CAPABILITIES& caps)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_getCaps)
     return false;
@@ -212,7 +212,7 @@ bool CXInputDLL::GetCapabilities(unsigned int controllerId, XINPUT_CAPABILITIES&
 
 bool CXInputDLL::GetBatteryInformation(unsigned int controllerId, BatteryDeviceType deviceType, XINPUT_BATTERY_INFORMATION& battery)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_getBatteryInfo)
     return false;
@@ -248,7 +248,7 @@ bool CXInputDLL::GetBatteryInformation(unsigned int controllerId, BatteryDeviceT
 
 bool CXInputDLL::PowerOff(unsigned int controllerId)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_powerOff)
     return false;

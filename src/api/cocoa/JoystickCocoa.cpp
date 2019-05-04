@@ -56,7 +56,7 @@ bool CJoystickCocoa::Equals(const CJoystick* rhs) const
 
 bool CJoystickCocoa::Initialize(void)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (!m_bInitialized)
   {
@@ -132,7 +132,7 @@ bool CJoystickCocoa::Initialize(void)
 
 void CJoystickCocoa::Deinitialize(void)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   CJoystick::Deinitialize();
 
@@ -144,31 +144,31 @@ void CJoystickCocoa::Deinitialize(void)
 
 bool CJoystickCocoa::GetEvents(std::vector<kodi::addon::PeripheralEvent>& events)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
   return CJoystick::GetEvents(events);
 }
 
 bool CJoystickCocoa::ScanEvents(void)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
   return m_bInitialized; // Events arrive asynchronously
 }
 
 void CJoystickCocoa::SetButtonValue(unsigned int buttonIndex, JOYSTICK_STATE_BUTTON buttonValue)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
   CJoystick::SetButtonValue(buttonIndex, buttonValue);
 }
 
 void CJoystickCocoa::SetHatValue(unsigned int hatIndex, JOYSTICK_STATE_HAT hatValue)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
   CJoystick::SetHatValue(hatIndex, hatValue);
 }
 
 void CJoystickCocoa::SetAxisValue(unsigned int axisIndex, JOYSTICK_STATE_AXIS axisValue)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
   CJoystick::SetAxisValue(axisIndex, axisValue);
 }
 
