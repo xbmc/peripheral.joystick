@@ -53,7 +53,7 @@ CLog::~CLog(void)
 
 bool CLog::SetType(SYS_LOG_TYPE type)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
   if (m_pipe && m_pipe->Type() == type)
     return true; // Already set
 
@@ -81,7 +81,7 @@ bool CLog::SetType(SYS_LOG_TYPE type)
 
 void CLog::SetPipe(ILog* pipe)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   const SYS_LOG_TYPE newType = pipe   ? pipe->Type()   : SYS_LOG_TYPE_NULL;
   const SYS_LOG_TYPE oldType = m_pipe ? m_pipe->Type() : SYS_LOG_TYPE_NULL;
@@ -92,7 +92,7 @@ void CLog::SetPipe(ILog* pipe)
 
 void CLog::SetLevel(SYS_LOG_LEVEL level)
 {
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   const SYS_LOG_LEVEL newLevel = level;
   const SYS_LOG_LEVEL oldLevel = m_level;
@@ -111,7 +111,7 @@ void CLog::Log(SYS_LOG_LEVEL level, const char* format, ...)
   vsnprintf(buf, MAXSYSLOGBUF - 1, fmt, ap);
   va_end(ap);
 
-  std::lock_guard<std::mutex> lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   if (level > m_level)
     return;

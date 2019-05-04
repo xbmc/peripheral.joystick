@@ -120,6 +120,6 @@ namespace JOYSTICK
     const bool        m_bReadWrite;
     CDirectoryCache   m_directoryCache;
     CResources        m_resources;
-    std::mutex m_mutex;
+    std::recursive_mutex m_mutex;
   };
 }

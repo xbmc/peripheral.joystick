@@ -35,6 +35,6 @@ namespace JOYSTICK
     virtual SYS_LOG_TYPE Type(void) const override { return SYS_LOG_TYPE_CONSOLE; }
 
   private:
-    std::mutex m_mutex;
+    std::recursive_mutex m_mutex;
   };
 }

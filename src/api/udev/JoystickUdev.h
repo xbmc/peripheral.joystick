@@ -101,6 +101,6 @@ namespace JOYSTICK
     std::map<unsigned int, Axis>         m_axes_bind;   // Maps keycodes -> axis and axis info
     std::array<uint16_t, MOTOR_COUNT>    m_motors;
     std::array<uint16_t, MOTOR_COUNT>    m_previousMotors;
-    std::mutex m_mutex;
+    std::recursive_mutex m_mutex;
   };
 }
