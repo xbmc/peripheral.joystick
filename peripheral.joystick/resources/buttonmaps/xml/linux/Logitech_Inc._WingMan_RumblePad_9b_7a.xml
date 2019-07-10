@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="Logitech Inc. WingMan RumblePad" provider="linux" buttoncount="9" axiscount="7">
+        <controller id="game.controller.default">
+            <feature name="a" button="0" />
+            <feature name="b" button="1" />
+            <feature name="back" button="2" />
+            <feature name="down" axis="+6" />
+            <feature name="left" axis="-5" />
+            <feature name="leftbumper" button="6" />
+            <feature name="leftstick">
+                <up axis="-1" />
+                <down axis="+1" />
+                <right axis="+0" />
+                <left axis="-0" />
+            </feature>
+            <feature name="right" axis="+5" />
+            <feature name="rightbumper" button="7" />
+            <feature name="rightstick">
+                <up axis="-4" />
+                <down axis="+4" />
+                <right axis="+3" />
+                <left axis="-3" />
+            </feature>
+            <feature name="start" button="8" />
+            <feature name="up" axis="-6" />
+            <feature name="x" button="3" />
+            <feature name="y" button="4" />
+        </controller>
+    </device>
+</buttonmap>
