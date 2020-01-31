@@ -1,6 +1,6 @@
 /*
- *      Copyright (C) 2017 Garrett Brown
- *      Copyright (C) 2017 Team Kodi
+ *      Copyright (C) 2017-2020 Garrett Brown
+ *      Copyright (C) 2017-2020 Team Kodi
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
