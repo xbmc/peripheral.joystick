@@ -16,5 +16,8 @@
     <license>GPL-2.0</license>
     <source>https://github.com/xbmc/peripheral.joystick</source>
     <platform>@PLATFORM@</platform>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
   </extension>
 </addon>
