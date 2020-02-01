@@ -3,7 +3,7 @@ Upstream-Name: peripheral.joystick
 Source: https://github.com/xbmc/peripheral.joystick
 
 Files: *
-Copyright: 2005-2017 Team Kodi
+Copyright: 2005-2020 Team Kodi
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
