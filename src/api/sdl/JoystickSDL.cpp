@@ -1,7 +1,7 @@
 /*
  *      Copyright (C) 2016-2017 Sam Lantinga
- *      Copyright (C) 2014-2017 Garrett Brown
- *      Copyright (C) 2014-2017 Team Kodi
+ *      Copyright (C) 2014-2020 Garrett Brown
+ *      Copyright (C) 2014-2020 Team Kodi
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
