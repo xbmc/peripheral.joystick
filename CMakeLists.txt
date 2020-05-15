@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
+execute_process(COMMAND "env" OUTPUT_VARIABLE myEnvOut)
+
+message(STATUS "Local Environment: ${myEnvOut}")
 project(peripheral.joystick)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
