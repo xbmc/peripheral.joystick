@@ -1,3 +1,5 @@
+[![License: GPL-2.0-or-later](https://img.shields.io/badge/License-GPL%20v2+-blue.svg)](LICENSE.md)
+
 # Joystick support for Kodi
 
 This add-on provides joystick drivers and button mapping services for Kodi. It uses the Peripheral API added to Kodi as part of [PR 8807](https://github.com/xbmc/xbmc/pull/8807).
