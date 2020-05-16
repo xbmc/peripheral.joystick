@@ -1,4 +1,7 @@
 [![License: GPL-2.0-or-later](https://img.shields.io/badge/License-GPL%20v2+-blue.svg)](LICENSE.md)
+[![Build Status](https://travis-ci.org/xbmc/peripheral.joystick.svg?branch=Matrix)](https://travis-ci.org/xbmc/peripheral.joystick/branches)
+[![Build Status](https://dev.azure.com/teamkodi/binary-addons/_apis/build/status/xbmc.peripheral.joystick?branchName=Matrix)](https://dev.azure.com/teamkodi/binary-addons/_build/latest?definitionId=50&branchName=Matrix)
+[![Build Status](https://jenkins.kodi.tv/view/Addons/job/xbmc/job/peripheral.joystick/job/Matrix/badge/icon)](https://jenkins.kodi.tv/blue/organizations/jenkins/xbmc%2Fperipheral.joystick/branches/)
 
 # Joystick support for Kodi
 
