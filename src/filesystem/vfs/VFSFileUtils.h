@@ -21,7 +21,7 @@ namespace JOYSTICK
 
     // implementation of IFileUtils
     virtual bool Exists(const std::string& url) override;
-    virtual bool Stat(const std::string& url, STAT_STRUCTURE& buffer) override;
+    virtual bool Stat(const std::string& url, kodi::vfs::FileStatus& buffer) override;
     virtual bool Rename(const std::string& url, const std::string& newUrl) override;
     virtual bool Delete(const std::string& url) override;
   };

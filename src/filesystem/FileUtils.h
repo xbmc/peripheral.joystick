@@ -23,7 +23,7 @@ namespace JOYSTICK
     static void Deinitialize(void);
 
     static bool Exists(const std::string& url);
-    static bool Stat(const std::string& url, STAT_STRUCTURE& buffer);
+    static bool Stat(const std::string& url, kodi::vfs::FileStatus& buffer);
     static bool Rename(const std::string& url, const std::string& newUrl);
     static bool Delete(const std::string& url);
     static bool SetHidden(const std::string& url, bool bHidden);

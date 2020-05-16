@@ -26,7 +26,7 @@ namespace JOYSTICK
      */
     virtual bool Exists(const std::string& url) = 0;
 
-    virtual bool Stat(const std::string& url, STAT_STRUCTURE& buffer) = 0;
+    virtual bool Stat(const std::string& url, kodi::vfs::FileStatus& buffer) = 0;
 
     virtual bool Rename(const std::string& url, const std::string& newUrl) = 0;
 

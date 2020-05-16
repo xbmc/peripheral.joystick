@@ -17,7 +17,7 @@ bool CVFSFileUtils::Exists(const std::string& url)
   return kodi::vfs::FileExists(url, true);
 }
 
-bool CVFSFileUtils::Stat(const std::string& url, STAT_STRUCTURE& buffer)
+bool CVFSFileUtils::Stat(const std::string& url, kodi::vfs::FileStatus& buffer)
 {
   return kodi::vfs::StatFile(url, buffer);
 }
