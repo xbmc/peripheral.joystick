@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <buttonmap>
-    <device name="Extended Gamepad" provider="darwinembedded" buttoncount="14" axiscount="4">
+    <device name="Extended Gamepad" provider="darwinembedded" buttoncount="15" axiscount="4">
         <controller id="game.controller.default">
             <feature name="up" button="0" />
             <feature name="down" button="1" />
@@ -15,7 +15,8 @@
             <feature name="rightbumper" button="10" />
             <feature name="righttrigger" button="11" />
             <feature name="start" button="12" />
-            <feature name="back" button="13" />
+            <feature name="leftthumb" button="14" />
+            <feature name="rightthumb" button="15" />
             <feature name="leftstick">
                 <up axis="+1" />
                 <down axis="-1" />
