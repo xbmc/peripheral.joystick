@@ -18,23 +18,23 @@ msgstr ""
 
 msgctxt "#30000"
 msgid "Driver settings"
-msgstr ""
+msgstr "Treibereinstellungen"
 
 msgctxt "#30001"
 msgid "Joystick driver"
-msgstr ""
+msgstr "Joystick-Treiber"
 
 msgctxt "#30002"
 msgid "None"
-msgstr ""
+msgstr "Keiner"
 
 msgctxt "#30003"
 msgid "Enable XInput"
-msgstr ""
+msgstr "Aktiviere XInput"
 
 msgctxt "#30004"
 msgid "Enable DirectInput"
-msgstr ""
+msgstr "Aktiviere DirectInput"
 
 #. Do not translate
 msgctxt "#30005"
@@ -58,4 +58,4 @@ msgstr ""
 
 #msgctxt "#21475"
 #msgid "Both"
-#msgstr ""
+#msgstr "Beide"

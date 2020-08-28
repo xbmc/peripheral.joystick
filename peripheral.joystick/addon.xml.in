@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon
   id="peripheral.joystick"
-  version="1.5.3"
+  version="1.6.1"
   name="Joystick Support"
   provider-name="Team Kodi">
   <requires>@ADDON_DEPENDS@</requires>
@@ -11,7 +11,9 @@
     provides_buttonmaps="true"
     library_@PLATFORM@="@LIBRARY_FILENAME@"/>
   <extension point="xbmc.addon.metadata">
+    <summary lang="de_DE">Kodi Joystick Library</summary>
     <summary lang="en_GB">Kodi Joystick Library</summary>
+    <description lang="de_DE">Diese Bibliothek enthält Joystick-Treiber und Schaltflächenzuordnungen. Es werden mehrere Joystick-APIs unterstützt, darunter DirectX, XInput, SDL und die Linux-Joystick-API.</description>
     <description lang="en_GB">This library provides joystick drivers and button maps. Multiple joystick APIs are supported, including DirectX, XInput, SDL and the Linux Joystick API.</description>
     <license>GPL-2.0-or-later</license>
     <source>https://github.com/xbmc/peripheral.joystick</source>

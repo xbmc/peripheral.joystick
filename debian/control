@@ -3,7 +3,7 @@ Priority: extra
 Maintainer: wsnipex <wsnipex@a1.net>
 Build-Depends: debhelper (>= 9.0.0), cmake, libtinyxml-dev,
                kodi-addon-dev, pkg-config, libudev-dev
-Standards-Version: 3.9.6
+Standards-Version: 4.1.2
 Section: libs
 
 Package: kodi-peripheral-joystick
