@@ -1,6 +1,7 @@
 # build artifacts
 build/
 peripheral.*/addon.xml
+peripheral.*/resources/settings.xml
 
 # Debian build files
 debian/changelog
