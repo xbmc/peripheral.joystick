@@ -12,7 +12,7 @@
 #include "storage/Device.h"
 #include "utils/CommonMacros.h"
 
-#include <kodi/addon-instance/PeripheralUtils.h>
+#include <kodi/addon-instance/peripheral/PeripheralUtils.h>
 
 #include <algorithm>
 

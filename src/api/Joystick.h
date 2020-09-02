@@ -10,7 +10,7 @@
 
 #include "JoystickTypes.h"
 
-#include <kodi/addon-instance/PeripheralUtils.h>
+#include <kodi/addon-instance/Peripheral.h>
 
 #include <string>
 #include <vector>

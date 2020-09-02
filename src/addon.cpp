@@ -73,193 +73,100 @@ CPeripheralJoystick::~CPeripheralJoystick()
   delete m_scanner;
 }
 
-void CPeripheralJoystick::GetCapabilities(PERIPHERAL_CAPABILITIES& capabilities)
+void CPeripheralJoystick::GetCapabilities(kodi::addon::PeripheralCapabilities& capabilities)
 {
-  capabilities.provides_joysticks = true;
-  capabilities.provides_buttonmaps = true;
+  capabilities.SetProvidesJoysticks(true);
+  capabilities.SetProvidesButtonmaps(true);
 }
 
-PERIPHERAL_ERROR CPeripheralJoystick::PerformDeviceScan(unsigned int* peripheral_count, PERIPHERAL_INFO** scan_results)
+PERIPHERAL_ERROR CPeripheralJoystick::PerformDeviceScan(std::vector<std::shared_ptr<kodi::addon::Peripheral>>& scan_results)
 {
-  if (!peripheral_count || !scan_results)
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
   JoystickVector joysticks;
   if (!CJoystickManager::Get().PerformJoystickScan(joysticks))
     return PERIPHERAL_ERROR_FAILED;
 
   // Upcast array pointers
-  std::vector<kodi::addon::Peripheral*> peripherals;
-  for (JoystickVector::const_iterator it = joysticks.begin(); it != joysticks.end(); ++it)
-    peripherals.push_back(it->get());
-
-  *peripheral_count = static_cast<unsigned int>(peripherals.size());
-  kodi::addon::Peripherals::ToStructs(peripherals, scan_results);
+  for (const auto& it : joysticks)
+    scan_results.emplace_back(it);
 
   return PERIPHERAL_NO_ERROR;
 }
 
-void CPeripheralJoystick::FreeScanResults(unsigned int peripheral_count, PERIPHERAL_INFO* scan_results)
+PERIPHERAL_ERROR CPeripheralJoystick::GetEvents(std::vector<kodi::addon::PeripheralEvent>& events)
 {
-  kodi::addon::Peripherals::FreeStructs(peripheral_count, scan_results);
-}
-
-PERIPHERAL_ERROR CPeripheralJoystick::GetEvents(unsigned int* event_count, PERIPHERAL_EVENT** events)
-{
-  if (!event_count || !events)
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
   PERIPHERAL_ERROR result = PERIPHERAL_ERROR_FAILED;
 
-  std::vector<kodi::addon::PeripheralEvent> peripheralEvents;
-  if (CJoystickManager::Get().GetEvents(peripheralEvents))
-  {
-    *event_count = static_cast<unsigned int>(peripheralEvents.size());
-    kodi::addon::PeripheralEvents::ToStructs(peripheralEvents, events);
+  if (CJoystickManager::Get().GetEvents(events))
     result = PERIPHERAL_NO_ERROR;
-  }
 
   CJoystickManager::Get().ProcessEvents();
 
   return result;
 }
 
-void CPeripheralJoystick::FreeEvents(unsigned int event_count, PERIPHERAL_EVENT* events)
+bool CPeripheralJoystick::SendEvent(const kodi::addon::PeripheralEvent& event)
 {
-  kodi::addon::PeripheralEvents::FreeStructs(event_count, events);
+  return CJoystickManager::Get().SendEvent(event);
 }
 
-bool CPeripheralJoystick::SendEvent(const PERIPHERAL_EVENT* event)
+PERIPHERAL_ERROR CPeripheralJoystick::GetJoystickInfo(unsigned int index, kodi::addon::Joystick& info)
 {
-  bool bHandled = false;
-
-  if (event != nullptr)
-    bHandled = CJoystickManager::Get().SendEvent(kodi::addon::PeripheralEvent(*event));
-
-  return bHandled;
-}
-
-PERIPHERAL_ERROR CPeripheralJoystick::GetJoystickInfo(unsigned int index, JOYSTICK_INFO* info)
-{
-  if (!info)
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
   JoystickPtr joystick = CJoystickManager::Get().GetJoystick(index);
   if (!joystick)
     return PERIPHERAL_ERROR_NOT_CONNECTED;
 
-  // Need to be explicit because we're using typedef struct { ... }T instead of struct T{ ... }
-  joystick->kodi::addon::Joystick::ToStruct(*info);
+  info = *joystick;
 
   return PERIPHERAL_NO_ERROR;
 }
 
-void CPeripheralJoystick::FreeJoystickInfo(JOYSTICK_INFO* info)
+PERIPHERAL_ERROR CPeripheralJoystick::GetFeatures(const kodi::addon::Joystick& joystick,
+                                                  const std::string& controller_id,
+                                                  std::vector<kodi::addon::JoystickFeature>& features)
 {
-  if (!info)
-    return;
-
-  kodi::addon::Joystick::FreeStruct(*info);
-}
-
-PERIPHERAL_ERROR CPeripheralJoystick::GetFeatures(const JOYSTICK_INFO* joystick, const char* controller_id,
-                                                  unsigned int* feature_count, JOYSTICK_FEATURE** features)
-{
-  if (!joystick || !controller_id || !feature_count || !features)
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
-  FeatureVector featureVector;
-  CStorageManager::Get().GetFeatures(kodi::addon::Joystick(*joystick), controller_id,  featureVector);
-
-  *feature_count = static_cast<unsigned int>(featureVector.size());
-  kodi::addon::JoystickFeatures::ToStructs(featureVector, features);
+  CStorageManager::Get().GetFeatures(joystick, controller_id, features);
 
   return PERIPHERAL_NO_ERROR;
 }
 
-void CPeripheralJoystick::FreeFeatures(unsigned int feature_count, JOYSTICK_FEATURE* features)
+PERIPHERAL_ERROR CPeripheralJoystick::MapFeatures(const kodi::addon::Joystick& joystick,
+                                                  const std::string& controller_id,
+                                                  const std::vector<kodi::addon::JoystickFeature>& features)
 {
-  kodi::addon::JoystickFeatures::FreeStructs(feature_count, features);
-}
-
-PERIPHERAL_ERROR CPeripheralJoystick::MapFeatures(const JOYSTICK_INFO* joystick, const char* controller_id,
-                             unsigned int feature_count, const JOYSTICK_FEATURE* features)
-{
-  if (!joystick || !controller_id || (feature_count > 0 && !features))
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
-  FeatureVector featureVector(features, features + feature_count);
-  bool bSuccess = CStorageManager::Get().MapFeatures(kodi::addon::Joystick(*joystick), controller_id, featureVector);
+  bool bSuccess = CStorageManager::Get().MapFeatures(joystick, controller_id, features);
 
   return bSuccess ? PERIPHERAL_NO_ERROR : PERIPHERAL_ERROR_FAILED;
 }
 
-PERIPHERAL_ERROR CPeripheralJoystick::GetIgnoredPrimitives(const JOYSTICK_INFO* joystick,
-                                      unsigned int* primitive_count,
-                                      JOYSTICK_DRIVER_PRIMITIVE** primitives)
+PERIPHERAL_ERROR CPeripheralJoystick::GetIgnoredPrimitives(const kodi::addon::Joystick& joystick,
+                                                           std::vector<kodi::addon::DriverPrimitive>& primitives)
 {
-  if (joystick == nullptr || primitive_count == nullptr || primitives == nullptr)
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
-  PrimitiveVector primitiveVector;
-  CStorageManager::Get().GetIgnoredPrimitives(kodi::addon::Joystick(*joystick), primitiveVector);
-
-  *primitive_count = static_cast<unsigned int>(primitiveVector.size());
-  kodi::addon::DriverPrimitives::ToStructs(primitiveVector, primitives);
+  CStorageManager::Get().GetIgnoredPrimitives(joystick, primitives);
 
   return PERIPHERAL_NO_ERROR;
 }
 
-void CPeripheralJoystick::FreePrimitives(unsigned int primitive_count, JOYSTICK_DRIVER_PRIMITIVE* primitives)
+PERIPHERAL_ERROR CPeripheralJoystick::SetIgnoredPrimitives(const kodi::addon::Joystick& joystick,
+                                                           const std::vector<kodi::addon::DriverPrimitive>& primitives)
 {
-  kodi::addon::DriverPrimitives::FreeStructs(primitive_count, primitives);
-}
-
-PERIPHERAL_ERROR CPeripheralJoystick::SetIgnoredPrimitives(const JOYSTICK_INFO* joystick,
-                                      unsigned int primitive_count,
-                                      const JOYSTICK_DRIVER_PRIMITIVE* primitives)
-{
-  if (joystick == nullptr || (primitive_count > 0 && primitives == nullptr))
-    return PERIPHERAL_ERROR_INVALID_PARAMETERS;
-
-  PrimitiveVector primitiveVector;
-
-  for (unsigned int i = 0; i < primitive_count; i++)
-    primitiveVector.emplace_back(*(primitives + i));
-
-  bool bSuccess = CStorageManager::Get().SetIgnoredPrimitives(kodi::addon::Joystick(*joystick), primitiveVector);
+  bool bSuccess = CStorageManager::Get().SetIgnoredPrimitives(joystick, primitives);
 
   return bSuccess ? PERIPHERAL_NO_ERROR : PERIPHERAL_ERROR_FAILED;
 }
 
-void CPeripheralJoystick::SaveButtonMap(const JOYSTICK_INFO* joystick)
+void CPeripheralJoystick::SaveButtonMap(const kodi::addon::Joystick& joystick)
 {
-  if (joystick == nullptr)
-    return;
-
-  kodi::addon::Joystick addonJoystick(*joystick);
-
-  CStorageManager::Get().SaveButtonMap(addonJoystick);
+  CStorageManager::Get().SaveButtonMap(joystick);
 }
 
-void CPeripheralJoystick::RevertButtonMap(const JOYSTICK_INFO* joystick)
+void CPeripheralJoystick::RevertButtonMap(const kodi::addon::Joystick& joystick)
 {
-  if (joystick == nullptr)
-    return;
-
-  kodi::addon::Joystick addonJoystick(*joystick);
-
-  CStorageManager::Get().RevertButtonMap(addonJoystick);
+  CStorageManager::Get().RevertButtonMap(joystick);
 }
 
-void CPeripheralJoystick::ResetButtonMap(const JOYSTICK_INFO* joystick, const char* controller_id)
+void CPeripheralJoystick::ResetButtonMap(const kodi::addon::Joystick& joystick, const std::string& controller_id)
 {
-  if (!joystick || !controller_id)
-    return;
-
-  kodi::addon::Joystick addonJoystick(*joystick);
-
-  CStorageManager::Get().ResetButtonMap(addonJoystick, controller_id);
+  CStorageManager::Get().ResetButtonMap(joystick, controller_id);
 }
 
 void CPeripheralJoystick::PowerOffJoystick(unsigned int index)
