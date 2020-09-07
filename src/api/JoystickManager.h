@@ -11,7 +11,7 @@
 #include "JoystickTypes.h"
 #include "buttonmapper/ButtonMapTypes.h"
 
-#include <kodi/addon-instance/PeripheralUtils.h>
+#include <kodi/addon-instance/peripheral/PeripheralUtils.h>
 
 #include <mutex>
 #include <set>

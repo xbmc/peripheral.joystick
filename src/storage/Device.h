@@ -11,7 +11,6 @@
 #include "DeviceConfiguration.h"
 
 #include <kodi/addon-instance/Peripheral.h>
-#include <kodi/addon-instance/PeripheralUtils.h>
 
 namespace JOYSTICK
 {

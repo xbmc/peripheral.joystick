@@ -14,7 +14,7 @@
 #include "buttonmapper/ButtonMapUtils.h"
 #include "log/Log.h"
 
-#include <kodi/addon-instance/PeripheralUtils.h>
+#include <kodi/addon-instance/peripheral/PeripheralUtils.h>
 
 #include <algorithm>
 #include <chrono>

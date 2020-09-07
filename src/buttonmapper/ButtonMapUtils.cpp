@@ -8,7 +8,7 @@
 
 #include "ButtonMapUtils.h"
 
-#include <kodi/addon-instance/PeripheralUtils.h>
+#include <kodi/addon-instance/peripheral/PeripheralUtils.h>
 
 #include <array>
 #include <map>

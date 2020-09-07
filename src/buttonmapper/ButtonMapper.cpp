@@ -11,7 +11,7 @@
 #include "ControllerTransformer.h"
 #include "storage/IDatabase.h"
 
-#include <kodi/addon-instance/PeripheralUtils.h>
+#include <kodi/addon-instance/peripheral/PeripheralUtils.h>
 
 #include <algorithm>
 #include <iterator>
