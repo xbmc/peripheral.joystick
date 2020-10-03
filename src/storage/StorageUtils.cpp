@@ -10,9 +10,9 @@
 #include "Device.h"
 #include "filesystem/DirectoryUtils.h"
 #include "log/Log.h"
-#include "utils/StringUtils.h"
 
 #include <algorithm>
+#include <kodi/tools/StringUtils.h>
 #include <set>
 #include <sstream>
 #include <stdio.h>
@@ -43,7 +43,7 @@ bool CStorageUtils::EnsureDirectoryExists(const std::string& path)
 
 std::string CStorageUtils::RootFileName(const kodi::addon::Joystick& device)
 {
-  std::string baseFilename = StringUtils::MakeSafeUrl(device.Name());
+  std::string baseFilename = kodi::tools::StringUtils::MakeSafeUrl(device.Name());
 
   // Limit filename to a sane number of characters.
   if (baseFilename.length() > 50)
@@ -84,7 +84,7 @@ std::string CStorageUtils::FormatHexString(int iVal)
   if (iVal > 65536)
     iVal = 65536;
 
-  return StringUtils::Format("%04X", iVal);
+  return kodi::tools::StringUtils::Format("%04X", iVal);
 };
 
 std::string CStorageUtils::PrimitiveToString(const kodi::addon::DriverPrimitive& primitive)
@@ -92,7 +92,7 @@ std::string CStorageUtils::PrimitiveToString(const kodi::addon::DriverPrimitive&
   switch (primitive.Type())
   {
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_BUTTON:
-    return StringUtils::Format("button %u", primitive.DriverIndex());
+    return kodi::tools::StringUtils::Format("button %u", primitive.DriverIndex());
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_HAT_DIRECTION:
     switch (primitive.HatDirection())
     {
@@ -109,15 +109,15 @@ std::string CStorageUtils::PrimitiveToString(const kodi::addon::DriverPrimitive&
     }
     break;
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_SEMIAXIS:
-    return StringUtils::Format("axis %s%u",
+    return kodi::tools::StringUtils::Format("axis %s%u",
         primitive.SemiAxisDirection() == JOYSTICK_DRIVER_SEMIAXIS_POSITIVE ? "+" : "-",
         primitive.DriverIndex());
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_MOTOR:
-    return StringUtils::Format("motor %u", primitive.DriverIndex());
+    return kodi::tools::StringUtils::Format("motor %u", primitive.DriverIndex());
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_KEY:
-    return StringUtils::Format("key \"%s\"", primitive.Keycode().c_str());
+    return kodi::tools::StringUtils::Format("key \"%s\"", primitive.Keycode().c_str());
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_MOUSE_BUTTON:
-    return StringUtils::Format("mouse button %u", primitive.MouseIndex());
+    return kodi::tools::StringUtils::Format("mouse button %u", primitive.MouseIndex());
   case JOYSTICK_DRIVER_PRIMITIVE_TYPE_RELPOINTER_DIRECTION:
     switch (primitive.RelPointerDirection())
     {

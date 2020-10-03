@@ -14,9 +14,10 @@
 #include "storage/api/DatabaseJoystickAPI.h"
 //#include "storage/retroarch/DatabaseRetroarch.h" // TODO
 #include "storage/xml/DatabaseXml.h"
-#include "utils/StringUtils.h"
 
 #include "addon.h"
+
+#include <kodi/tools/StringUtils.h>
 
 using namespace JOYSTICK;
 
@@ -59,8 +60,8 @@ bool CStorageManager::Initialize(CPeripheralJoystick* peripheralLib)
     return false;
 
   // Remove slash at end
-  StringUtils::TrimRight(strUserPath, "\\/");
-  StringUtils::TrimRight(strAddonPath, "\\/");
+  kodi::tools::StringUtils::TrimRight(strUserPath, "\\/");
+  kodi::tools::StringUtils::TrimRight(strAddonPath, "\\/");
 
   strUserPath += "/" USER_RESOURCES_FOLDER;
   strAddonPath += "/" ADDON_RESOURCES_FOLDER;

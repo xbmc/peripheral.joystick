@@ -13,7 +13,8 @@
 #include "log/Log.h"
 #include "settings/Settings.h"
 #include "utils/CommonMacros.h"
-#include "utils/StringUtils.h"
+
+#include <kodi/tools/StringUtils.h>
 
 using namespace JOYSTICK;
 
@@ -40,10 +41,10 @@ bool CJoystick::Equals(const CJoystick* rhs) const
 
 void CJoystick::SetName(const std::string& strName)
 {
-  std::string strSanitizedFilename = StringUtils::MakeSafeString(strName);
+  std::string strSanitizedFilename = kodi::tools::StringUtils::MakeSafeString(strName);
 
   // Remove Bluetooth MAC address as seen in Sony Playstation controllers
-  StringUtils::RemoveMACAddress(strSanitizedFilename);
+  strSanitizedFilename = kodi::tools::StringUtils::RemoveMACAddress(strSanitizedFilename);
 
   kodi::addon::Joystick::SetName(strSanitizedFilename);
 }

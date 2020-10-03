@@ -11,9 +11,9 @@
 #include "StorageUtils.h"
 #include "filesystem/DirectoryUtils.h"
 #include "log/Log.h"
-#include "utils/StringUtils.h"
 
 #include <algorithm>
+#include <kodi/tools/StringUtils.h>
 
 using namespace JOYSTICK;
 
@@ -306,7 +306,7 @@ void CJustABunchOfFiles::IndexDirectory(const std::string& path, unsigned int fo
   items.erase(std::remove_if(items.begin(), items.end(),
     [this](const kodi::vfs::CDirEntry& item)
     {
-      return !item.IsFolder() && !StringUtils::EndsWith(item.Path(), this->m_strExtension);
+      return !item.IsFolder() && !kodi::tools::StringUtils::EndsWith(item.Path(), this->m_strExtension);
     }), items.end());
 
   m_directoryCache.UpdateDirectory(path, items);
