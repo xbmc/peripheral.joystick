@@ -53,8 +53,7 @@ set(JOYSTICK_SOURCES src/addon.cpp
                      src/storage/xml/ButtonMapXml.cpp
                      src/storage/xml/DatabaseXml.cpp
                      src/storage/xml/DeviceXml.cpp
-                     src/storage/xml/JoystickFamiliesXml.cpp
-                     src/utils/StringUtils.cpp)
+                     src/storage/xml/JoystickFamiliesXml.cpp)
 
 set(JOYSTICK_HEADERS src/addon.h
                      src/api/IJoystickInterface.h
@@ -107,8 +106,7 @@ set(JOYSTICK_HEADERS src/addon.h
                      src/storage/xml/DeviceXml.h
                      src/storage/xml/JoystickFamiliesXml.h
                      src/storage/xml/JoystickFamilyDefinitions.h
-                     src/utils/CommonMacros.h
-                     src/utils/StringUtils.h)
+                     src/utils/CommonMacros.h)
 
 if(CORE_SYSTEM_NAME MATCHES windows)
   list(APPEND JOYSTICK_SOURCES src/utils/windows/CharsetConverter.cpp)
