@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="Micro Gamepad" provider="GCController" buttoncount="6">
+        <controller id="game.controller.default">
+            <feature name="up" button="0" />
+            <feature name="down" button="1" />
+            <feature name="left" button="2" />
+            <feature name="right" button="3" />
+            <feature name="start" button="4" />
+            <feature name="a" button="5" />
+            <feature name="x" button="6" />
+        </controller>
+    </device>
+</buttonmap>
