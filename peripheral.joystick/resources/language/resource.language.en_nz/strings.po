@@ -63,7 +63,3 @@ msgstr ""
 msgctxt "#30008"
 msgid "SDL 2"
 msgstr ""
-
-#msgctxt "#21475"
-#msgid "Both"
-#msgstr ""

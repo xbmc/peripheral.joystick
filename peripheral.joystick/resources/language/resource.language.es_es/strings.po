@@ -64,7 +64,3 @@ msgstr "Udev"
 msgctxt "#30008"
 msgid "SDL 2"
 msgstr "SDL 2"
-
-#msgctxt "#21475"
-#msgid "Both"
-#msgstr ""
