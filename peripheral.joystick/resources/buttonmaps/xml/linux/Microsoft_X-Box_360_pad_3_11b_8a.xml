@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <buttonmap>
-    <device name="Microsoft X-Box 360 pad 0" provider="linux" buttoncount="11" axiscount="8">
+    <device name="Microsoft X-Box 360 pad 3" provider="linux" buttoncount="11" axiscount="8">
         <configuration>
             <appearance id="game.controller.default" />
             <axis index="2" center="-1" range="2" />
