@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="Parallels Virtual Mouse" provider="linux" buttoncount="8" axiscount="2">
+        <configuration>
+            <button index="0" ignore="true" />
+            <button index="1" ignore="true" />
+        </configuration>
+    </device>
+</buttonmap>
