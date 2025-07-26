@@ -37,7 +37,7 @@
     <summary lang="pt_BR">Biblioteca de Joystick do Kodi</summary>
     <summary lang="pt_PT">Biblioteca de joysticks do Kodi</summary>
     <summary lang="ru_RU">Каталог джойстиков для Kodi</summary>
-    <summary lang="sv_SE">Kodi Joystick bibliotek</summary>
+    <summary lang="sv_SE">Kodi styrspaksbibliotek</summary>
     <summary lang="tr_TR">Kodi Oyun Çubuğu Kütüphanesi</summary>
     <summary lang="zh_CN">Kodi 游戏杆库</summary>
     <description lang="af_ZA">Hierdie biblioteek verskaf speelstok drywers en knoppie kaarte. Veelvuldige speelstok APIs word ondersteun, insluitend DirectX, XInput, DSL en die Linux Joystick API.</description>
@@ -60,6 +60,7 @@
     <description lang="pt_BR">Esta biblioteca fornece drivers de joystick e mapeamento de botões. Diversas APIs de joystick são suportadas, incluindo DirectX, XInput, SDL e API de Joystick do Linux.</description>
     <description lang="pt_PT">Esta biblioteca fornece controladores de joystick e mapeamentos de botões. São suportadas múltiplas APIs de joystick, incluindo DirectX, XInput, SDL e a API do joystick para Linux.</description>
     <description lang="ru_RU">Этот каталог предоставляет драйверы джойстиков и схемы расположения кнопок. Поддерживается несколько API джойстиков, включая DirectX, XInput, SDL и Linux Joystick API.</description>
+    <description lang="sv_SE">Detta bibliotek tillhandahåller styrspaksdrivrutiner och knappmappningar. Flera styrspaks-API:er stöds, inklusive DirectX, XInput, SDL och Linux Joystick API.</description>
     <description lang="tr_TR">Bu kitaplık, oyun çubuğu sürücüleri ve düğme haritaları sağlar. DirectX, XInput, SDL ve Linux Oyun Çubuğu API dahil olmak üzere çoklu oyun çubuğu API&apos;leri desteklenir.</description>
     <description lang="zh_CN">此库提供游戏杆驱动程序和按钮图。支持多个游戏杆 API，包括 DirectX、XInput、SDL 和 Linux 游戏杆 API。</description>
   </extension>
