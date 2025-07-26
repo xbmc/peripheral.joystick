@@ -2,6 +2,7 @@
 <buttonmap>
     <device name="Parallels Virtual Mouse" provider="linux" buttoncount="8" axiscount="2">
         <configuration>
+            <appearance id="game.controller.mouse" />
             <button index="0" ignore="true" />
             <button index="1" ignore="true" />
         </configuration>
