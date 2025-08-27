@@ -18,6 +18,7 @@
       <icon>resources/icon.png</icon>
     </assets>
     <summary lang="af_ZA">Kodi Speelstok Biblioteek</summary>
+    <summary lang="bs_BA">Kodi biblioteka džojstika</summary>
     <summary lang="ca_ES">Llibreria Kodi Joystick</summary>
     <summary lang="da_DK">Kodi Joystick Bibliotek</summary>
     <summary lang="de_DE">Joystick-Bibliothek für Kodi</summary>
@@ -41,6 +42,7 @@
     <summary lang="tr_TR">Kodi Oyun Çubuğu Kütüphanesi</summary>
     <summary lang="zh_CN">Kodi 游戏杆库</summary>
     <description lang="af_ZA">Hierdie biblioteek verskaf speelstok drywers en knoppie kaarte. Veelvuldige speelstok APIs word ondersteun, insluitend DirectX, XInput, DSL en die Linux Joystick API.</description>
+    <description lang="bs_BA">Ova biblioteka pruža drajvere za džojstik i mape dugmadi. Podržani su višestruki API-ji za džojstik, uključujući DirectX, XInput, SDL i Linux Joystick API.</description>
     <description lang="ca_ES">Aquesta llibreria proporciona controladors de joystick i mapes de botons. S&apos;admeten diverses API de joystick, incloses DirectX, XInput, SDL i l&apos;API Joystick de Linux.</description>
     <description lang="da_DK">Dette bibliotek indeholder joystick-drivere og knapgrupperinger. Flere joystick-API&apos;er understøttes, herunder DirectX, XInput, SDL og Linux Joystick API.</description>
     <description lang="de_DE">Diese Bibliothek enthält Joysticktreiber und Schaltflächenzuordnungen. Es werden mehrere Joystick-APIs unterstützt, darunter DirectX, XInput, SDL und die Linux-Joystick-API.</description>
