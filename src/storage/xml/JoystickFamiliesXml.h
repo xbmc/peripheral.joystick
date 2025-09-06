@@ -10,7 +10,10 @@
 
 #include "buttonmapper/ButtonMapTypes.h"
 
-class TiXmlElement;
+namespace tinyxml2
+{
+class XMLElement;
+}
 
 namespace JOYSTICK
 {
@@ -20,7 +23,7 @@ namespace JOYSTICK
     static bool LoadFamilies(const std::string& path, JoystickFamilyMap& result);
 
   private:
-    static bool Deserialize(const TiXmlElement* pFamily, JoystickFamilyMap& result);
-    static bool DeserializeJoysticks(const TiXmlElement* pJoystick, std::set<std::string>& family);
+    static bool Deserialize(const tinyxml2::XMLElement* pFamily, JoystickFamilyMap& result);
+    static bool DeserializeJoysticks(const tinyxml2::XMLElement* pJoystick, std::set<std::string>& family);
   };
 }

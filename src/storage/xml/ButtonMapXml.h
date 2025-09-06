@@ -12,7 +12,10 @@
 
 #include <string>
 
-class TiXmlElement;
+namespace tinyxml2
+{
+class XMLElement;
+}
 
 namespace kodi
 {
@@ -43,15 +46,19 @@ namespace JOYSTICK
     virtual bool Save(void) const override;
 
   private:
-    bool SerializeButtonMaps(TiXmlElement* pElement) const;
+    bool SerializeButtonMaps(tinyxml2::XMLElement* pElement) const;
 
-    bool Serialize(const FeatureVector& features, TiXmlElement* pElement) const;
-    bool Deserialize(const TiXmlElement* pElement, FeatureVector& features, const std::string &controllerId) const;
+    bool Serialize(const FeatureVector& features, tinyxml2::XMLElement* pElement) const;
+    bool Deserialize(const tinyxml2::XMLElement* pElement, FeatureVector& features, const std::string& controllerId) const;
 
     static bool IsValid(const kodi::addon::JoystickFeature& feature);
-    static bool SerializeFeature(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive, const char* tagName);
-    static bool SerializePrimitiveTag(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive, const char* tagName);
-    static void SerializePrimitive(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive);
-    static bool DeserializePrimitive(const TiXmlElement* pElement, kodi::addon::DriverPrimitive& primitive);
+    static bool SerializeFeature(tinyxml2::XMLElement* pElement,
+                                 const kodi::addon::DriverPrimitive& primitive,
+                                 const char* tagName);
+    static bool SerializePrimitiveTag(tinyxml2::XMLElement* pElement,
+                                      const kodi::addon::DriverPrimitive& primitive,
+                                      const char* tagName);
+    static void SerializePrimitive(tinyxml2::XMLElement* pElement, const kodi::addon::DriverPrimitive& primitive);
+    static bool DeserializePrimitive(const tinyxml2::XMLElement* pElement, kodi::addon::DriverPrimitive& primitive);
   };
 }

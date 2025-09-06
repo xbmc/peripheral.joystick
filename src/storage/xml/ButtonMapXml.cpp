@@ -7,20 +7,21 @@
  */
 
 #include "ButtonMapXml.h"
+
 #include "ButtonMapDefinitions.h"
 #include "DeviceXml.h"
 #include "buttonmapper/ButtonMapTranslator.h"
+#include "log/Log.h"
 #include "storage/Device.h"
 #include "storage/StorageManager.h"
-#include "log/Log.h"
-
-#include <tinyxml.h>
 
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <sstream>
 #include <string>
+
+#include <tinyxml2.h>
 
 using namespace JOYSTICK;
 
@@ -36,21 +37,22 @@ CButtonMapXml::CButtonMapXml(const std::string& strResourcePath, const DevicePtr
 
 bool CButtonMapXml::Load(void)
 {
-  TiXmlDocument xmlFile;
-  if (!xmlFile.LoadFile(m_strResourcePath))
+  tinyxml2::XMLDocument xmlFile;
+  xmlFile.LoadFile(m_strResourcePath.c_str());
+  if (xmlFile.Error())
   {
-    esyslog("Error opening %s: %s", m_strResourcePath.c_str(), xmlFile.ErrorDesc());
+    esyslog("Error opening %s: %s", m_strResourcePath.c_str(), xmlFile.ErrorName());
     return false;
   }
 
-  TiXmlElement* pRootElement = xmlFile.RootElement();
-  if (!pRootElement || pRootElement->NoChildren() || pRootElement->ValueStr() != BUTTONMAP_XML_ROOT)
+  tinyxml2::XMLElement* pRootElement = xmlFile.RootElement();
+  if (!pRootElement || pRootElement->NoChildren() || pRootElement->Value() != BUTTONMAP_XML_ROOT)
   {
     esyslog("Can't find root <%s> tag", BUTTONMAP_XML_ROOT);
     return false;
   }
 
-  const TiXmlElement* pDevice = pRootElement->FirstChildElement(BUTTONMAP_XML_ELEM_DEVICE);
+  const tinyxml2::XMLElement* pDevice = pRootElement->FirstChildElement(BUTTONMAP_XML_ELEM_DEVICE);
 
   if (!pDevice)
   {
@@ -65,7 +67,7 @@ bool CButtonMapXml::Load(void)
       return false;
   }
 
-  const TiXmlElement* pController = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_CONTROLLER);
+  const tinyxml2::XMLElement* pController = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_CONTROLLER);
 
   if (!pController)
     dsyslog("Device \"%s\": can't find <%s> tag", m_device->Name().c_str(), BUTTONMAP_XML_ELEM_CONTROLLER);
@@ -107,26 +109,26 @@ bool CButtonMapXml::Load(void)
 
 bool CButtonMapXml::Save(void) const
 {
-  TiXmlDocument xmlFile;
+  tinyxml2::XMLDocument xmlFile;
 
-  TiXmlDeclaration* decl = new TiXmlDeclaration("1.0", "", "");
+  tinyxml2::XMLDeclaration* decl = xmlFile.NewDeclaration(NULL);
   xmlFile.LinkEndChild(decl);
 
-  TiXmlElement rootElement(BUTTONMAP_XML_ROOT);
-  TiXmlNode* root = xmlFile.InsertEndChild(rootElement);
+  tinyxml2::XMLElement* rootElement = xmlFile.NewElement(BUTTONMAP_XML_ROOT);
+  tinyxml2::XMLNode* root = xmlFile.InsertEndChild(rootElement);
   if (root == NULL)
     return false;
 
-  TiXmlElement* pElem = root->ToElement();
+  tinyxml2::XMLElement* pElem = root->ToElement();
   if (!pElem)
     return false;
 
-  TiXmlElement deviceElement(BUTTONMAP_XML_ELEM_DEVICE);
-  TiXmlNode* deviceNode = pElem->InsertEndChild(deviceElement);
+  tinyxml2::XMLElement* deviceElement = xmlFile.NewElement(BUTTONMAP_XML_ELEM_DEVICE);
+  tinyxml2::XMLNode* deviceNode = pElem->InsertEndChild(deviceElement);
   if (deviceNode == NULL)
     return false;
 
-  TiXmlElement* deviceElem = deviceNode->ToElement();
+  tinyxml2::XMLElement* deviceElem = deviceNode->ToElement();
   if (deviceElem == NULL)
     return false;
 
@@ -135,10 +137,10 @@ bool CButtonMapXml::Save(void) const
   if (!SerializeButtonMaps(deviceElem))
     return false;
 
-  return xmlFile.SaveFile(m_strResourcePath);
+  return xmlFile.SaveFile(m_strResourcePath.c_str());
 }
 
-bool CButtonMapXml::SerializeButtonMaps(TiXmlElement* pElement) const
+bool CButtonMapXml::SerializeButtonMaps(tinyxml2::XMLElement* pElement) const
 {
   for (ButtonMap::const_iterator it = m_buttonMap.begin(); it != m_buttonMap.end(); ++it)
   {
@@ -148,23 +150,23 @@ bool CButtonMapXml::SerializeButtonMaps(TiXmlElement* pElement) const
     if (features.empty())
       continue;
 
-    TiXmlElement profileElement(BUTTONMAP_XML_ELEM_CONTROLLER);
-    TiXmlNode* profileNode = pElement->InsertEndChild(profileElement);
+    tinyxml2::XMLElement* profileElement = pElement->GetDocument()->NewElement(BUTTONMAP_XML_ELEM_CONTROLLER);
+    tinyxml2::XMLNode* profileNode = pElement->InsertEndChild(profileElement);
     if (profileNode == NULL)
       continue;
 
-    TiXmlElement* profileElem = profileNode->ToElement();
+    tinyxml2::XMLElement* profileElem = profileNode->ToElement();
     if (profileElem == NULL)
       continue;
 
-    profileElem->SetAttribute(BUTTONMAP_XML_ATTR_CONTROLLER_ID, controllerId);
+    profileElem->SetAttribute(BUTTONMAP_XML_ATTR_CONTROLLER_ID, controllerId.c_str());
 
     Serialize(features, profileElem);
   }
   return true;
 }
 
-bool CButtonMapXml::Serialize(const FeatureVector& features, TiXmlElement* pElement) const
+bool CButtonMapXml::Serialize(const FeatureVector& features, tinyxml2::XMLElement* pElement) const
 {
   if (pElement == NULL)
     return false;
@@ -176,16 +178,16 @@ bool CButtonMapXml::Serialize(const FeatureVector& features, TiXmlElement* pElem
     if (!IsValid(feature))
       continue;
 
-    TiXmlElement featureElement(BUTTONMAP_XML_ELEM_FEATURE);
-    TiXmlNode* featureNode = pElement->InsertEndChild(featureElement);
+    tinyxml2::XMLElement* featureElement = pElement->GetDocument()->NewElement(BUTTONMAP_XML_ELEM_FEATURE);
+    tinyxml2::XMLNode* featureNode = pElement->InsertEndChild(featureElement);
     if (featureNode == NULL)
       return false;
 
-    TiXmlElement* featureElem = featureNode->ToElement();
+    tinyxml2::XMLElement* featureElem = featureNode->ToElement();
     if (featureElem == NULL)
       return false;
 
-    featureElem->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_NAME, feature.Name());
+    featureElem->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_NAME, feature.Name().c_str());
 
     switch (feature.Type())
     {
@@ -290,19 +292,21 @@ bool CButtonMapXml::IsValid(const kodi::addon::JoystickFeature& feature)
   return false;
 }
 
-bool CButtonMapXml::SerializePrimitiveTag(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive, const char* tagName)
+bool CButtonMapXml::SerializePrimitiveTag(tinyxml2::XMLElement* pElement,
+                                          const kodi::addon::DriverPrimitive& primitive,
+                                          const char* tagName)
 {
   if (primitive.Type() != JOYSTICK_DRIVER_PRIMITIVE_TYPE_UNKNOWN)
   {
     if (pElement == NULL)
       return false;
 
-    TiXmlElement primitiveElement(tagName);
-    TiXmlNode* primitiveNode = pElement->InsertEndChild(primitiveElement);
+    tinyxml2::XMLElement* primitiveElement = pElement->GetDocument()->NewElement(tagName);
+    tinyxml2::XMLNode* primitiveNode = pElement->InsertEndChild(primitiveElement);
     if (primitiveNode == NULL)
       return false;
 
-    TiXmlElement* primitiveElem = primitiveNode->ToElement();
+    tinyxml2::XMLElement* primitiveElem = primitiveNode->ToElement();
     if (primitiveElem == NULL)
       return false;
 
@@ -312,7 +316,7 @@ bool CButtonMapXml::SerializePrimitiveTag(TiXmlElement* pElement, const kodi::ad
   return true;
 }
 
-void CButtonMapXml::SerializePrimitive(TiXmlElement* pElement, const kodi::addon::DriverPrimitive& primitive)
+void CButtonMapXml::SerializePrimitive(tinyxml2::XMLElement* pElement, const kodi::addon::DriverPrimitive& primitive)
 {
   std::string strPrimitive = ButtonMapTranslator::ToString(primitive);
   if (!strPrimitive.empty())
@@ -321,37 +325,37 @@ void CButtonMapXml::SerializePrimitive(TiXmlElement* pElement, const kodi::addon
     {
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_BUTTON:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_BUTTON, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_BUTTON, strPrimitive.c_str());
         break;
       }
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_HAT_DIRECTION:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_HAT, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_HAT, strPrimitive.c_str());
         break;
       }
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_SEMIAXIS:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_AXIS, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_AXIS, strPrimitive.c_str());
         break;
       }
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_MOTOR:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_MOTOR, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_MOTOR, strPrimitive.c_str());
         break;
       }
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_KEY:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_KEY, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_KEY, strPrimitive.c_str());
         break;
       }
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_MOUSE_BUTTON:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_MOUSE, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_MOUSE, strPrimitive.c_str());
         break;
       }
       case JOYSTICK_DRIVER_PRIMITIVE_TYPE_RELPOINTER_DIRECTION:
       {
-        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_AXIS, strPrimitive);
+        pElement->SetAttribute(BUTTONMAP_XML_ATTR_FEATURE_AXIS, strPrimitive.c_str());
         break;
       }
       default:
@@ -360,9 +364,11 @@ void CButtonMapXml::SerializePrimitive(TiXmlElement* pElement, const kodi::addon
   }
 }
 
-bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& features, const std::string &controllerId) const
+bool CButtonMapXml::Deserialize(const tinyxml2::XMLElement* pElement,
+                                FeatureVector& features,
+                                const std::string& controllerId) const
 {
-  const TiXmlElement* pFeature = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_FEATURE);
+  const tinyxml2::XMLElement* pFeature = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_FEATURE);
 
   if (!pFeature)
   {
@@ -393,14 +399,14 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
       continue;
     }
 
-    const TiXmlElement* pUp = nullptr;
-    const TiXmlElement* pDown = nullptr;
-    const TiXmlElement* pRight = nullptr;
-    const TiXmlElement* pLeft = nullptr;
+    const tinyxml2::XMLElement* pUp = nullptr;
+    const tinyxml2::XMLElement* pDown = nullptr;
+    const tinyxml2::XMLElement* pRight = nullptr;
+    const tinyxml2::XMLElement* pLeft = nullptr;
 
-    const TiXmlElement* pPositiveX = nullptr;
-    const TiXmlElement* pPositiveY = nullptr;
-    const TiXmlElement* pPositiveZ = nullptr;
+    const tinyxml2::XMLElement* pPositiveX = nullptr;
+    const tinyxml2::XMLElement* pPositiveY = nullptr;
+    const tinyxml2::XMLElement* pPositiveZ = nullptr;
 
     // Determine the feature type
     JOYSTICK_FEATURE_TYPE type;
@@ -650,7 +656,7 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
   return true;
 }
 
-bool CButtonMapXml::DeserializePrimitive(const TiXmlElement* pElement, kodi::addon::DriverPrimitive& primitive)
+bool CButtonMapXml::DeserializePrimitive(const tinyxml2::XMLElement* pElement, kodi::addon::DriverPrimitive& primitive)
 {
   std::vector<std::pair<const char*, JOYSTICK_DRIVER_PRIMITIVE_TYPE>> types = {
     { BUTTONMAP_XML_ATTR_FEATURE_BUTTON, JOYSTICK_DRIVER_PRIMITIVE_TYPE_BUTTON },

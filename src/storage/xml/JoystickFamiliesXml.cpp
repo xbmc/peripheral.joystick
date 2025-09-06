@@ -7,30 +7,32 @@
  */
 
 #include "JoystickFamiliesXml.h"
+
 #include "JoystickFamilyDefinitions.h"
 #include "log/Log.h"
 
-#include <tinyxml.h>
+#include <tinyxml2.h>
 
 using namespace JOYSTICK;
 
 bool CJoystickFamiliesXml::LoadFamilies(const std::string& path, JoystickFamilyMap& result)
 {
-  TiXmlDocument xmlFile;
-  if (!xmlFile.LoadFile(path))
+  tinyxml2::XMLDocument xmlFile;
+  xmlFile.LoadFile(path.c_str());
+  if (xmlFile.Error())
   {
-    esyslog("Error opening %s: %s", path.c_str(), xmlFile.ErrorDesc());
+    esyslog("Error opening %s: %s", path.c_str(), xmlFile.ErrorName());
     return false;
   }
 
-  TiXmlElement* pRootElement = xmlFile.RootElement();
-  if (!pRootElement || pRootElement->NoChildren() || pRootElement->ValueStr() != JOYSTICK_FAMILIES_XML_ELEM_FAMILIES)
+  tinyxml2::XMLElement* pRootElement = xmlFile.RootElement();
+  if (!pRootElement || pRootElement->NoChildren() || pRootElement->Value() != JOYSTICK_FAMILIES_XML_ELEM_FAMILIES)
   {
     esyslog("Can't find root <%s> tag", JOYSTICK_FAMILIES_XML_ELEM_FAMILIES);
     return false;
   }
 
-  const TiXmlElement* pFamily = pRootElement->FirstChildElement(JOYSTICK_FAMILIES_XML_ELEM_FAMILY);
+  const tinyxml2::XMLElement* pFamily = pRootElement->FirstChildElement(JOYSTICK_FAMILIES_XML_ELEM_FAMILY);
 
   if (pFamily == nullptr)
   {
@@ -41,7 +43,7 @@ bool CJoystickFamiliesXml::LoadFamilies(const std::string& path, JoystickFamilyM
   return Deserialize(pFamily, result);
 }
 
-bool CJoystickFamiliesXml::Deserialize(const TiXmlElement* pFamily, JoystickFamilyMap& result)
+bool CJoystickFamiliesXml::Deserialize(const tinyxml2::XMLElement* pFamily, JoystickFamilyMap& result)
 {
   // For logging purposes
   unsigned int totalJoystickCount = 0;
@@ -58,7 +60,7 @@ bool CJoystickFamiliesXml::Deserialize(const TiXmlElement* pFamily, JoystickFami
 
     std::set<std::string>& family = result[familyName];
 
-    const TiXmlElement* pJoystick = pFamily->FirstChildElement(JOYSTICK_FAMILIES_XML_ELEM_JOYSTICK);
+    const tinyxml2::XMLElement* pJoystick = pFamily->FirstChildElement(JOYSTICK_FAMILIES_XML_ELEM_JOYSTICK);
 
     if (pJoystick == nullptr)
     {
@@ -79,7 +81,7 @@ bool CJoystickFamiliesXml::Deserialize(const TiXmlElement* pFamily, JoystickFami
   return true;
 }
 
-bool CJoystickFamiliesXml::DeserializeJoysticks(const TiXmlElement* pJoystick, std::set<std::string>& family)
+bool CJoystickFamiliesXml::DeserializeJoysticks(const tinyxml2::XMLElement* pJoystick, std::set<std::string>& family)
 {
   while (pJoystick != nullptr)
   {

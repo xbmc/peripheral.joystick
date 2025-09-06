@@ -7,31 +7,32 @@
  */
 
 #include "DeviceXml.h"
+
 #include "ButtonMapDefinitions.h"
+#include "log/Log.h"
 #include "storage/Device.h"
 #include "storage/DeviceConfiguration.h"
 #include "storage/PrimitiveConfiguration.h"
 #include "storage/StorageUtils.h"
-#include "log/Log.h"
-
-#include <tinyxml.h>
 
 #include <cstdlib>
 #include <utility>
 
+#include <tinyxml2.h>
+
 using namespace JOYSTICK;
 
-bool CDeviceXml::Serialize(const CDevice& record, TiXmlElement* pElement)
+bool CDeviceXml::Serialize(const CDevice& record, tinyxml2::XMLElement* pElement)
 {
   if (!pElement)
     return false;
 
-  pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_NAME, record.Name());
-  pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_PROVIDER, record.Provider());
+  pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_NAME, record.Name().c_str());
+  pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_PROVIDER, record.Provider().c_str());
   if (record.IsVidPidKnown())
   {
-    pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_VID, CStorageUtils::FormatHexString(record.VendorID()));
-    pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_PID, CStorageUtils::FormatHexString(record.ProductID()));
+    pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_VID, CStorageUtils::FormatHexString(record.VendorID()).c_str());
+    pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_PID, CStorageUtils::FormatHexString(record.ProductID()).c_str());
   }
   if (record.ButtonCount() != 0)
     pElement->SetAttribute(BUTTONMAP_XML_ATTR_DEVICE_BUTTONCOUNT, record.ButtonCount());
@@ -48,7 +49,7 @@ bool CDeviceXml::Serialize(const CDevice& record, TiXmlElement* pElement)
   return true;
 }
 
-bool CDeviceXml::Deserialize(const TiXmlElement* pElement, CDevice& record)
+bool CDeviceXml::Deserialize(const tinyxml2::XMLElement* pElement, CDevice& record)
 {
   if (!pElement)
     return false;
@@ -101,14 +102,14 @@ bool CDeviceXml::Deserialize(const TiXmlElement* pElement, CDevice& record)
   return true;
 }
 
-bool CDeviceXml::SerializeConfig(const CDeviceConfiguration& config, TiXmlElement* pElement)
+bool CDeviceXml::SerializeConfig(const CDeviceConfiguration& config, tinyxml2::XMLElement* pElement)
 {
-  TiXmlElement configurationElement(BUTTONMAP_XML_ELEM_CONFIGURATION);
-  TiXmlNode* configurationNode = pElement->InsertEndChild(configurationElement);
+  tinyxml2::XMLElement* configurationElement = pElement->GetDocument()->NewElement(BUTTONMAP_XML_ELEM_CONFIGURATION);
+  tinyxml2::XMLNode* configurationNode = pElement->InsertEndChild(configurationElement);
   if (configurationNode == nullptr)
     return false;
 
-  TiXmlElement* configurationElem = configurationNode->ToElement();
+  tinyxml2::XMLElement* configurationElem = configurationNode->ToElement();
   if (configurationElem == nullptr)
     return false;
 
@@ -131,13 +132,13 @@ bool CDeviceXml::SerializeConfig(const CDeviceConfiguration& config, TiXmlElemen
   return true;
 }
 
-bool CDeviceXml::DeserializeConfig(const TiXmlElement* pElement, CDeviceConfiguration& config)
+bool CDeviceXml::DeserializeConfig(const tinyxml2::XMLElement* pElement, CDeviceConfiguration& config)
 {
-  const TiXmlElement* pDevice = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_CONFIGURATION);
+  const tinyxml2::XMLElement* pDevice = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_CONFIGURATION);
 
   if (pDevice)
   {
-    const TiXmlElement* pAppearance = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_APPEARANCE);
+    const tinyxml2::XMLElement* pAppearance = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_APPEARANCE);
 
     if (pAppearance != nullptr)
     {
@@ -148,7 +149,7 @@ bool CDeviceXml::DeserializeConfig(const TiXmlElement* pElement, CDeviceConfigur
       config.SetAppearance(controllerId);
     }
 
-    const TiXmlElement* pAxis = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_AXIS);
+    const tinyxml2::XMLElement* pAxis = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_AXIS);
 
     for ( ; pAxis != nullptr; pAxis = pAxis->NextSiblingElement(BUTTONMAP_XML_ELEM_AXIS))
     {
@@ -160,7 +161,7 @@ bool CDeviceXml::DeserializeConfig(const TiXmlElement* pElement, CDeviceConfigur
       config.SetAxis(axisIndex, axisConfig);
     }
 
-    const TiXmlElement* pButton = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_BUTTON);
+    const tinyxml2::XMLElement* pButton = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_BUTTON);
 
     for ( ; pButton != nullptr; pButton = pButton->NextSiblingElement(BUTTONMAP_XML_ELEM_BUTTON))
     {
@@ -176,28 +177,28 @@ bool CDeviceXml::DeserializeConfig(const TiXmlElement* pElement, CDeviceConfigur
   return true;
 }
 
-bool CDeviceXml::SerializeAppearance(const std::string& controllerId, TiXmlElement* pElement)
+bool CDeviceXml::SerializeAppearance(const std::string& controllerId, tinyxml2::XMLElement* pElement)
 {
   if (!controllerId.empty())
   {
-    TiXmlElement appearanceElement(BUTTONMAP_XML_ELEM_APPEARANCE);
-    TiXmlNode* appearanceNode = pElement->InsertEndChild(appearanceElement);
+    tinyxml2::XMLElement* appearanceElement = pElement->GetDocument()->NewElement(BUTTONMAP_XML_ELEM_APPEARANCE);
+    tinyxml2::XMLNode* appearanceNode = pElement->InsertEndChild(appearanceElement);
     if (appearanceNode == nullptr)
       return false;
 
-    TiXmlElement* appearanceElem = appearanceNode->ToElement();
+    tinyxml2::XMLElement* appearanceElem = appearanceNode->ToElement();
     if (appearanceElem == nullptr)
       return false;
 
-    appearanceElem->SetAttribute(BUTTONMAP_XML_ATTR_CONTROLLER_ID, controllerId);
+    appearanceElem->SetAttribute(BUTTONMAP_XML_ATTR_CONTROLLER_ID, controllerId.c_str());
   }
 
   return true;
 }
 
-bool CDeviceXml::DeserializeAppearance(const TiXmlElement* pElement, std::string& controllerId)
+bool CDeviceXml::DeserializeAppearance(const tinyxml2::XMLElement* pElement, std::string& controllerId)
 {
-  const TiXmlElement* pAppearance = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_APPEARANCE);
+  const tinyxml2::XMLElement* pAppearance = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_APPEARANCE);
 
   if (pAppearance != nullptr)
   {
@@ -213,17 +214,17 @@ bool CDeviceXml::DeserializeAppearance(const TiXmlElement* pElement, std::string
   return true;
 }
 
-bool CDeviceXml::SerializeAxis(unsigned int index, const AxisConfiguration& axisConfig, TiXmlElement* pElement)
+bool CDeviceXml::SerializeAxis(unsigned int index, const AxisConfiguration& axisConfig, tinyxml2::XMLElement* pElement)
 {
   AxisConfiguration defaultConfig{ };
   if (!(axisConfig == defaultConfig))
   {
-    TiXmlElement axisElement(BUTTONMAP_XML_ELEM_AXIS);
-    TiXmlNode* axisNode = pElement->InsertEndChild(axisElement);
+    tinyxml2::XMLElement* axisElement = pElement->GetDocument()->NewElement(BUTTONMAP_XML_ELEM_AXIS);
+    tinyxml2::XMLNode* axisNode = pElement->InsertEndChild(axisElement);
     if (axisNode == nullptr)
       return false;
 
-    TiXmlElement* axisElem = axisNode->ToElement();
+    tinyxml2::XMLElement* axisElem = axisNode->ToElement();
     if (axisElem == nullptr)
       return false;
 
@@ -243,17 +244,17 @@ bool CDeviceXml::SerializeAxis(unsigned int index, const AxisConfiguration& axis
   return true;
 }
 
-bool CDeviceXml::SerializeButton(unsigned int index, const ButtonConfiguration& buttonConfig, TiXmlElement* pElement)
+bool CDeviceXml::SerializeButton(unsigned int index, const ButtonConfiguration& buttonConfig, tinyxml2::XMLElement* pElement)
 {
   ButtonConfiguration defaultConfig{ };
   if (!(buttonConfig == defaultConfig))
   {
-    TiXmlElement buttonElement(BUTTONMAP_XML_ELEM_BUTTON);
-    TiXmlNode* buttonNode = pElement->InsertEndChild(buttonElement);
+    tinyxml2::XMLElement* buttonElement = pElement->GetDocument()->NewElement(BUTTONMAP_XML_ELEM_BUTTON);
+    tinyxml2::XMLNode* buttonNode = pElement->InsertEndChild(buttonElement);
     if (buttonNode == nullptr)
       return false;
 
-    TiXmlElement* buttonElem = buttonNode->ToElement();
+    tinyxml2::XMLElement* buttonElem = buttonNode->ToElement();
     if (buttonElem == nullptr)
       return false;
 
@@ -266,7 +267,7 @@ bool CDeviceXml::SerializeButton(unsigned int index, const ButtonConfiguration& 
   return true;
 }
 
-bool CDeviceXml::DeserializeAxis(const TiXmlElement* pElement, unsigned int& index, AxisConfiguration& axisConfig)
+bool CDeviceXml::DeserializeAxis(const tinyxml2::XMLElement* pElement, unsigned int& index, AxisConfiguration& axisConfig)
 {
   AxisConfiguration config{ };
 
@@ -295,7 +296,7 @@ bool CDeviceXml::DeserializeAxis(const TiXmlElement* pElement, unsigned int& ind
   return true;
 }
 
-bool CDeviceXml::DeserializeButton(const TiXmlElement* pElement, unsigned int& index, ButtonConfiguration& buttonConfig)
+bool CDeviceXml::DeserializeButton(const tinyxml2::XMLElement* pElement, unsigned int& index, ButtonConfiguration& buttonConfig)
 {
   ButtonConfiguration config{ };
 
