@@ -14,6 +14,7 @@
 #
 #   UDEV::UDEV   - The UDEV library
 
+find_package(PkgConfig)
 if(PKG_CONFIG_FOUND)
   pkg_check_modules(PC_UDEV libudev QUIET)
 endif()

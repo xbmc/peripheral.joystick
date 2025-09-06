@@ -1,21 +1,17 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 project(peripheral.joystick)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include(CheckIncludeFiles)
 
-find_package(PkgConfig)
-
 # --- Add-on Dependencies ------------------------------------------------------
 
 find_package(Kodi REQUIRED)
-find_package(TinyXML REQUIRED)
+find_package(TinyXML2 REQUIRED)
 
-include_directories(${INCLUDES}
-                    ${PROJECT_SOURCE_DIR}/src
-                    ${KODI_INCLUDE_DIR}/.. # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
-                    ${TINYXML_INCLUDE_DIRS})
+include_directories(${PROJECT_SOURCE_DIR}/src
+                    ${KODI_INCLUDE_DIR}/..) # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
 
 set(JOYSTICK_SOURCES src/addon.cpp
                      src/api/IJoystickInterface.cpp
@@ -122,7 +118,7 @@ if(HAVE_SYSLOG)
   list(APPEND JOYSTICK_HEADERS src/log/LogSyslog.h)
 endif()
 
-list(APPEND DEPLIBS ${TINYXML_LIBRARIES})
+list(APPEND DEPLIBS tinyxml2::tinyxml2)
 
 # --- SDL2 ---------------------------------------------------------------------
 
