@@ -46,7 +46,7 @@ bool CButtonMapXml::Load(void)
   }
 
   tinyxml2::XMLElement* pRootElement = xmlFile.RootElement();
-  if (!pRootElement || pRootElement->NoChildren() || pRootElement->Value() != BUTTONMAP_XML_ROOT)
+  if (!pRootElement || pRootElement->NoChildren() || std::string(pRootElement->Value()) != BUTTONMAP_XML_ROOT)
   {
     esyslog("Can't find root <%s> tag", BUTTONMAP_XML_ROOT);
     return false;
