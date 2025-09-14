@@ -26,7 +26,7 @@ bool CJoystickFamiliesXml::LoadFamilies(const std::string& path, JoystickFamilyM
   }
 
   tinyxml2::XMLElement* pRootElement = xmlFile.RootElement();
-  if (!pRootElement || pRootElement->NoChildren() || pRootElement->Value() != JOYSTICK_FAMILIES_XML_ELEM_FAMILIES)
+  if (!pRootElement || pRootElement->NoChildren() || std::string(pRootElement->Value()) != JOYSTICK_FAMILIES_XML_ELEM_FAMILIES)
   {
     esyslog("Can't find root <%s> tag", JOYSTICK_FAMILIES_XML_ELEM_FAMILIES);
     return false;
