@@ -1,40 +1,40 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <!-- Sony Playstation 3 Controller connected through QtSixA (sixpair, sixad). -->
     <device name="PLAYSTATION(R)3 Controller" provider="linux" buttoncount="17" axiscount="29">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog" />
+            <appearance id="game.controller.ps.dualanalog"/>
         </configuration>
         <controller id="game.controller.default">
-            <feature name="a" button="14" />
-            <feature name="b" button="13" />
-            <feature name="back" button="0" />
-            <feature name="down" button="6" />
-            <feature name="guide" button="16" />
-            <feature name="left" button="7" />
-            <feature name="leftbumper" button="10" />
+            <feature name="a" button="14"/>
+            <feature name="b" button="13"/>
+            <feature name="back" button="0"/>
+            <feature name="down" button="6"/>
+            <feature name="guide" button="16"/>
+            <feature name="left" button="7"/>
+            <feature name="leftbumper" button="10"/>
             <feature name="leftstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="leftthumb" button="1" />
-            <feature name="lefttrigger" button="8" />
-            <feature name="right" button="5" />
-            <feature name="rightbumper" button="11" />
+            <feature name="leftthumb" button="1"/>
+            <feature name="lefttrigger" button="8"/>
+            <feature name="right" button="5"/>
+            <feature name="rightbumper" button="11"/>
             <feature name="rightstick">
-                <up axis="-3" />
-                <down axis="+3" />
-                <right axis="+2" />
-                <left axis="-2" />
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
             </feature>
-            <feature name="rightthumb" button="2" />
-            <feature name="righttrigger" button="9" />
-            <feature name="start" button="3" />
-            <feature name="up" button="4" />
-            <feature name="x" button="15" />
-            <feature name="y" button="12" />
+            <feature name="rightthumb" button="2"/>
+            <feature name="righttrigger" button="9"/>
+            <feature name="start" button="3"/>
+            <feature name="up" button="4"/>
+            <feature name="x" button="15"/>
+            <feature name="y" button="12"/>
         </controller>
     </device>
 </buttonmap>

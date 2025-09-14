@@ -1,21 +1,21 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="X-Arcade Tankstick (Player 2)" provider="xarcade" vid="AA55" pid="0101" buttoncount="14">
         <controller id="game.controller.default">
-            <feature name="a" button="0" />
-            <feature name="b" button="1" />
-            <feature name="back" button="9" />
-            <feature name="down" button="13" />
-            <feature name="left" button="10" />
-            <feature name="leftbumper" button="5" />
-            <feature name="lefttrigger" button="6" />
-            <feature name="right" button="11" />
-            <feature name="rightbumper" button="2" />
-            <feature name="righttrigger" button="7" />
-            <feature name="start" button="8" />
-            <feature name="up" button="12" />
-            <feature name="x" button="3" />
-            <feature name="y" button="4" />
+            <feature name="a" button="0"/>
+            <feature name="b" button="1"/>
+            <feature name="back" button="9"/>
+            <feature name="down" button="13"/>
+            <feature name="left" button="10"/>
+            <feature name="leftbumper" button="5"/>
+            <feature name="lefttrigger" button="6"/>
+            <feature name="right" button="11"/>
+            <feature name="rightbumper" button="2"/>
+            <feature name="righttrigger" button="7"/>
+            <feature name="start" button="8"/>
+            <feature name="up" button="12"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="4"/>
         </controller>
     </device>
 </buttonmap>

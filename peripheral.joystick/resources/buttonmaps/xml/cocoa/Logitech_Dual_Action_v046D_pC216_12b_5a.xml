@@ -1,31 +1,31 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Logitech Dual Action" provider="cocoa" vid="046D" pid="C216" buttoncount="12" axiscount="5">
-        <configuration />
+        <configuration/>
         <controller id="game.controller.default">
-            <feature name="a" button="1" />
-            <feature name="b" button="2" />
-            <feature name="back" button="8" />
-            <feature name="leftbumper" button="4" />
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="back" button="8"/>
+            <feature name="leftbumper" button="4"/>
             <feature name="leftstick">
-                <up axis="-2" />
-                <down axis="+2" />
-                <right axis="+1" />
-                <left axis="-1" />
+                <up axis="-2"/>
+                <down axis="+2"/>
+                <right axis="+1"/>
+                <left axis="-1"/>
             </feature>
-            <feature name="leftthumb" button="10" />
-            <feature name="lefttrigger" button="6" />
-            <feature name="rightbumper" button="5" />
+            <feature name="leftthumb" button="10"/>
+            <feature name="lefttrigger" button="6"/>
+            <feature name="rightbumper" button="5"/>
             <feature name="rightstick">
-                <up axis="-4" />
-                <down axis="+4" />
-                <right axis="+3" />
-                <left axis="-3" />
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
             </feature>
-            <feature name="rightthumb" button="11" />
-            <feature name="righttrigger" button="7" />
-            <feature name="start" button="9" />
-            <feature name="y" button="3" />
+            <feature name="rightthumb" button="11"/>
+            <feature name="righttrigger" button="7"/>
+            <feature name="start" button="9"/>
+            <feature name="y" button="3"/>
         </controller>
     </device>
 </buttonmap>

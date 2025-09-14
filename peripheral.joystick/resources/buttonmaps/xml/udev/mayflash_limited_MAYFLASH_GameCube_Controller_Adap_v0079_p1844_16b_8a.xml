@@ -1,22 +1,22 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="mayflash limited MAYFLASH GameCube Controller Adapter" provider="udev" vid="0079" pid="1844" buttoncount="16" axiscount="8">
         <configuration>
-            <appearance id="game.controller.gamecube" />
+            <appearance id="game.controller.gamecube"/>
         </configuration>
         <controller id="game.controller.gamecube">
-            <feature name="a" button="1" />
-            <feature name="b" button="2" />
-            <feature name="down" button="14" />
-            <feature name="l" axis="+3" />
-            <feature name="left" button="15" />
-            <feature name="r" axis="+4" />
-            <feature name="right" button="13" />
-            <feature name="start" button="9" />
-            <feature name="up" button="12" />
-            <feature name="x" button="0" />
-            <feature name="y" button="3" />
-            <feature name="z" button="7" />
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" button="14"/>
+            <feature name="l" axis="+3"/>
+            <feature name="left" button="15"/>
+            <feature name="r" axis="+4"/>
+            <feature name="right" button="13"/>
+            <feature name="start" button="9"/>
+            <feature name="up" button="12"/>
+            <feature name="x" button="0"/>
+            <feature name="y" button="3"/>
+            <feature name="z" button="7"/>
         </controller>
     </device>
 </buttonmap>

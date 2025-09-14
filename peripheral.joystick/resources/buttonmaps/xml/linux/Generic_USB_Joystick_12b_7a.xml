@@ -1,28 +1,28 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Generic   USB  Joystick" provider="linux" buttoncount="12" axiscount="7">
-        <configuration />
+        <configuration/>
         <controller id="game.controller.n64">
-            <feature name="a" button="6" />
+            <feature name="a" button="6"/>
             <feature name="analogstick">
-                <up axis="-3" />
-                <down axis="+3" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="b" button="8" />
-            <feature name="cdown" button="2" />
-            <feature name="cleft" button="3" />
-            <feature name="cright" button="1" />
-            <feature name="cup" button="0" />
-            <feature name="down" axis="+6" />
-            <feature name="left" axis="-5" />
-            <feature name="leftbumper" button="4" />
-            <feature name="right" axis="+5" />
-            <feature name="rightbumper" button="5" />
-            <feature name="start" button="9" />
-            <feature name="up" axis="-6" />
-            <feature name="z" button="7" />
+            <feature name="b" button="8"/>
+            <feature name="cdown" button="2"/>
+            <feature name="cleft" button="3"/>
+            <feature name="cright" button="1"/>
+            <feature name="cup" button="0"/>
+            <feature name="down" axis="+6"/>
+            <feature name="left" axis="-5"/>
+            <feature name="leftbumper" button="4"/>
+            <feature name="right" axis="+5"/>
+            <feature name="rightbumper" button="5"/>
+            <feature name="start" button="9"/>
+            <feature name="up" axis="-6"/>
+            <feature name="z" button="7"/>
         </controller>
     </device>
 </buttonmap>

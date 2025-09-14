@@ -1,37 +1,37 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="PS(R) Ga`epad" provider="directinput" vid="054C" pid="0268" buttoncount="19" axiscount="5">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog" />
+            <appearance id="game.controller.ps.dualanalog"/>
         </configuration>
         <controller id="game.controller.ps.dualanalog">
-            <feature name="analog" button="16" />
-            <feature name="circle" button="13" />
-            <feature name="cross" button="14" />
-            <feature name="down" button="6" />
-            <feature name="l3" button="1" />
-            <feature name="left" button="7" />
-            <feature name="leftbumper" button="10" />
+            <feature name="analog" button="16"/>
+            <feature name="circle" button="13"/>
+            <feature name="cross" button="14"/>
+            <feature name="down" button="6"/>
+            <feature name="l3" button="1"/>
+            <feature name="left" button="7"/>
+            <feature name="leftbumper" button="10"/>
             <feature name="leftstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="lefttrigger" button="8" />
-            <feature name="r3" button="2" />
-            <feature name="right" button="5" />
-            <feature name="rightbumper" button="11" />
+            <feature name="lefttrigger" button="8"/>
+            <feature name="r3" button="2"/>
+            <feature name="right" button="5"/>
+            <feature name="rightbumper" button="11"/>
             <feature name="rightstick">
-                <right axis="+2" />
-                <left axis="-2" />
+                <right axis="+2"/>
+                <left axis="-2"/>
             </feature>
-            <feature name="righttrigger" button="9" />
-            <feature name="select" button="0" />
-            <feature name="square" button="15" />
-            <feature name="start" button="3" />
-            <feature name="triangle" button="12" />
-            <feature name="up" button="4" />
+            <feature name="righttrigger" button="9"/>
+            <feature name="select" button="0"/>
+            <feature name="square" button="15"/>
+            <feature name="start" button="3"/>
+            <feature name="triangle" button="12"/>
+            <feature name="up" button="4"/>
         </controller>
     </device>
 </buttonmap>

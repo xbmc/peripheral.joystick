@@ -1,22 +1,22 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Mouse" provider="application">
         <controller id="game.controller.mouse">
-            <feature name="button4" mouse="button4" />
-            <feature name="button5" mouse="button5" />
-            <feature name="horizwheelleft" mouse="horizwheelleft" />
-            <feature name="horizwheelright" mouse="horizwheelright" />
-            <feature name="left" mouse="left" />
-            <feature name="middle" mouse="middle" />
+            <feature name="button4" mouse="button4"/>
+            <feature name="button5" mouse="button5"/>
+            <feature name="horizwheelleft" mouse="horizwheelleft"/>
+            <feature name="horizwheelright" mouse="horizwheelright"/>
+            <feature name="left" mouse="left"/>
+            <feature name="middle" mouse="middle"/>
             <feature name="pointer">
-                <up axis="-y" />
-                <down axis="+y" />
-                <right axis="+x" />
-                <left axis="-x" />
+                <up axis="-y"/>
+                <down axis="+y"/>
+                <right axis="+x"/>
+                <left axis="-x"/>
             </feature>
-            <feature name="right" mouse="right" />
-            <feature name="wheeldown" mouse="wheeldown" />
-            <feature name="wheelup" mouse="wheelup" />
+            <feature name="right" mouse="right"/>
+            <feature name="wheeldown" mouse="wheeldown"/>
+            <feature name="wheelup" mouse="wheelup"/>
         </controller>
     </device>
 </buttonmap>

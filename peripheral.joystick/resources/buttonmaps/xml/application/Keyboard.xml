@@ -1,299 +1,299 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Keyboard" provider="application">
         <controller id="game.controller.amstrad.keyboard">
-            <feature name="0" key="0" />
-            <feature name="1" key="1" />
-            <feature name="2" key="2" />
-            <feature name="3" key="3" />
-            <feature name="4" key="4" />
-            <feature name="5" key="5" />
-            <feature name="6" key="6" />
-            <feature name="7" key="7" />
-            <feature name="8" key="8" />
-            <feature name="9" key="9" />
-            <feature name="a" key="a" />
-            <feature name="at" key="grave" />
-            <feature name="b" key="b" />
-            <feature name="backslash" key="backslash" />
-            <feature name="c" key="c" />
-            <feature name="capslock" key="capslock" />
-            <feature name="closebracket" key="rightbracket" />
-            <feature name="clr" key="delete" />
-            <feature name="colon" key="quote" />
-            <feature name="comma" key="comma" />
-            <feature name="control" key="leftctrl" />
-            <feature name="copy" key="leftalt" />
-            <feature name="d" key="d" />
-            <feature name="del" key="backspace" />
-            <feature name="dot" key="period" />
-            <feature name="down" key="down" />
-            <feature name="e" key="e" />
-            <feature name="esc" key="escape" />
-            <feature name="f" key="f" />
-            <feature name="f0" key="kp0" />
-            <feature name="f1" key="kp1" />
-            <feature name="f2" key="kp2" />
-            <feature name="f3" key="kp3" />
-            <feature name="f4" key="kp4" />
-            <feature name="f5" key="kp5" />
-            <feature name="f6" key="kp6" />
-            <feature name="f7" key="kp7" />
-            <feature name="f8" key="kp8" />
-            <feature name="f9" key="kp9" />
-            <feature name="fdot" key="kpperiod" />
-            <feature name="g" key="g" />
-            <feature name="gui" key="f10" />
-            <feature name="h" key="h" />
-            <feature name="hat" key="equals" />
-            <feature name="i" key="i" />
-            <feature name="intro" key="kpenter" />
-            <feature name="j" key="j" />
-            <feature name="k" key="k" />
-            <feature name="l" key="l" />
-            <feature name="left" key="left" />
-            <feature name="m" key="m" />
-            <feature name="minus" key="minus" />
-            <feature name="mousetoggle" key="insert" />
-            <feature name="n" key="n" />
-            <feature name="o" key="o" />
-            <feature name="openbracket" key="leftbracket" />
-            <feature name="p" key="p" />
-            <feature name="play" key="home" />
-            <feature name="q" key="q" />
-            <feature name="r" key="r" />
-            <feature name="return" key="enter" />
-            <feature name="rewind" key="pageup" />
-            <feature name="right" key="right" />
-            <feature name="s" key="s" />
-            <feature name="semicolon" key="semicolon" />
-            <feature name="shift" key="leftshift" />
-            <feature name="slash" key="slash" />
-            <feature name="space" key="space" />
-            <feature name="stop" key="end" />
-            <feature name="t" key="t" />
-            <feature name="tab" key="tab" />
-            <feature name="u" key="u" />
-            <feature name="up" key="up" />
-            <feature name="v" key="v" />
-            <feature name="vkbtoggle" key="f9" />
-            <feature name="w" key="w" />
-            <feature name="x" key="x" />
-            <feature name="y" key="y" />
-            <feature name="z" key="z" />
+            <feature name="0" key="0"/>
+            <feature name="1" key="1"/>
+            <feature name="2" key="2"/>
+            <feature name="3" key="3"/>
+            <feature name="4" key="4"/>
+            <feature name="5" key="5"/>
+            <feature name="6" key="6"/>
+            <feature name="7" key="7"/>
+            <feature name="8" key="8"/>
+            <feature name="9" key="9"/>
+            <feature name="a" key="a"/>
+            <feature name="at" key="grave"/>
+            <feature name="b" key="b"/>
+            <feature name="backslash" key="backslash"/>
+            <feature name="c" key="c"/>
+            <feature name="capslock" key="capslock"/>
+            <feature name="closebracket" key="rightbracket"/>
+            <feature name="clr" key="delete"/>
+            <feature name="colon" key="quote"/>
+            <feature name="comma" key="comma"/>
+            <feature name="control" key="leftctrl"/>
+            <feature name="copy" key="leftalt"/>
+            <feature name="d" key="d"/>
+            <feature name="del" key="backspace"/>
+            <feature name="dot" key="period"/>
+            <feature name="down" key="down"/>
+            <feature name="e" key="e"/>
+            <feature name="esc" key="escape"/>
+            <feature name="f" key="f"/>
+            <feature name="f0" key="kp0"/>
+            <feature name="f1" key="kp1"/>
+            <feature name="f2" key="kp2"/>
+            <feature name="f3" key="kp3"/>
+            <feature name="f4" key="kp4"/>
+            <feature name="f5" key="kp5"/>
+            <feature name="f6" key="kp6"/>
+            <feature name="f7" key="kp7"/>
+            <feature name="f8" key="kp8"/>
+            <feature name="f9" key="kp9"/>
+            <feature name="fdot" key="kpperiod"/>
+            <feature name="g" key="g"/>
+            <feature name="gui" key="f10"/>
+            <feature name="h" key="h"/>
+            <feature name="hat" key="equals"/>
+            <feature name="i" key="i"/>
+            <feature name="intro" key="kpenter"/>
+            <feature name="j" key="j"/>
+            <feature name="k" key="k"/>
+            <feature name="l" key="l"/>
+            <feature name="left" key="left"/>
+            <feature name="m" key="m"/>
+            <feature name="minus" key="minus"/>
+            <feature name="mousetoggle" key="insert"/>
+            <feature name="n" key="n"/>
+            <feature name="o" key="o"/>
+            <feature name="openbracket" key="leftbracket"/>
+            <feature name="p" key="p"/>
+            <feature name="play" key="home"/>
+            <feature name="q" key="q"/>
+            <feature name="r" key="r"/>
+            <feature name="return" key="enter"/>
+            <feature name="rewind" key="pageup"/>
+            <feature name="right" key="right"/>
+            <feature name="s" key="s"/>
+            <feature name="semicolon" key="semicolon"/>
+            <feature name="shift" key="leftshift"/>
+            <feature name="slash" key="slash"/>
+            <feature name="space" key="space"/>
+            <feature name="stop" key="end"/>
+            <feature name="t" key="t"/>
+            <feature name="tab" key="tab"/>
+            <feature name="u" key="u"/>
+            <feature name="up" key="up"/>
+            <feature name="v" key="v"/>
+            <feature name="vkbtoggle" key="f9"/>
+            <feature name="w" key="w"/>
+            <feature name="x" key="x"/>
+            <feature name="y" key="y"/>
+            <feature name="z" key="z"/>
         </controller>
         <controller id="game.controller.elektronika.bk">
-            <feature name="0" key="0" />
-            <feature name="1" key="1" />
-            <feature name="2" key="2" />
-            <feature name="3" key="3" />
-            <feature name="4" key="4" />
-            <feature name="5" key="5" />
-            <feature name="6" key="6" />
-            <feature name="7" key="7" />
-            <feature name="8" key="8" />
-            <feature name="9" key="9" />
-            <feature name="a" key="a" />
-            <feature name="b" key="b" />
-            <feature name="backslash" key="backslash" />
-            <feature name="backspace" key="backspace" />
-            <feature name="break" key="pause" />
-            <feature name="c" key="c" />
-            <feature name="comma" key="comma" />
-            <feature name="d" key="d" />
-            <feature name="down" key="down" />
-            <feature name="e" key="e" />
-            <feature name="enter" key="enter" />
-            <feature name="equals" key="equals" />
-            <feature name="escape" key="escape" />
-            <feature name="f" key="f" />
-            <feature name="f1" key="f1" />
-            <feature name="f10" key="f10" />
-            <feature name="f11" key="f11" />
-            <feature name="f12" key="f12" />
-            <feature name="f2" key="f2" />
-            <feature name="f3" key="f3" />
-            <feature name="f4" key="f4" />
-            <feature name="f5" key="f5" />
-            <feature name="f6" key="f6" />
-            <feature name="f7" key="f7" />
-            <feature name="f8" key="f8" />
-            <feature name="f9" key="f9" />
-            <feature name="g" key="g" />
-            <feature name="grave" key="grave" />
-            <feature name="h" key="h" />
-            <feature name="home" key="home" />
-            <feature name="i" key="i" />
-            <feature name="j" key="j" />
-            <feature name="k" key="k" />
-            <feature name="l" key="l" />
-            <feature name="left" key="left" />
-            <feature name="leftbracket" key="leftbracket" />
-            <feature name="m" key="m" />
-            <feature name="minus" key="minus" />
-            <feature name="n" key="n" />
-            <feature name="o" key="o" />
-            <feature name="p" key="p" />
-            <feature name="period" key="period" />
-            <feature name="q" key="q" />
-            <feature name="quote" key="quote" />
-            <feature name="r" key="r" />
-            <feature name="right" key="right" />
-            <feature name="rightbracket" key="rightbracket" />
-            <feature name="s" key="s" />
-            <feature name="semicolon" key="semicolon" />
-            <feature name="slash" key="slash" />
-            <feature name="space" key="space" />
-            <feature name="t" key="t" />
-            <feature name="tab" key="tab" />
-            <feature name="u" key="u" />
-            <feature name="up" key="up" />
-            <feature name="v" key="v" />
-            <feature name="w" key="w" />
-            <feature name="x" key="x" />
-            <feature name="y" key="y" />
-            <feature name="z" key="z" />
+            <feature name="0" key="0"/>
+            <feature name="1" key="1"/>
+            <feature name="2" key="2"/>
+            <feature name="3" key="3"/>
+            <feature name="4" key="4"/>
+            <feature name="5" key="5"/>
+            <feature name="6" key="6"/>
+            <feature name="7" key="7"/>
+            <feature name="8" key="8"/>
+            <feature name="9" key="9"/>
+            <feature name="a" key="a"/>
+            <feature name="b" key="b"/>
+            <feature name="backslash" key="backslash"/>
+            <feature name="backspace" key="backspace"/>
+            <feature name="break" key="pause"/>
+            <feature name="c" key="c"/>
+            <feature name="comma" key="comma"/>
+            <feature name="d" key="d"/>
+            <feature name="down" key="down"/>
+            <feature name="e" key="e"/>
+            <feature name="enter" key="enter"/>
+            <feature name="equals" key="equals"/>
+            <feature name="escape" key="escape"/>
+            <feature name="f" key="f"/>
+            <feature name="f1" key="f1"/>
+            <feature name="f10" key="f10"/>
+            <feature name="f11" key="f11"/>
+            <feature name="f12" key="f12"/>
+            <feature name="f2" key="f2"/>
+            <feature name="f3" key="f3"/>
+            <feature name="f4" key="f4"/>
+            <feature name="f5" key="f5"/>
+            <feature name="f6" key="f6"/>
+            <feature name="f7" key="f7"/>
+            <feature name="f8" key="f8"/>
+            <feature name="f9" key="f9"/>
+            <feature name="g" key="g"/>
+            <feature name="grave" key="grave"/>
+            <feature name="h" key="h"/>
+            <feature name="home" key="home"/>
+            <feature name="i" key="i"/>
+            <feature name="j" key="j"/>
+            <feature name="k" key="k"/>
+            <feature name="l" key="l"/>
+            <feature name="left" key="left"/>
+            <feature name="leftbracket" key="leftbracket"/>
+            <feature name="m" key="m"/>
+            <feature name="minus" key="minus"/>
+            <feature name="n" key="n"/>
+            <feature name="o" key="o"/>
+            <feature name="p" key="p"/>
+            <feature name="period" key="period"/>
+            <feature name="q" key="q"/>
+            <feature name="quote" key="quote"/>
+            <feature name="r" key="r"/>
+            <feature name="right" key="right"/>
+            <feature name="rightbracket" key="rightbracket"/>
+            <feature name="s" key="s"/>
+            <feature name="semicolon" key="semicolon"/>
+            <feature name="slash" key="slash"/>
+            <feature name="space" key="space"/>
+            <feature name="t" key="t"/>
+            <feature name="tab" key="tab"/>
+            <feature name="u" key="u"/>
+            <feature name="up" key="up"/>
+            <feature name="v" key="v"/>
+            <feature name="w" key="w"/>
+            <feature name="x" key="x"/>
+            <feature name="y" key="y"/>
+            <feature name="z" key="z"/>
         </controller>
         <controller id="game.controller.keyboard">
-            <feature name="0" key="0" />
-            <feature name="1" key="1" />
-            <feature name="2" key="2" />
-            <feature name="3" key="3" />
-            <feature name="4" key="4" />
-            <feature name="5" key="5" />
-            <feature name="6" key="6" />
-            <feature name="7" key="7" />
-            <feature name="8" key="8" />
-            <feature name="9" key="9" />
-            <feature name="a" key="a" />
-            <feature name="ampersand" key="ampersand" />
-            <feature name="asterisk" key="asterisk" />
-            <feature name="at" key="at" />
-            <feature name="b" key="b" />
-            <feature name="backslash" key="backslash" />
-            <feature name="backspace" key="backspace" />
-            <feature name="bar" key="bar" />
-            <feature name="break" key="break" />
-            <feature name="c" key="c" />
-            <feature name="capslock" key="capslock" />
-            <feature name="caret" key="caret" />
-            <feature name="clear" key="clear" />
-            <feature name="colon" key="colon" />
-            <feature name="comma" key="comma" />
-            <feature name="compose" key="compose" />
-            <feature name="d" key="d" />
-            <feature name="delete" key="delete" />
-            <feature name="dollar" key="dollar" />
-            <feature name="doublequote" key="doublequote" />
-            <feature name="down" key="down" />
-            <feature name="e" key="e" />
-            <feature name="end" key="end" />
-            <feature name="enter" key="enter" />
-            <feature name="equals" key="equals" />
-            <feature name="escape" key="escape" />
-            <feature name="euro" key="euro" />
-            <feature name="exclaim" key="exclaim" />
-            <feature name="f" key="f" />
-            <feature name="f1" key="f1" />
-            <feature name="f10" key="f10" />
-            <feature name="f11" key="f11" />
-            <feature name="f12" key="f12" />
-            <feature name="f13" key="f13" />
-            <feature name="f14" key="f14" />
-            <feature name="f15" key="f15" />
-            <feature name="f2" key="f2" />
-            <feature name="f3" key="f3" />
-            <feature name="f4" key="f4" />
-            <feature name="f5" key="f5" />
-            <feature name="f6" key="f6" />
-            <feature name="f7" key="f7" />
-            <feature name="f8" key="f8" />
-            <feature name="f9" key="f9" />
-            <feature name="g" key="g" />
-            <feature name="grave" key="grave" />
-            <feature name="greater" key="greater" />
-            <feature name="h" key="h" />
-            <feature name="hash" key="hash" />
-            <feature name="help" key="help" />
-            <feature name="home" key="home" />
-            <feature name="i" key="i" />
-            <feature name="insert" key="insert" />
-            <feature name="j" key="j" />
-            <feature name="k" key="k" />
-            <feature name="kp0" key="kp0" />
-            <feature name="kp1" key="kp1" />
-            <feature name="kp2" key="kp2" />
-            <feature name="kp3" key="kp3" />
-            <feature name="kp4" key="kp4" />
-            <feature name="kp5" key="kp5" />
-            <feature name="kp6" key="kp6" />
-            <feature name="kp7" key="kp7" />
-            <feature name="kp8" key="kp8" />
-            <feature name="kp9" key="kp9" />
-            <feature name="kpdivide" key="kpdivide" />
-            <feature name="kpenter" key="kpenter" />
-            <feature name="kpequals" key="kpequals" />
-            <feature name="kpminus" key="kpminus" />
-            <feature name="kpmultiply" key="kpmultiply" />
-            <feature name="kpperiod" key="kpperiod" />
-            <feature name="kpplus" key="kpplus" />
-            <feature name="l" key="l" />
-            <feature name="left" key="left" />
-            <feature name="leftalt" key="leftalt" />
-            <feature name="leftbrace" key="leftbrace" />
-            <feature name="leftbracket" key="leftbracket" />
-            <feature name="leftctrl" key="leftctrl" />
-            <feature name="leftmeta" key="leftmeta" />
-            <feature name="leftparen" key="leftparen" />
-            <feature name="leftshift" key="leftshift" />
-            <feature name="leftsuper" key="leftsuper" />
-            <feature name="less" key="less" />
-            <feature name="m" key="m" />
-            <feature name="menu" key="menu" />
-            <feature name="minus" key="minus" />
-            <feature name="mode" key="mode" />
-            <feature name="n" key="n" />
-            <feature name="numlock" key="numlock" />
-            <feature name="o" key="o" />
-            <feature name="p" key="p" />
-            <feature name="pagedown" key="pagedown" />
-            <feature name="pageup" key="pageup" />
-            <feature name="pause" key="pause" />
-            <feature name="period" key="period" />
-            <feature name="plus" key="plus" />
-            <feature name="power" key="power" />
-            <feature name="printscreen" key="printscreen" />
-            <feature name="q" key="q" />
-            <feature name="question" key="question" />
-            <feature name="quote" key="quote" />
-            <feature name="r" key="r" />
-            <feature name="right" key="right" />
-            <feature name="rightalt" key="rightalt" />
-            <feature name="rightbrace" key="rightbrace" />
-            <feature name="rightbracket" key="rightbracket" />
-            <feature name="rightctrl" key="rightctrl" />
-            <feature name="rightmeta" key="rightmeta" />
-            <feature name="rightparen" key="rightparen" />
-            <feature name="rightshift" key="rightshift" />
-            <feature name="rightsuper" key="rightsuper" />
-            <feature name="s" key="s" />
-            <feature name="scrolllock" key="scrolllock" />
-            <feature name="semicolon" key="semicolon" />
-            <feature name="slash" key="slash" />
-            <feature name="space" key="space" />
-            <feature name="sysreq" key="sysreq" />
-            <feature name="t" key="t" />
-            <feature name="tab" key="tab" />
-            <feature name="tilde" key="tilde" />
-            <feature name="u" key="u" />
-            <feature name="underscore" key="underscore" />
-            <feature name="undo" key="undo" />
-            <feature name="up" key="up" />
-            <feature name="v" key="v" />
-            <feature name="w" key="w" />
-            <feature name="x" key="x" />
-            <feature name="y" key="y" />
-            <feature name="z" key="z" />
+            <feature name="0" key="0"/>
+            <feature name="1" key="1"/>
+            <feature name="2" key="2"/>
+            <feature name="3" key="3"/>
+            <feature name="4" key="4"/>
+            <feature name="5" key="5"/>
+            <feature name="6" key="6"/>
+            <feature name="7" key="7"/>
+            <feature name="8" key="8"/>
+            <feature name="9" key="9"/>
+            <feature name="a" key="a"/>
+            <feature name="ampersand" key="ampersand"/>
+            <feature name="asterisk" key="asterisk"/>
+            <feature name="at" key="at"/>
+            <feature name="b" key="b"/>
+            <feature name="backslash" key="backslash"/>
+            <feature name="backspace" key="backspace"/>
+            <feature name="bar" key="bar"/>
+            <feature name="break" key="break"/>
+            <feature name="c" key="c"/>
+            <feature name="capslock" key="capslock"/>
+            <feature name="caret" key="caret"/>
+            <feature name="clear" key="clear"/>
+            <feature name="colon" key="colon"/>
+            <feature name="comma" key="comma"/>
+            <feature name="compose" key="compose"/>
+            <feature name="d" key="d"/>
+            <feature name="delete" key="delete"/>
+            <feature name="dollar" key="dollar"/>
+            <feature name="doublequote" key="doublequote"/>
+            <feature name="down" key="down"/>
+            <feature name="e" key="e"/>
+            <feature name="end" key="end"/>
+            <feature name="enter" key="enter"/>
+            <feature name="equals" key="equals"/>
+            <feature name="escape" key="escape"/>
+            <feature name="euro" key="euro"/>
+            <feature name="exclaim" key="exclaim"/>
+            <feature name="f" key="f"/>
+            <feature name="f1" key="f1"/>
+            <feature name="f10" key="f10"/>
+            <feature name="f11" key="f11"/>
+            <feature name="f12" key="f12"/>
+            <feature name="f13" key="f13"/>
+            <feature name="f14" key="f14"/>
+            <feature name="f15" key="f15"/>
+            <feature name="f2" key="f2"/>
+            <feature name="f3" key="f3"/>
+            <feature name="f4" key="f4"/>
+            <feature name="f5" key="f5"/>
+            <feature name="f6" key="f6"/>
+            <feature name="f7" key="f7"/>
+            <feature name="f8" key="f8"/>
+            <feature name="f9" key="f9"/>
+            <feature name="g" key="g"/>
+            <feature name="grave" key="grave"/>
+            <feature name="greater" key="greater"/>
+            <feature name="h" key="h"/>
+            <feature name="hash" key="hash"/>
+            <feature name="help" key="help"/>
+            <feature name="home" key="home"/>
+            <feature name="i" key="i"/>
+            <feature name="insert" key="insert"/>
+            <feature name="j" key="j"/>
+            <feature name="k" key="k"/>
+            <feature name="kp0" key="kp0"/>
+            <feature name="kp1" key="kp1"/>
+            <feature name="kp2" key="kp2"/>
+            <feature name="kp3" key="kp3"/>
+            <feature name="kp4" key="kp4"/>
+            <feature name="kp5" key="kp5"/>
+            <feature name="kp6" key="kp6"/>
+            <feature name="kp7" key="kp7"/>
+            <feature name="kp8" key="kp8"/>
+            <feature name="kp9" key="kp9"/>
+            <feature name="kpdivide" key="kpdivide"/>
+            <feature name="kpenter" key="kpenter"/>
+            <feature name="kpequals" key="kpequals"/>
+            <feature name="kpminus" key="kpminus"/>
+            <feature name="kpmultiply" key="kpmultiply"/>
+            <feature name="kpperiod" key="kpperiod"/>
+            <feature name="kpplus" key="kpplus"/>
+            <feature name="l" key="l"/>
+            <feature name="left" key="left"/>
+            <feature name="leftalt" key="leftalt"/>
+            <feature name="leftbrace" key="leftbrace"/>
+            <feature name="leftbracket" key="leftbracket"/>
+            <feature name="leftctrl" key="leftctrl"/>
+            <feature name="leftmeta" key="leftmeta"/>
+            <feature name="leftparen" key="leftparen"/>
+            <feature name="leftshift" key="leftshift"/>
+            <feature name="leftsuper" key="leftsuper"/>
+            <feature name="less" key="less"/>
+            <feature name="m" key="m"/>
+            <feature name="menu" key="menu"/>
+            <feature name="minus" key="minus"/>
+            <feature name="mode" key="mode"/>
+            <feature name="n" key="n"/>
+            <feature name="numlock" key="numlock"/>
+            <feature name="o" key="o"/>
+            <feature name="p" key="p"/>
+            <feature name="pagedown" key="pagedown"/>
+            <feature name="pageup" key="pageup"/>
+            <feature name="pause" key="pause"/>
+            <feature name="period" key="period"/>
+            <feature name="plus" key="plus"/>
+            <feature name="power" key="power"/>
+            <feature name="printscreen" key="printscreen"/>
+            <feature name="q" key="q"/>
+            <feature name="question" key="question"/>
+            <feature name="quote" key="quote"/>
+            <feature name="r" key="r"/>
+            <feature name="right" key="right"/>
+            <feature name="rightalt" key="rightalt"/>
+            <feature name="rightbrace" key="rightbrace"/>
+            <feature name="rightbracket" key="rightbracket"/>
+            <feature name="rightctrl" key="rightctrl"/>
+            <feature name="rightmeta" key="rightmeta"/>
+            <feature name="rightparen" key="rightparen"/>
+            <feature name="rightshift" key="rightshift"/>
+            <feature name="rightsuper" key="rightsuper"/>
+            <feature name="s" key="s"/>
+            <feature name="scrolllock" key="scrolllock"/>
+            <feature name="semicolon" key="semicolon"/>
+            <feature name="slash" key="slash"/>
+            <feature name="space" key="space"/>
+            <feature name="sysreq" key="sysreq"/>
+            <feature name="t" key="t"/>
+            <feature name="tab" key="tab"/>
+            <feature name="tilde" key="tilde"/>
+            <feature name="u" key="u"/>
+            <feature name="underscore" key="underscore"/>
+            <feature name="undo" key="undo"/>
+            <feature name="up" key="up"/>
+            <feature name="v" key="v"/>
+            <feature name="w" key="w"/>
+            <feature name="x" key="x"/>
+            <feature name="y" key="y"/>
+            <feature name="z" key="z"/>
         </controller>
     </device>
 </buttonmap>

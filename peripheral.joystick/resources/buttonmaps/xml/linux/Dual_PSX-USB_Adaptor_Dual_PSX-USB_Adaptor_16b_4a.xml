@@ -1,37 +1,37 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Dual PSX-USB Adaptor  Dual PSX-USB Adaptor" provider="linux" buttoncount="16" axiscount="4">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog" />
+            <appearance id="game.controller.ps.dualanalog"/>
         </configuration>
         <controller id="game.controller.default">
-            <feature name="b" button="1" />
-            <feature name="back" button="8" />
-            <feature name="down" button="14" />
-            <feature name="left" button="15" />
-            <feature name="leftbumper" button="4" />
+            <feature name="b" button="1"/>
+            <feature name="back" button="8"/>
+            <feature name="down" button="14"/>
+            <feature name="left" button="15"/>
+            <feature name="leftbumper" button="4"/>
             <feature name="leftstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="leftthumb" button="6" />
-            <feature name="lefttrigger" button="10" />
-            <feature name="right" button="13" />
-            <feature name="rightbumper" button="5" />
+            <feature name="leftthumb" button="6"/>
+            <feature name="lefttrigger" button="10"/>
+            <feature name="right" button="13"/>
+            <feature name="rightbumper" button="5"/>
             <feature name="rightstick">
-                <up axis="-2" />
-                <down axis="+2" />
-                <right axis="+3" />
-                <left axis="-3" />
+                <up axis="-2"/>
+                <down axis="+2"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
             </feature>
-            <feature name="rightthumb" button="7" />
-            <feature name="righttrigger" button="11" />
-            <feature name="start" button="9" />
-            <feature name="up" button="12" />
-            <feature name="x" button="3" />
-            <feature name="y" button="0" />
+            <feature name="rightthumb" button="7"/>
+            <feature name="righttrigger" button="11"/>
+            <feature name="start" button="9"/>
+            <feature name="up" button="12"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="0"/>
         </controller>
     </device>
 </buttonmap>
