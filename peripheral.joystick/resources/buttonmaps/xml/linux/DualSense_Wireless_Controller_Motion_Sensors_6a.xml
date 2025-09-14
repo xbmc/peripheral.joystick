@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buttonmap>
+    <device name="DualSense Wireless Controller Motion Sensors" provider="linux" axiscount="6">
+        <configuration>
+            <appearance id="game.controller.ps.dualanalog"/>
+        </configuration>
+    </device>
+</buttonmap>
