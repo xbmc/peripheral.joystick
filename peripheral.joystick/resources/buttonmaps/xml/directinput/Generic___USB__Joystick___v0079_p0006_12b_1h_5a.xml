@@ -1,30 +1,30 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Generic   USB  Joystick  " provider="directinput" vid="0079" pid="0006" buttoncount="12" hatcount="1" axiscount="5">
         <configuration>
-            <appearance id="game.controller.n64" />
+            <appearance id="game.controller.n64"/>
         </configuration>
         <controller id="game.controller.n64">
-            <feature name="a" button="6" />
+            <feature name="a" button="6"/>
             <feature name="analogstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="b" button="8" />
-            <feature name="cdown" button="2" />
-            <feature name="cleft" button="3" />
-            <feature name="cright" button="1" />
-            <feature name="cup" button="0" />
-            <feature name="down" hat="h0down" />
-            <feature name="left" hat="h0left" />
-            <feature name="leftbumper" button="4" />
-            <feature name="right" hat="h0right" />
-            <feature name="rightbumper" button="5" />
-            <feature name="start" button="9" />
-            <feature name="up" hat="h0up" />
-            <feature name="z" button="7" />
+            <feature name="b" button="8"/>
+            <feature name="cdown" button="2"/>
+            <feature name="cleft" button="3"/>
+            <feature name="cright" button="1"/>
+            <feature name="cup" button="0"/>
+            <feature name="down" hat="h0down"/>
+            <feature name="left" hat="h0left"/>
+            <feature name="leftbumper" button="4"/>
+            <feature name="right" hat="h0right"/>
+            <feature name="rightbumper" button="5"/>
+            <feature name="start" button="9"/>
+            <feature name="up" hat="h0up"/>
+            <feature name="z" button="7"/>
         </controller>
     </device>
 </buttonmap>

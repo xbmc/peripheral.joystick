@@ -1,33 +1,33 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Twin USB Joystick" provider="directinput" vid="0810" pid="0001" buttoncount="12" hatcount="1" axiscount="4">
-        <configuration />
+        <configuration/>
         <controller id="game.controller.default">
-            <feature name="a" button="2" />
-            <feature name="b" button="1" />
-            <feature name="back" button="8" />
-            <feature name="down" hat="h0down" />
-            <feature name="left" hat="h0left" />
-            <feature name="leftbumper" button="6" />
+            <feature name="a" button="2"/>
+            <feature name="b" button="1"/>
+            <feature name="back" button="8"/>
+            <feature name="down" hat="h0down"/>
+            <feature name="left" hat="h0left"/>
+            <feature name="leftbumper" button="6"/>
             <feature name="leftstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="leftthumb" button="10" />
-            <feature name="lefttrigger" button="4" />
-            <feature name="right" hat="h0right" />
-            <feature name="rightbumper" button="7" />
+            <feature name="leftthumb" button="10"/>
+            <feature name="lefttrigger" button="4"/>
+            <feature name="right" hat="h0right"/>
+            <feature name="rightbumper" button="7"/>
             <feature name="rightstick">
-                <up axis="-2" />
+                <up axis="-2"/>
             </feature>
-            <feature name="rightthumb" button="11" />
-            <feature name="righttrigger" button="5" />
-            <feature name="start" button="9" />
-            <feature name="up" hat="h0up" />
-            <feature name="x" button="3" />
-            <feature name="y" button="0" />
+            <feature name="rightthumb" button="11"/>
+            <feature name="righttrigger" button="5"/>
+            <feature name="start" button="9"/>
+            <feature name="up" hat="h0up"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="0"/>
         </controller>
     </device>
 </buttonmap>

@@ -1,27 +1,27 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Adaptoid" provider="directinput" vid="06F7" pid="0001" buttoncount="14" axiscount="2">
         <controller id="game.controller.n64">
-            <feature name="a" button="0" />
+            <feature name="a" button="0"/>
             <feature name="analogstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="b" button="3" />
-            <feature name="cdown" button="1" />
-            <feature name="cleft" button="4" />
-            <feature name="cright" button="2" />
-            <feature name="cup" button="5" />
-            <feature name="down" button="11" />
-            <feature name="left" button="12" />
-            <feature name="leftbumper" button="6" />
-            <feature name="right" button="13" />
-            <feature name="rightbumper" button="7" />
-            <feature name="start" button="8" />
-            <feature name="up" button="10" />
-            <feature name="z" button="9" />
+            <feature name="b" button="3"/>
+            <feature name="cdown" button="1"/>
+            <feature name="cleft" button="4"/>
+            <feature name="cright" button="2"/>
+            <feature name="cup" button="5"/>
+            <feature name="down" button="11"/>
+            <feature name="left" button="12"/>
+            <feature name="leftbumper" button="6"/>
+            <feature name="right" button="13"/>
+            <feature name="rightbumper" button="7"/>
+            <feature name="start" button="8"/>
+            <feature name="up" button="10"/>
+            <feature name="z" button="9"/>
         </controller>
     </device>
 </buttonmap>

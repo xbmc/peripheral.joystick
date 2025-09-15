@@ -1,22 +1,22 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="USB GamePad" provider="cocoa" vid="0E8F" pid="3013" buttoncount="16" axiscount="10">
         <configuration>
-            <appearance id="game.controller.snes" />
+            <appearance id="game.controller.snes"/>
         </configuration>
         <controller id="game.controller.snes">
-            <feature name="a" button="1" />
-            <feature name="b" button="2" />
-            <feature name="down" axis="+9" />
-            <feature name="left" axis="-8" />
-            <feature name="leftbumper" button="6" />
-            <feature name="right" axis="+8" />
-            <feature name="rightbumper" button="7" />
-            <feature name="select" button="8" />
-            <feature name="start" button="9" />
-            <feature name="up" axis="-9" />
-            <feature name="x" button="0" />
-            <feature name="y" button="3" />
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
+            <feature name="down" axis="+9"/>
+            <feature name="left" axis="-8"/>
+            <feature name="leftbumper" button="6"/>
+            <feature name="right" axis="+8"/>
+            <feature name="rightbumper" button="7"/>
+            <feature name="select" button="8"/>
+            <feature name="start" button="9"/>
+            <feature name="up" axis="-9"/>
+            <feature name="x" button="0"/>
+            <feature name="y" button="3"/>
         </controller>
     </device>
 </buttonmap>

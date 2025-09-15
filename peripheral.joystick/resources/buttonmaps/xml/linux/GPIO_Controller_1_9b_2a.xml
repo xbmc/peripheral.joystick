@@ -1,20 +1,20 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="GPIO Controller 1" provider="linux" buttoncount="9" axiscount="2">
         <controller id="game.controller.default">
-            <feature name="a" button="0" />
-            <feature name="b" button="1" />
-            <feature name="back" button="6" />
-            <feature name="down" axis="+1" />
-            <feature name="guide" button="8" />
-            <feature name="left" axis="-0" />
-            <feature name="lefttrigger" button="4" />
-            <feature name="right" axis="+0" />
-            <feature name="righttrigger" button="5" />
-            <feature name="start" button="7" />
-            <feature name="up" axis="-1" />
-            <feature name="x" button="2" />
-            <feature name="y" button="3" />
+            <feature name="a" button="0"/>
+            <feature name="b" button="1"/>
+            <feature name="back" button="6"/>
+            <feature name="down" axis="+1"/>
+            <feature name="guide" button="8"/>
+            <feature name="left" axis="-0"/>
+            <feature name="lefttrigger" button="4"/>
+            <feature name="right" axis="+0"/>
+            <feature name="righttrigger" button="5"/>
+            <feature name="start" button="7"/>
+            <feature name="up" axis="-1"/>
+            <feature name="x" button="2"/>
+            <feature name="y" button="3"/>
         </controller>
     </device>
 </buttonmap>

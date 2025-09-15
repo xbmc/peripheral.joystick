@@ -1,37 +1,37 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="MAYFLASH GameCube Controller Adapter" provider="directinput" vid="0079" pid="1844" buttoncount="16" hatcount="1" axiscount="6">
         <configuration>
-            <appearance id="game.controller.gamecube" />
-            <axis index="3" center="-1" range="1" />
-            <axis index="4" center="-1" range="2" />
-            <button index="4" ignore="true" />
-            <button index="5" ignore="true" />
+            <appearance id="game.controller.gamecube"/>
+            <axis index="3" center="-1" range="1"/>
+            <axis index="4" center="-1" range="2"/>
+            <button index="4" ignore="true"/>
+            <button index="5" ignore="true"/>
         </configuration>
         <controller id="game.controller.gamecube">
-            <feature name="a" button="1" />
-            <feature name="b" button="2" />
+            <feature name="a" button="1"/>
+            <feature name="b" button="2"/>
             <feature name="controlstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
             <feature name="cstick">
-                <up axis="-2" />
-                <down axis="+2" />
-                <right axis="+5" />
-                <left axis="-5" />
+                <up axis="-2"/>
+                <down axis="+2"/>
+                <right axis="+5"/>
+                <left axis="-5"/>
             </feature>
-            <feature name="down" button="14" />
-            <feature name="l" axis="+3" />
-            <feature name="left" button="15" />
-            <feature name="right" button="13" />
-            <feature name="start" button="9" />
-            <feature name="up" button="12" />
-            <feature name="x" button="0" />
-            <feature name="y" button="3" />
-            <feature name="z" button="7" />
+            <feature name="down" button="14"/>
+            <feature name="l" axis="+3"/>
+            <feature name="left" button="15"/>
+            <feature name="right" button="13"/>
+            <feature name="start" button="9"/>
+            <feature name="up" button="12"/>
+            <feature name="x" button="0"/>
+            <feature name="y" button="3"/>
+            <feature name="z" button="7"/>
         </controller>
     </device>
 </buttonmap>

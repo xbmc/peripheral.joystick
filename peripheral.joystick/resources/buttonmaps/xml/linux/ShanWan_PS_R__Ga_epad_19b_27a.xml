@@ -1,48 +1,48 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="ShanWan PS(R) Ga`epad" provider="linux" buttoncount="19" axiscount="27">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog" />
-            <axis index="12" center="-1" range="2" />
-            <axis index="13" center="-1" range="2" />
-            <axis index="14" center="-1" range="2" />
-            <axis index="15" center="-1" range="2" />
-            <axis index="16" center="-1" range="1" />
-            <axis index="17" center="-1" range="2" />
-            <axis index="18" center="-1" range="1" />
-            <button index="8" ignore="true" />
-            <button index="9" ignore="true" />
+            <appearance id="game.controller.ps.dualanalog"/>
+            <axis index="12" center="-1" range="2"/>
+            <axis index="13" center="-1" range="2"/>
+            <axis index="14" center="-1" range="2"/>
+            <axis index="15" center="-1" range="2"/>
+            <axis index="16" center="-1" range="1"/>
+            <axis index="17" center="-1" range="2"/>
+            <axis index="18" center="-1" range="1"/>
+            <button index="8" ignore="true"/>
+            <button index="9" ignore="true"/>
         </configuration>
         <controller id="game.controller.default">
-            <feature name="a" button="14" />
-            <feature name="b" button="13" />
-            <feature name="back" button="0" />
-            <feature name="down" button="6" />
-            <feature name="guide" button="16" />
-            <feature name="left" button="17" />
-            <feature name="leftbumper" button="10" />
+            <feature name="a" button="14"/>
+            <feature name="b" button="13"/>
+            <feature name="back" button="0"/>
+            <feature name="down" button="6"/>
+            <feature name="guide" button="16"/>
+            <feature name="left" button="17"/>
+            <feature name="leftbumper" button="10"/>
             <feature name="leftstick">
-                <up axis="-1" />
-                <down axis="+1" />
-                <right axis="+0" />
-                <left axis="-0" />
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
             </feature>
-            <feature name="leftthumb" button="1" />
-            <feature name="lefttrigger" axis="+12" />
-            <feature name="right" button="5" />
-            <feature name="rightbumper" button="11" />
+            <feature name="leftthumb" button="1"/>
+            <feature name="lefttrigger" axis="+12"/>
+            <feature name="right" button="5"/>
+            <feature name="rightbumper" button="11"/>
             <feature name="rightstick">
-                <up axis="-3" />
-                <down axis="+3" />
-                <right axis="+2" />
-                <left axis="-2" />
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
             </feature>
-            <feature name="rightthumb" button="2" />
-            <feature name="righttrigger" axis="+13" />
-            <feature name="start" button="3" />
-            <feature name="up" button="4" />
-            <feature name="x" button="15" />
-            <feature name="y" button="12" />
+            <feature name="rightthumb" button="2"/>
+            <feature name="righttrigger" axis="+13"/>
+            <feature name="start" button="3"/>
+            <feature name="up" button="4"/>
+            <feature name="x" button="15"/>
+            <feature name="y" button="12"/>
         </controller>
     </device>
 </buttonmap>

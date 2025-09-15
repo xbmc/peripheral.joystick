@@ -1,8 +1,8 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="shield-ask-remote" provider="android" vid="18D1" pid="0100" buttoncount="12">
         <configuration>
-            <appearance id="game.controller.remote" />
+            <appearance id="game.controller.remote"/>
         </configuration>
     </device>
 </buttonmap>

@@ -1,10 +1,10 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <buttonmap>
     <device name="Parallels Virtual Mouse" provider="linux" buttoncount="8" axiscount="2">
         <configuration>
-            <appearance id="game.controller.mouse" />
-            <button index="0" ignore="true" />
-            <button index="1" ignore="true" />
+            <appearance id="game.controller.mouse"/>
+            <button index="0" ignore="true"/>
+            <button index="1" ignore="true"/>
         </configuration>
     </device>
 </buttonmap>
