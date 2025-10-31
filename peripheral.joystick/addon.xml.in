@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon
   id="peripheral.joystick"
-  version="21.1.22"
+  version="21.1.23"
   name="Joystick Support"
   provider-name="Team Kodi">
   <requires>@ADDON_DEPENDS@</requires>
