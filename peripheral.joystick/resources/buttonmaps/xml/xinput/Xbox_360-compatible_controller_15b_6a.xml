@@ -2,6 +2,49 @@
 <buttonmap>
     <device name="Xbox 360-compatible controller" provider="xinput" buttoncount="15" axiscount="6">
         <configuration/>
+        <controller id="game.controller.amiga.cd32">
+            <feature name="blue" button="1"/>
+            <feature name="down" button="12"/>
+            <feature name="forward" button="5"/>
+            <feature name="green" button="2"/>
+            <feature name="left" button="13"/>
+            <feature name="play" button="7"/>
+            <feature name="red" button="0"/>
+            <feature name="rewind" button="4"/>
+            <feature name="right" button="11"/>
+            <feature name="up" button="10"/>
+            <feature name="yellow" button="3"/>
+        </controller>
+        <controller id="game.controller.amiga.pro.joystick">
+            <feature name="blue" button="1"/>
+            <feature name="down" button="12"/>
+            <feature name="forward" button="5"/>
+            <feature name="green" button="2"/>
+            <feature name="l2" axis="+4"/>
+            <feature name="l3" button="8"/>
+            <feature name="left" button="13"/>
+            <feature name="leftstick">
+                <up axis="+1"/>
+                <down axis="-1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="play" button="7"/>
+            <feature name="r2" axis="+5"/>
+            <feature name="r3" button="9"/>
+            <feature name="red" button="0"/>
+            <feature name="rewind" button="4"/>
+            <feature name="right" button="11"/>
+            <feature name="rightstick">
+                <up axis="+3"/>
+                <down axis="-3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
+            </feature>
+            <feature name="select" button="6"/>
+            <feature name="up" button="10"/>
+            <feature name="yellow" button="3"/>
+        </controller>
         <controller id="game.controller.default">
             <feature name="a" button="0"/>
             <feature name="b" button="1"/>
