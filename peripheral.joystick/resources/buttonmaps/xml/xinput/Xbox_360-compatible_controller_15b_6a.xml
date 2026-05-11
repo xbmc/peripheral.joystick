@@ -12,6 +12,7 @@
             <feature name="red" button="0"/>
             <feature name="rewind" button="4"/>
             <feature name="right" button="11"/>
+            <feature name="select" button="6"/>
             <feature name="up" button="10"/>
             <feature name="yellow" button="3"/>
         </controller>
