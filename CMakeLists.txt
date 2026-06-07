@@ -9,6 +9,7 @@ include(CheckIncludeFiles)
 
 find_package(Kodi REQUIRED)
 find_package(TinyXML2 REQUIRED)
+find_package(Threads REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/src
                     ${KODI_INCLUDE_DIR}/..) # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
@@ -119,6 +120,7 @@ if(HAVE_SYSLOG)
 endif()
 
 list(APPEND DEPLIBS tinyxml2::tinyxml2)
+list(APPEND DEPLIBS Threads::Threads)
 
 # --- SDL2 ---------------------------------------------------------------------
 

@@ -30,6 +30,9 @@
 
 #include "api/IJoystickInterface.h"
 
+#include <atomic>
+#include <thread>
+
 struct udev;
 struct udev_device;
 struct udev_monitor;
@@ -51,8 +54,17 @@ namespace JOYSTICK
     virtual const ButtonMap& GetButtonMap() override;
 
   private:
+    /*!
+     * \brief Hotplug thread that watches the udev monitor
+     */
+    void MonitorThreadProcess();
+
     udev*         m_udev;
     udev_monitor* m_udev_mon;
+
+    int m_stopFd{-1}; //!< eventfd used to wake the monitor thread on shutdown
+    std::thread m_monitorThread;
+    std::atomic<bool> m_bStop{false};
 
     static ButtonMap m_buttonMap;
   };
