@@ -53,7 +53,7 @@ bool CDirectoryCache::GetDirectory(const std::string& path, std::vector<kodi::vf
     const std::chrono::steady_clock::time_point timestamp = record.first;
     const std::chrono::steady_clock::time_point expires = timestamp + DIRECTORY_LIFETIME;
 
-    if (expires <= std::chrono::steady_clock::now())
+    if (std::chrono::steady_clock::now() < expires)
     {
       items = record.second;
       return true;
