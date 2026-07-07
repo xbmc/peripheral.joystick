@@ -7,23 +7,23 @@ msgstr ""
 "Project-Id-Version: peripheral.joystick\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-12-06 21:53i\n"
-"PO-Revision-Date: 2025-01-12 13:54+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-07-07 00:16+0000\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <https://kodi.weblate.cloud/projects/kodi-add-ons-peripherals/peripheral-joystick/cs_cz/>\n"
 "Language: cs_cz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 2026.7\n"
 
 msgctxt "Addon Summary"
 msgid "Kodi Joystick Library"
-msgstr ""
+msgstr "Knihovna joysticků Kodi"
 
 msgctxt "Addon Description"
 msgid "This library provides joystick drivers and button maps. Multiple joystick APIs are supported, including DirectX, XInput, SDL and the Linux Joystick API."
-msgstr ""
+msgstr "Tato knihovna poskytuje ovladače joysticků a mapování tlačítek. Podporováno je několik rozhraní API pro joysticky, včetně DirectX, XInput, SDL a Linux Joystick API."
 
 msgctxt "#30000"
 msgid "Driver settings"
@@ -31,7 +31,7 @@ msgstr "Nastavení ovladače"
 
 msgctxt "#30001"
 msgid "Joystick driver"
-msgstr ""
+msgstr "Ovladač joysticku"
 
 msgctxt "#30002"
 msgid "None"
@@ -39,31 +39,31 @@ msgstr "Žádné"
 
 msgctxt "#30003"
 msgid "Enable XInput"
-msgstr ""
+msgstr "Povolit XInput"
 
 msgctxt "#30004"
 msgid "Enable DirectInput"
-msgstr ""
+msgstr "Povolit DirectInput"
 
 #. Do not translate
 msgctxt "#30005"
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. Do not translate
 msgctxt "#30006"
 msgid "Cocoa"
-msgstr ""
+msgstr "Cocoa"
 
 #. Do not translate
 msgctxt "#30007"
 msgid "Udev"
-msgstr ""
+msgstr "Udev"
 
 #. Do not translate
 msgctxt "#30008"
 msgid "SDL 2"
-msgstr ""
+msgstr "SDL 2"
 
 #msgctxt "#21475"
 #msgid "Both"
