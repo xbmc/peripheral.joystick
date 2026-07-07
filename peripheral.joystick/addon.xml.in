@@ -20,6 +20,7 @@
     <summary lang="af_ZA">Kodi Speelstok Biblioteek</summary>
     <summary lang="bs_BA">Kodi biblioteka džojstika</summary>
     <summary lang="ca_ES">Llibreria Kodi Joystick</summary>
+    <summary lang="cs_CZ">Knihovna joysticků Kodi</summary>
     <summary lang="da_DK">Kodi Joystick Bibliotek</summary>
     <summary lang="de_DE">Joystick-Bibliothek für Kodi</summary>
     <summary lang="en_GB">Kodi Joystick Library</summary>
@@ -44,6 +45,7 @@
     <description lang="af_ZA">Hierdie biblioteek verskaf speelstok drywers en knoppie kaarte. Veelvuldige speelstok APIs word ondersteun, insluitend DirectX, XInput, DSL en die Linux Joystick API.</description>
     <description lang="bs_BA">Ova biblioteka pruža drajvere za džojstik i mape dugmadi. Podržani su višestruki API-ji za džojstik, uključujući DirectX, XInput, SDL i Linux Joystick API.</description>
     <description lang="ca_ES">Aquesta llibreria proporciona controladors de joystick i mapes de botons. S&apos;admeten diverses API de joystick, incloses DirectX, XInput, SDL i l&apos;API Joystick de Linux.</description>
+    <description lang="cs_CZ">Tato knihovna poskytuje ovladače joysticků a mapování tlačítek. Podporováno je několik rozhraní API pro joysticky, včetně DirectX, XInput, SDL a Linux Joystick API.</description>
     <description lang="da_DK">Dette bibliotek indeholder joystick-drivere og knapgrupperinger. Flere joystick-API&apos;er understøttes, herunder DirectX, XInput, SDL og Linux Joystick API.</description>
     <description lang="de_DE">Diese Bibliothek enthält Joysticktreiber und Schaltflächenzuordnungen. Es werden mehrere Joystick-APIs unterstützt, darunter DirectX, XInput, SDL und die Linux-Joystick-API.</description>
     <description lang="en_GB">This library provides joystick drivers and button maps. Multiple joystick APIs are supported, including DirectX, XInput, SDL and the Linux Joystick API.</description>
