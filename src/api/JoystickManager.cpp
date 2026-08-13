@@ -122,11 +122,15 @@ const std::vector<EJoystickInterface>& CJoystickManager::GetSupportedInterfaces(
 #if defined(HAVE_SDL_GAMEPAD)
     supportedInterfaces.push_back(EJoystickInterface::SDL);
 #endif
-#if defined(HAVE_LINUX_JOYSTICK)
-    supportedInterfaces.push_back(EJoystickInterface::LINUX);
-#endif
+    // udev before the joystick API. Both enumerate the same pads, but only udev
+    // drives force feedback -- CJoystickLinux has no SetMotorState at all -- so
+    // taking the joystick API first leaves rumble unavailable, silently, on any
+    // Linux system that has both. That is most of them.
 #if defined(HAVE_UDEV)
     supportedInterfaces.push_back(EJoystickInterface::UDEV);
+#endif
+#if defined(HAVE_LINUX_JOYSTICK)
+    supportedInterfaces.push_back(EJoystickInterface::LINUX);
 #endif
 
   // OSX
