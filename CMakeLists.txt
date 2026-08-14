@@ -225,7 +225,7 @@ endif()
 
 set(LINUX_SELECT_LINE "\
         <setting id=\"driver_linux\" type=\"integer\" label=\"30001\">
-          <default>0</default>
+          <default>1</default>
           <constraints>
             <options>
               <option label=\"30005\">0</option>
