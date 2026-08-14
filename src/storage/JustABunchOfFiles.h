@@ -24,8 +24,8 @@
 #include "IDatabase.h"
 #include "filesystem/DirectoryCache.h"
 
-#include "p8-platform/threads/mutex.h"
 
+#include <mutex>
 #include <map>
 #include <memory>
 #include <string>
@@ -121,6 +121,6 @@ namespace JOYSTICK
     const bool        m_bReadWrite;
     CDirectoryCache   m_directoryCache;
     CResources        m_resources;
-    P8PLATFORM::CMutex  m_mutex;
+    std::recursive_mutex  m_mutex;
   };
 }

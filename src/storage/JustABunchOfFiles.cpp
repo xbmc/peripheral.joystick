@@ -25,10 +25,10 @@
 #include "log/Log.h"
 #include "utils/StringUtils.h"
 
+#include <mutex>
 #include <algorithm>
 
 using namespace JOYSTICK;
-using namespace P8PLATFORM;
 
 #define FOLDER_DEPTH  1  // Recurse into max 1 subdirectories (provider)
 
@@ -188,7 +188,7 @@ const ButtonMap& CJustABunchOfFiles::GetButtonMap(const kodi::addon::Joystick& d
 {
   static ButtonMap empty;
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   // Update index
   IndexDirectory(m_strResourcePath, FOLDER_DEPTH);
@@ -208,7 +208,7 @@ bool CJustABunchOfFiles::MapFeatures(const kodi::addon::Joystick& driverInfo,
   if (!m_bReadWrite)
     return false;
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   CButtonMap* resource = m_resources.GetResource(driverInfo, true);
   if (resource)
@@ -222,7 +222,7 @@ bool CJustABunchOfFiles::MapFeatures(const kodi::addon::Joystick& driverInfo,
 
 bool CJustABunchOfFiles::GetIgnoredPrimitives(const kodi::addon::Joystick& driverInfo, PrimitiveVector& primitives)
 {
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   // Update index
   IndexDirectory(m_strResourcePath, FOLDER_DEPTH);
@@ -235,7 +235,7 @@ bool CJustABunchOfFiles::SetIgnoredPrimitives(const kodi::addon::Joystick& drive
   if (!m_bReadWrite)
     return false;
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   // Ensure resource exists
   m_resources.SetIgnoredPrimitives(driverInfo, primitives);
@@ -250,7 +250,7 @@ bool CJustABunchOfFiles::SaveButtonMap(const kodi::addon::Joystick& driverInfo)
 
   CDevice device(driverInfo);
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   CButtonMap* resource = m_resources.GetResource(device, false);
 
@@ -267,7 +267,7 @@ bool CJustABunchOfFiles::RevertButtonMap(const kodi::addon::Joystick& driverInfo
 
   CDevice device(driverInfo);
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   m_resources.Revert(device);
 
@@ -281,7 +281,7 @@ bool CJustABunchOfFiles::ResetButtonMap(const kodi::addon::Joystick& driverInfo,
 
   CDevice deviceInfo(driverInfo);
 
-  CLockObject lock(m_mutex);
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
 
   DevicePtr device = m_resources.GetDevice(deviceInfo);
   if (device)

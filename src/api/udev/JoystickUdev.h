@@ -41,8 +41,8 @@
 
 #include "api/Joystick.h"
 
-#include "p8-platform/threads/mutex.h"
 
+#include <mutex>
 #include <array>
 #include <linux/input.h>
 #include <map>
@@ -102,6 +102,6 @@ namespace JOYSTICK
     std::map<unsigned int, Axis>         m_axes_bind;   // Maps keycodes -> axis and axis info
     std::array<uint16_t, MOTOR_COUNT>    m_motors;
     std::array<uint16_t, MOTOR_COUNT>    m_previousMotors;
-    P8PLATFORM::CMutex                   m_mutex;
+    std::recursive_mutex                   m_mutex;
   };
 }

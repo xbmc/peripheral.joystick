@@ -19,6 +19,7 @@
  */
 
 #include "Joystick.h"
+#include "utils/Timer.h"
 #include "JoystickManager.h"
 #include "JoystickTranslator.h"
 #include "JoystickUtils.h"
@@ -27,14 +28,13 @@
 #include "utils/CommonMacros.h"
 #include "utils/StringUtils.h"
 
-#include "p8-platform/util/timeutils.h"
 
 using namespace JOYSTICK;
 
 #define ANALOG_EPSILON  0.0001f
 
 CJoystick::CJoystick(EJoystickInterface interfaceType)
- : m_discoverTimeMs(P8PLATFORM::GetTimeMs()),
+ : m_discoverTimeMs(GetTimeMs()),
    m_activateTimeMs(-1),
    m_firstEventTimeMs(-1),
    m_lastEventTimeMs(-1)
@@ -134,7 +134,7 @@ void CJoystick::Activate()
 {
   if (!IsActive())
   {
-    m_activateTimeMs = P8PLATFORM::GetTimeMs();
+    m_activateTimeMs = GetTimeMs();
 
     if (CJoystickUtils::IsGhostJoystick(*this))
     {
@@ -223,8 +223,8 @@ void CJoystick::SetAxisValue(unsigned int axisIndex, long value, long maxAxisAmo
 void CJoystick::UpdateTimers(void)
 {
   if (m_firstEventTimeMs < 0)
-    m_firstEventTimeMs = P8PLATFORM::GetTimeMs();
-  m_lastEventTimeMs = P8PLATFORM::GetTimeMs();
+    m_firstEventTimeMs = GetTimeMs();
+  m_lastEventTimeMs = GetTimeMs();
 }
 
 float CJoystick::NormalizeAxis(long value, long maxAxisAmount)

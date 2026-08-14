@@ -22,7 +22,8 @@
 
 #include "ILog.h"
 
-#include "p8-platform/threads/mutex.h"
+
+#include <mutex>
 
 namespace JOYSTICK
 {
@@ -35,6 +36,6 @@ namespace JOYSTICK
     virtual SYS_LOG_TYPE Type(void) const override { return SYS_LOG_TYPE_CONSOLE; }
 
   private:
-    P8PLATFORM::CMutex m_mutex;
+    std::recursive_mutex m_mutex;
   };
 }

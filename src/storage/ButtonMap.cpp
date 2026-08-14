@@ -19,6 +19,7 @@
  */
 
 #include "ButtonMap.h"
+#include "utils/Timer.h"
 #include "Device.h"
 #include "DeviceConfiguration.h"
 #include "StorageManager.h"
@@ -27,7 +28,6 @@
 #include "log/Log.h"
 
 #include <kodi/addon-instance/PeripheralUtils.h>
-#include "p8-platform/util/timeutils.h"
 
 #include <algorithm>
 
@@ -94,7 +94,7 @@ bool CButtonMap::SaveButtonMap()
 {
   if (Save())
   {
-    m_timestamp = P8PLATFORM::GetTimeMs();
+    m_timestamp = GetTimeMs();
     m_originalButtonMap.clear();
     m_bModified = false;
     return true;
@@ -130,7 +130,7 @@ bool CButtonMap::ResetButtonMap(const std::string& controllerId)
 bool CButtonMap::Refresh(void)
 {
   const int64_t expires = m_timestamp + RESOURCE_LIFETIME_MS;
-  const int64_t now = P8PLATFORM::GetTimeMs();
+  const int64_t now = GetTimeMs();
 
   if (now >= expires)
   {
