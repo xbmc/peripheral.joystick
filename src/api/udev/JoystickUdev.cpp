@@ -160,7 +160,19 @@ void CJoystickUdev::Play(bool bPlayStop)
     esyslog("[udev]: Failed to play rumble effect %d on \"%s\" - %s", m_effect, Name().c_str(), strerror(errno));
 
   if (!bPlayStop)
+  {
+    // Give the slot back. Dropping the id without this leaks an effect on the
+    // device every time a rumble stops, and a device holds only a handful --
+    // an 8BitDo Pro 2 runs out after a few, and every upload from then on
+    // fails with ENOSPC, so rumble stops working for the rest of the session.
+    if (m_effect != -1 && ioctl(m_fd, EVIOCRMFF, m_effect) < 0)
+    {
+      esyslog("[udev]: Failed to remove rumble effect %d on \"%s\" - %s", m_effect,
+              Name().c_str(), strerror(errno));
+    }
+
     m_effect = -1;
+  }
 }
 
 void CJoystickUdev::UpdateMotorState(const std::array<uint16_t, MOTOR_COUNT>& motors)
