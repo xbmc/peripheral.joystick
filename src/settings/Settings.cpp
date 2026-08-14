@@ -60,9 +60,11 @@ void CSettings::SetSetting(const std::string& strName, const kodi::CSettingValue
 
     if (strName == SETTING_LINUX_DRIVER)
     {
+      // udev first, so the default index selects the only one of the two that
+      // drives force feedback
       drivers = {
-          EJoystickInterface::LINUX,
           EJoystickInterface::UDEV,
+          EJoystickInterface::LINUX,
           EJoystickInterface::NONE,
       };
     }
