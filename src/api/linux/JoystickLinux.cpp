@@ -69,6 +69,11 @@ bool CJoystickLinux::ScanEvents(void)
         // you can increment this size bumping up JS_BUFF_SIZE in joystick.h
         break;
       }
+      else if (errno == ENODEV)
+      {
+        // Device is pending removal. Handled by Kodi's UnregisterRemovedDevices.
+        break;
+      }
       else
       {
         esyslog("%s: failed to read joystick \"%s\" on %s - %d (%s)",
