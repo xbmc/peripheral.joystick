@@ -152,8 +152,23 @@ void CJoystickUdev::Play(bool bPlayStop)
   if (write(m_fd, &play, sizeof(play)) < (ssize_t)sizeof(play))
     esyslog("[udev]: Failed to play rumble effect %d on \"%s\" - %s", m_effect, Name().c_str(), strerror(errno));
 
-  if (!bPlayStop)
+  if (!bPlayStop && m_effect != -1)
+  {
+    if (ioctl(m_fd, EVIOCRMFF, m_effect) < 0)
+    {
+      const int err = errno;
+
+      esyslog("[udev]: Failed to remove rumble effect %d on \"%s\" - %s", m_effect,
+              Name().c_str(), strerror(err));
+
+      // EINVAL means the slot is already gone. Any other error can leave the
+      // effect allocated to us, and the id is the only handle left to it.
+      if (err != EINVAL)
+        return;
+    }
+
     m_effect = -1;
+  }
 }
 
 void CJoystickUdev::UpdateMotorState(const std::array<uint16_t, MOTOR_COUNT>& motors)
