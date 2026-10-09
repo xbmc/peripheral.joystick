@@ -555,7 +555,7 @@ bool CButtonMapXml::Deserialize(const tinyxml2::XMLElement* pElement,
 
         bool bSuccess = true;
 
-        if (pPositiveX && !DeserializePrimitive(pPositiveX, positiveY))
+        if (pPositiveX && !DeserializePrimitive(pPositiveX, positiveX))
         {
           esyslog("Feature \"%s\": <%s> tag is not a valid primitive", strName.c_str(), BUTTONMAP_XML_ELEM_POSITIVE_X);
           bSuccess = false;
