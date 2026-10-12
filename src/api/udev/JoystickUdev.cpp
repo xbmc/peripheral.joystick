@@ -237,10 +237,7 @@ bool CJoystickUdev::ScanEvents(void)
               int middle = (info.minimum + info.maximum) / 2;
               int length = (info.maximum - info.minimum) / 2;
 
-              if (std::abs(event.value - middle) > length / 2)
-                SetAxisValue(axisIndex, event.value - middle, length);
-              else
-                SetAxisValue(axisIndex, 0, length);
+              SetAxisValue(axisIndex, event.value - middle, length);
             }
           }
           break;
