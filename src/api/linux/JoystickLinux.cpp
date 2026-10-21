@@ -11,6 +11,9 @@
 #include "api/JoystickTypes.h"
 #include "log/Log.h"
 #include "utils/CommonMacros.h"
+#if defined(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+#include "utils/linux/PowerSupply.h"
+#endif
 
 #include <dirent.h>
 #include <errno.h>
@@ -53,6 +56,18 @@ bool CJoystickLinux::Equals(const CJoystick* rhs) const
 
   return m_strFilename == rhsLinux->m_strFilename;
 }
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+bool CJoystickLinux::GetBattery(JOYSTICK_BATTERY& battery)
+{
+  // /dev/input/js0 -> /sys/class/input/js0
+  const size_t lastSlash = m_strFilename.find_last_of('/');
+  const std::string nodeName =
+      lastSlash == std::string::npos ? m_strFilename : m_strFilename.substr(lastSlash + 1);
+
+  return CPowerSupply::GetBattery("/sys/class/input/" + nodeName, battery);
+}
+#endif
 
 bool CJoystickLinux::ScanEvents(void)
 {

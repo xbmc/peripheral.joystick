@@ -185,4 +185,18 @@ void CPeripheralJoystick::PowerOffJoystick(unsigned int index)
   joystick->PowerOff();
 }
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+PERIPHERAL_ERROR CPeripheralJoystick::GetJoystickBattery(unsigned int index, JOYSTICK_BATTERY& battery)
+{
+  JoystickPtr joystick = CJoystickManager::Get().GetJoystick(index);
+  if (!joystick)
+    return PERIPHERAL_ERROR_NOT_CONNECTED;
+
+  if (!joystick->GetBattery(battery))
+    return PERIPHERAL_ERROR_NOT_IMPLEMENTED;
+
+  return PERIPHERAL_NO_ERROR;
+}
+#endif
+
 ADDONCREATOR(CPeripheralJoystick) // Don't touch this!
