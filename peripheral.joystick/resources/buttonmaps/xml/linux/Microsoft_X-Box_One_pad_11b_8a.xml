@@ -19,6 +19,36 @@
             <feature name="stop" button="6"/>
             <feature name="up" axis="-7"/>
         </controller>
+        <controller id="game.controller.3ds">
+            <feature name="a" button="1"/>
+            <feature name="b" button="0"/>
+            <feature name="circlepad">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="cstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="down" axis="+7"/>
+            <feature name="home" button="8"/>
+            <feature name="l" button="4"/>
+            <feature name="left" axis="-6"/>
+            <feature name="r" button="5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="select" button="6"/>
+            <feature name="start" button="7"/>
+            <feature name="touchscreen" button="10"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="2"/>
+            <feature name="zl" axis="+2"/>
+            <feature name="zr" axis="+5"/>
+        </controller>
         <controller id="game.controller.amiga.cd32">
             <feature name="blue" button="1"/>
             <feature name="down" axis="+7"/>
@@ -661,6 +691,37 @@
             <feature name="x" button="3"/>
             <feature name="y" button="2"/>
         </controller>
+        <controller id="game.controller.switch.pro">
+            <feature name="a" button="1"/>
+            <feature name="b" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="home" button="8"/>
+            <feature name="l" button="4"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="leftthumb" button="9"/>
+            <feature name="minus" button="6"/>
+            <feature name="plus" button="7"/>
+            <feature name="r" button="5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="rightthumb" button="10"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="2"/>
+            <feature name="zl" axis="+2"/>
+            <feature name="zr" axis="+5"/>
+        </controller>
         <controller id="game.controller.vb">
             <feature name="a" button="1"/>
             <feature name="b" button="0"/>
@@ -705,6 +766,68 @@
             <feature name="right" axis="+6"/>
             <feature name="two" button="3"/>
             <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.wiiu.gamepad">
+            <feature name="a" button="1"/>
+            <feature name="b" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="home" button="8"/>
+            <feature name="l" button="4"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="leftthumb" button="9"/>
+            <feature name="minus" button="6"/>
+            <feature name="plus" button="7"/>
+            <feature name="r" button="5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="rightthumb" button="10"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="2"/>
+            <feature name="zl" axis="+2"/>
+            <feature name="zr" axis="+5"/>
+        </controller>
+        <controller id="game.controller.wiiu.pro">
+            <feature name="a" button="1"/>
+            <feature name="b" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="home" button="8"/>
+            <feature name="l" button="4"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="leftthumb" button="9"/>
+            <feature name="minus" button="6"/>
+            <feature name="plus" button="7"/>
+            <feature name="r" button="5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="rightthumb" button="10"/>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="2"/>
+            <feature name="zl" axis="+2"/>
+            <feature name="zr" axis="+5"/>
         </controller>
         <controller id="game.controller.ws">
             <feature name="a" button="1"/>
