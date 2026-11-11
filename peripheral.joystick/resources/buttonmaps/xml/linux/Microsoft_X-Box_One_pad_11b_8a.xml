@@ -62,6 +62,36 @@
             <feature name="up" axis="-7"/>
             <feature name="yellow" button="3"/>
         </controller>
+        <controller id="game.controller.amiga.pro.joystick">
+            <feature name="blue" button="1"/>
+            <feature name="down" axis="+7"/>
+            <feature name="forward" button="5"/>
+            <feature name="green" button="2"/>
+            <feature name="l2" axis="+2"/>
+            <feature name="l3" button="9"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="play" button="7"/>
+            <feature name="r2" axis="+5"/>
+            <feature name="r3" button="10"/>
+            <feature name="red" button="0"/>
+            <feature name="rewind" button="4"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="select" button="6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="yellow" button="3"/>
+        </controller>
         <controller id="game.controller.amstrad.joystick">
             <feature name="button1" button="0"/>
             <feature name="button2" button="1"/>
@@ -89,6 +119,24 @@
             <feature name="right" axis="+6"/>
             <feature name="up" axis="-7"/>
         </controller>
+        <controller id="game.controller.atari.5200">
+            <feature name="down" axis="+7"/>
+            <feature name="fire1" button="0"/>
+            <feature name="fire2" button="1"/>
+            <feature name="left" axis="-6"/>
+            <feature name="num0" button="4"/>
+            <feature name="num1" button="5"/>
+            <feature name="num2" axis="+2"/>
+            <feature name="num3" axis="+5"/>
+            <feature name="num7" button="9"/>
+            <feature name="pause" button="6"/>
+            <feature name="pound" button="2"/>
+            <feature name="right" axis="+6"/>
+            <feature name="star" button="3"/>
+            <feature name="start" button="7"/>
+            <feature name="togglevkbd" button="10"/>
+            <feature name="up" axis="-7"/>
+        </controller>
         <controller id="game.controller.atari.7800.gamepad">
             <feature name="button1" button="0"/>
             <feature name="button2" button="1"/>
@@ -105,6 +153,23 @@
             <feature name="right" axis="+6"/>
             <feature name="up" axis="-7"/>
         </controller>
+        <controller id="game.controller.atari.800">
+            <feature name="down" axis="+7"/>
+            <feature name="escape" axis="+2"/>
+            <feature name="fire1" button="0"/>
+            <feature name="fire2" button="1"/>
+            <feature name="help" axis="+5"/>
+            <feature name="left" axis="-6"/>
+            <feature name="menu" button="5"/>
+            <feature name="option" button="4"/>
+            <feature name="return" button="3"/>
+            <feature name="right" axis="+6"/>
+            <feature name="select" button="6"/>
+            <feature name="space" button="2"/>
+            <feature name="start" button="7"/>
+            <feature name="togglevkbd" button="9"/>
+            <feature name="up" axis="-7"/>
+        </controller>
         <controller id="game.controller.atari.lynx">
             <feature name="a" button="1"/>
             <feature name="b" button="0"/>
@@ -114,6 +179,35 @@
             <feature name="option2" button="6"/>
             <feature name="pause" button="2"/>
             <feature name="right" axis="+6"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.channelf">
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="pull" button="3"/>
+            <feature name="push" button="0"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rotateleft" button="2"/>
+            <feature name="rotateright" button="1"/>
+            <feature name="start" button="7"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.colecovision">
+            <feature name="button1" button="0"/>
+            <feature name="button2" button="1"/>
+            <feature name="down" axis="+7"/>
+            <feature name="keypad1" button="2"/>
+            <feature name="keypad2" button="3"/>
+            <feature name="keypad3" button="4"/>
+            <feature name="keypad4" button="5"/>
+            <feature name="keypad5" axis="+2"/>
+            <feature name="keypad6" axis="+5"/>
+            <feature name="keypad7" button="9"/>
+            <feature name="keypad8" button="10"/>
+            <feature name="left" axis="-6"/>
+            <feature name="pound" button="6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="star" button="7"/>
             <feature name="up" axis="-7"/>
         </controller>
         <controller id="game.controller.default">
@@ -258,6 +352,19 @@
             <feature name="up" axis="-7"/>
             <feature name="yellow" button="0"/>
         </controller>
+        <controller id="game.controller.intellivision">
+            <feature name="clear" axis="+2"/>
+            <feature name="down" axis="+7"/>
+            <feature name="enter" axis="+5"/>
+            <feature name="left" axis="-6"/>
+            <feature name="left1" button="2"/>
+            <feature name="left2" button="1"/>
+            <feature name="num0" button="9"/>
+            <feature name="num5" button="10"/>
+            <feature name="right" axis="+6"/>
+            <feature name="right2" button="0"/>
+            <feature name="up" axis="-7"/>
+        </controller>
         <controller id="game.controller.joystick.2button">
             <feature name="analogstick">
                 <up axis="-1"/>
@@ -390,6 +497,21 @@
             <feature name="up" axis="-7"/>
             <feature name="x" button="3"/>
             <feature name="y" button="1"/>
+        </controller>
+        <controller id="game.controller.pce">
+            <feature name="down" axis="+7"/>
+            <feature name="i" button="1"/>
+            <feature name="ii" button="0"/>
+            <feature name="iii" button="2"/>
+            <feature name="iv" button="3"/>
+            <feature name="left" axis="-6"/>
+            <feature name="mode" axis="+2"/>
+            <feature name="right" axis="+6"/>
+            <feature name="run" button="7"/>
+            <feature name="select" button="6"/>
+            <feature name="up" axis="-7"/>
+            <feature name="v" button="4"/>
+            <feature name="vi" button="5"/>
         </controller>
         <controller id="game.controller.pcfx">
             <feature name="down" axis="+7"/>
@@ -691,6 +813,16 @@
             <feature name="x" button="3"/>
             <feature name="y" button="2"/>
         </controller>
+        <controller id="game.controller.supervision">
+            <feature name="a" button="1"/>
+            <feature name="b" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="left" axis="-6"/>
+            <feature name="right" axis="+6"/>
+            <feature name="select" button="6"/>
+            <feature name="start" button="7"/>
+            <feature name="up" axis="-7"/>
+        </controller>
         <controller id="game.controller.switch.pro">
             <feature name="a" button="1"/>
             <feature name="b" button="0"/>
@@ -747,6 +879,35 @@
             <feature name="left" axis="-6"/>
             <feature name="right" axis="+6"/>
             <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.wii.classic">
+            <feature name="a" button="1"/>
+            <feature name="b" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="home" button="8"/>
+            <feature name="l" axis="+2"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="minus" button="6"/>
+            <feature name="plus" button="7"/>
+            <feature name="r" axis="+5"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="up" axis="-7"/>
+            <feature name="x" button="3"/>
+            <feature name="y" button="2"/>
+            <feature name="zl" button="4"/>
+            <feature name="zr" button="5"/>
         </controller>
         <controller id="game.controller.wiimote">
             <feature name="a" button="0"/>
