@@ -71,6 +71,15 @@ namespace JOYSTICK
      */
     virtual void PowerOff() { }
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+    /*!
+     * Get how the joystick is powered and how charged it is
+     *
+     * \return False if the driver can't tell
+     */
+    virtual bool GetBattery(JOYSTICK_BATTERY& battery) { return false; }
+#endif
+
   protected:
     /*!
      * Implemented by derived class to scan for events

@@ -3,6 +3,7 @@ project(peripheral.joystick)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
+include(CheckCXXSourceCompiles)
 include(CheckIncludeFiles)
 
 # --- Add-on Dependencies ------------------------------------------------------
@@ -13,6 +14,16 @@ find_package(Threads REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/src
                     ${KODI_INCLUDE_DIR}/..) # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
+
+# Kodi 22 has no battery call in its peripheral API
+set(CMAKE_REQUIRED_INCLUDES ${KODI_INCLUDE_DIR} ${KODI_INCLUDE_DIR}/..)
+check_cxx_source_compiles("#include <kodi/c-api/addon-instance/peripheral.h>
+int main() { JOYSTICK_BATTERY battery{}; return battery.level; }"
+                          HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+unset(CMAKE_REQUIRED_INCLUDES)
+if(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+  add_definitions(-DHAVE_PERIPHERAL_JOYSTICK_BATTERY)
+endif()
 
 set(JOYSTICK_SOURCES src/addon.cpp
                      src/api/IJoystickInterface.cpp
@@ -110,6 +121,11 @@ set(JOYSTICK_HEADERS src/addon.h
 if(CORE_SYSTEM_NAME MATCHES windows)
   list(APPEND JOYSTICK_SOURCES src/utils/windows/CharsetConverter.cpp)
   list(APPEND JOYSTICK_HEADERS src/utils/windows/CharsetConverter.h)
+endif()
+
+if(CORE_SYSTEM_NAME STREQUAL linux AND HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+  list(APPEND JOYSTICK_SOURCES src/utils/linux/PowerSupply.cpp)
+  list(APPEND JOYSTICK_HEADERS src/utils/linux/PowerSupply.h)
 endif()
 
 check_include_files("syslog.h" HAVE_SYSLOG)
