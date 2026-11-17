@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buttonmap>
+    <device name="Wireless Steam Controller" provider="udev" vid="28DE" pid="1142" buttoncount="21" axiscount="8">
+        <configuration>
+            <appearance id="game.controller.default"/>
+            <axis index="4" ignore="true"/>
+            <axis index="5" ignore="true"/>
+            <axis index="6" center="-1" range="2"/>
+            <axis index="7" center="-1" range="2"/>
+            <button index="0" ignore="true"/>
+            <button index="1" ignore="true"/>
+        </configuration>
+        <controller id="game.controller.default">
+            <feature name="a" button="2"/>
+            <feature name="b" button="3"/>
+            <feature name="back" button="10"/>
+            <feature name="down" button="16"/>
+            <feature name="guide" button="12"/>
+            <feature name="left" button="17"/>
+            <feature name="leftbumper" button="6"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="leftthumb" button="13"/>
+            <feature name="lefttrigger" axis="+7"/>
+            <feature name="right" button="18"/>
+            <feature name="rightbumper" button="7"/>
+            <feature name="rightstick">
+                <up axis="-3"/>
+                <down axis="+3"/>
+                <right axis="+2"/>
+                <left axis="-2"/>
+            </feature>
+            <feature name="rightthumb" button="14"/>
+            <feature name="righttrigger" axis="+6"/>
+            <feature name="start" button="11"/>
+            <feature name="up" button="15"/>
+            <feature name="x" button="4"/>
+            <feature name="y" button="5"/>
+        </controller>
+    </device>
+</buttonmap>
