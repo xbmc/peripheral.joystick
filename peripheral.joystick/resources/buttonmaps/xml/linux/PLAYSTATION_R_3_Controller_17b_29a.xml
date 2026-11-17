@@ -3,7 +3,7 @@
     <!-- Sony Playstation 3 Controller connected through QtSixA (sixpair, sixad). -->
     <device name="PLAYSTATION(R)3 Controller" provider="linux" buttoncount="17" axiscount="29">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
         </configuration>
         <controller id="game.controller.default">
             <feature name="a" button="14"/>

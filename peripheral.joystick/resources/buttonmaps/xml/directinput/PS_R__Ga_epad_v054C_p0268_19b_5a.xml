@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="PS(R) Ga`epad" provider="directinput" vid="054C" pid="0268" buttoncount="19" axiscount="5">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
         </configuration>
         <controller id="game.controller.ps.dualanalog">
             <feature name="analog" button="16"/>

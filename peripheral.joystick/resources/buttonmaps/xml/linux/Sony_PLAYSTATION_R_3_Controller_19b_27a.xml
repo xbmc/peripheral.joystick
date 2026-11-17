@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="Sony PLAYSTATION(R)3 Controller" provider="linux" buttoncount="19" axiscount="27">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
         </configuration>
         <controller id="game.controller.default">
             <feature name="a" button="14"/>

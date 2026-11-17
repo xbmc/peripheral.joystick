@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="PLAYSTATION(R)3 Controller" provider="cocoa" vid="054C" pid="0268" buttoncount="19" axiscount="4">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
         </configuration>
         <controller id="game.controller.default">
             <feature name="a" button="14"/>
