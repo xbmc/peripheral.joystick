@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="Wireless Controller" provider="linux" buttoncount="13" axiscount="8">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps4.dualshock4"/>
             <axis index="2" center="-1" range="2"/>
             <axis index="5" center="-1" range="2"/>
             <button index="6" ignore="true"/>

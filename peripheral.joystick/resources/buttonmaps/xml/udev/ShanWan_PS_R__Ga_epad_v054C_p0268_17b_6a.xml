@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="ShanWan PS(R) Ga`epad" provider="udev" vid="054C" pid="0268" buttoncount="17" axiscount="6">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
         </configuration>
         <controller id="game.controller.ps.dualanalog">
             <feature name="analog" button="10"/>

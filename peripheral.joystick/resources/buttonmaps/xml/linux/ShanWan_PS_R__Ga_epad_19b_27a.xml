@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="ShanWan PS(R) Ga`epad" provider="linux" buttoncount="19" axiscount="27">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
             <axis index="12" center="-1" range="2"/>
             <axis index="13" center="-1" range="2"/>
             <axis index="14" center="-1" range="2"/>

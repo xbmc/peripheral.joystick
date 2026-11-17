@@ -2,7 +2,7 @@
 <buttonmap>
     <device name="Sony PLAYSTATION(R)3 Controller" provider="linux" buttoncount="17" axiscount="6">
         <configuration>
-            <appearance id="game.controller.ps.dualanalog"/>
+            <appearance id="game.controller.ps3.dualshock3"/>
             <axis index="2" center="-1" range="2"/>
             <axis index="5" center="-1" range="2"/>
             <button index="6" ignore="true"/>
