@@ -618,6 +618,68 @@
             <feature name="triangle" button="3"/>
             <feature name="up" axis="-7"/>
         </controller>
+        <controller id="game.controller.ps3.dualshock3">
+            <feature name="circle" button="1"/>
+            <feature name="cross" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="l3" button="9"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftbumper" button="4"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="lefttrigger" axis="+2"/>
+            <feature name="ps" button="8"/>
+            <feature name="r3" button="10"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightbumper" button="5"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="righttrigger" axis="+5"/>
+            <feature name="select" button="6"/>
+            <feature name="square" button="2"/>
+            <feature name="start" button="7"/>
+            <feature name="triangle" button="3"/>
+            <feature name="up" axis="-7"/>
+        </controller>
+        <controller id="game.controller.ps4.dualshock4">
+            <feature name="circle" button="1"/>
+            <feature name="cross" button="0"/>
+            <feature name="down" axis="+7"/>
+            <feature name="l3" button="9"/>
+            <feature name="left" axis="-6"/>
+            <feature name="leftbumper" button="4"/>
+            <feature name="leftstick">
+                <up axis="-1"/>
+                <down axis="+1"/>
+                <right axis="+0"/>
+                <left axis="-0"/>
+            </feature>
+            <feature name="lefttrigger" axis="+2"/>
+            <feature name="options" button="7"/>
+            <feature name="ps" button="8"/>
+            <feature name="r3" button="10"/>
+            <feature name="right" axis="+6"/>
+            <feature name="rightbumper" button="5"/>
+            <feature name="rightstick">
+                <up axis="-4"/>
+                <down axis="+4"/>
+                <right axis="+3"/>
+                <left axis="-3"/>
+            </feature>
+            <feature name="righttrigger" axis="+5"/>
+            <feature name="share" button="6"/>
+            <feature name="square" button="2"/>
+            <feature name="triangle" button="3"/>
+            <feature name="up" axis="-7"/>
+        </controller>
         <controller id="game.controller.psp">
             <feature name="analogstick">
                 <up axis="-1"/>
