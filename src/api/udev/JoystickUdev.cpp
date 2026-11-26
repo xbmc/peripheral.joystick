@@ -24,6 +24,7 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <utility>
 
 using namespace JOYSTICK;
 
@@ -37,6 +38,30 @@ using namespace JOYSTICK;
 
 // From RetroArch
 #define NBITS(x)  ((((x) - 1) / (sizeof(long) * CHAR_BIT)) + 1)
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+namespace
+{
+constexpr float STANDARD_GRAVITY = 9.80665f;
+constexpr float RADIANS_PER_DEGREE = 3.14159265358979f / 180.0f;
+constexpr int NINTENDO_VENDOR_ID = 0x057e;
+
+// How long to keep looking for a motion sensor that appears after the pad
+constexpr auto MOTION_SENSOR_SEARCH_TIME = std::chrono::seconds(5);
+constexpr auto MOTION_SENSOR_SEARCH_INTERVAL = std::chrono::milliseconds(500);
+
+unsigned int MotionAxisCode(unsigned int axis)
+{
+  return axis < 3 ? ABS_X + axis : ABS_RX + (axis - 3);
+}
+
+const char* GetHidSyspath(udev_device* dev)
+{
+  udev_device* hid = udev_device_get_parent_with_subsystem_devtype(dev, "hid", nullptr);
+  return hid != nullptr ? udev_device_get_syspath(hid) : nullptr;
+}
+} // namespace
+#endif
 
 CJoystickUdev::CJoystickUdev(udev_device* dev, const char* path)
  : CJoystick(EJoystickInterface::UDEV),
@@ -52,6 +77,11 @@ CJoystickUdev::CJoystickUdev(udev_device* dev, const char* path)
   // The device is released once the joystick is constructed
   if (const char* syspath = udev_device_get_syspath(dev))
     m_syspath = syspath;
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+  m_created = std::chrono::steady_clock::now();
+  FindMotionSensor(dev);
+#endif
 
   // Must initialize in the constructor to fill out joystick properties
   Initialize();
@@ -79,6 +109,10 @@ bool CJoystickUdev::Initialize(void)
     if (!CJoystick::Initialize())
       return false;
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    OpenMotionSensor();
+#endif
+
     m_bInitialized = true;
   }
 
@@ -92,6 +126,10 @@ void CJoystickUdev::Close(void)
     close(m_fd);
     m_fd = INVALID_FD;
   }
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+  CloseMotionSensor();
+#endif
 }
 
 void CJoystickUdev::Deinitialize(void)
@@ -265,8 +303,203 @@ bool CJoystickUdev::ScanEvents(void)
     }
   }
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+  ScanMotionEvents();
+#endif
+
   return true;
 }
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+void CJoystickUdev::FindMotionSensor(udev_device* dev)
+{
+  const char* hidSyspath = GetHidSyspath(dev);
+  if (hidSyspath == nullptr)
+    return;
+
+  udev* context = udev_device_get_udev(dev);
+  udev_enumerate* enumerate = udev_enumerate_new(context);
+  if (enumerate == nullptr)
+    return;
+
+  udev_enumerate_add_match_subsystem(enumerate, "input");
+  udev_enumerate_add_match_property(enumerate, "ID_INPUT_ACCELEROMETER", "1");
+  udev_enumerate_scan_devices(enumerate);
+
+  udev_list_entry* entry;
+  udev_list_entry_foreach(entry, udev_enumerate_get_list_entry(enumerate))
+  {
+    udev_device* sensor = udev_device_new_from_syspath(context, udev_list_entry_get_name(entry));
+    if (sensor == nullptr)
+      continue;
+
+    const char* devnode = udev_device_get_devnode(sensor);
+    const char* sensorHidSyspath = GetHidSyspath(sensor);
+    if (devnode != nullptr && sensorHidSyspath != nullptr &&
+        strncmp(devnode, "/dev/input/event", 16) == 0 &&
+        strcmp(sensorHidSyspath, hidSyspath) == 0)
+      m_motionPath = devnode;
+
+    udev_device_unref(sensor);
+
+    if (!m_motionPath.empty())
+      break;
+  }
+
+  udev_enumerate_unref(enumerate);
+}
+
+bool CJoystickUdev::OpenMotionSensor()
+{
+  if (m_motionPath.empty())
+    return false;
+
+  m_motionFd = open(m_motionPath.c_str(), O_RDONLY | O_NONBLOCK | O_CLOEXEC);
+  if (m_motionFd < 0)
+    return false;
+
+  // An axis the sensor lacks keeps a resolution of 0: the DualShock 3's has no gyroscope
+  bool hasAxis = false;
+  for (unsigned int i = 0; i < JOYSTICK_MOTION_AXIS_COUNT; i++)
+  {
+    input_absinfo abs = {};
+    const bool present =
+        ioctl(m_motionFd, EVIOCGABS(MotionAxisCode(i)), &abs) == 0 && abs.resolution != 0;
+
+    m_motionResolution[i] = present ? abs.resolution : 0;
+    m_motionRaw[i] = present ? abs.value : 0;
+    hasAxis |= present;
+  }
+
+  if (!hasAxis)
+  {
+    CloseMotionSensor();
+    return false;
+  }
+
+  m_motionDropped = false;
+
+  // Linux reports only changes, so a still pad's first reading goes out now
+  ReportMotion();
+  return true;
+}
+
+void CJoystickUdev::ReadMotionAxes()
+{
+  for (unsigned int i = 0; i < JOYSTICK_MOTION_AXIS_COUNT; i++)
+  {
+    input_absinfo abs = {};
+    if (m_motionResolution[i] != 0 && ioctl(m_motionFd, EVIOCGABS(MotionAxisCode(i)), &abs) == 0)
+      m_motionRaw[i] = abs.value;
+  }
+}
+
+void CJoystickUdev::ScanMotionEvents()
+{
+  if (m_motionFd < 0)
+  {
+    const auto now = std::chrono::steady_clock::now();
+    if (m_syspath.empty() || now - m_created > MOTION_SENSOR_SEARCH_TIME ||
+        now < m_nextMotionSearch)
+      return;
+
+    m_nextMotionSearch = now + MOTION_SENSOR_SEARCH_INTERVAL;
+
+    udev* context = udev_new();
+    if (context == nullptr)
+      return;
+
+    if (udev_device* dev = udev_device_new_from_syspath(context, m_syspath.c_str()))
+    {
+      FindMotionSensor(dev);
+      udev_device_unref(dev);
+    }
+    udev_unref(context);
+
+    if (!OpenMotionSensor())
+      return;
+  }
+
+  // Said here rather than when opening, as the joystick scan makes and drops a
+  // copy of each joystick every few seconds
+  if (!m_motionReported)
+  {
+    m_motionReported = true;
+    isyslog("[udev]: \"%s\" has a motion sensor at %s", Name().c_str(), m_motionPath.c_str());
+  }
+
+  input_event events[32];
+
+  int len;
+  while ((len = read(m_motionFd, events, sizeof(events))) > 0)
+  {
+    len /= sizeof(*events);
+    for (unsigned int i = 0; i < static_cast<unsigned int>(len); i++)
+    {
+      const input_event& event = events[i];
+
+      if (event.type == EV_SYN && event.code == SYN_DROPPED)
+      {
+        // Events were lost: the rest of this packet is skipped and the axes read afresh
+        m_motionDropped = true;
+      }
+      else if (event.type == EV_SYN && event.code == SYN_REPORT)
+      {
+        if (std::exchange(m_motionDropped, false))
+          ReadMotionAxes();
+        ReportMotion();
+      }
+      else if (event.type == EV_ABS && !m_motionDropped)
+      {
+        if (event.code >= ABS_X && event.code <= ABS_Z)
+          m_motionRaw[event.code - ABS_X] = event.value;
+        else if (event.code >= ABS_RX && event.code <= ABS_RZ)
+          m_motionRaw[3 + event.code - ABS_RX] = event.value;
+      }
+    }
+  }
+
+  if (len < 0 && errno == ENODEV)
+    CloseMotionSensor();
+}
+
+void CJoystickUdev::ReportMotion()
+{
+  std::array<float, JOYSTICK_MOTION_AXIS_COUNT> values;
+
+  for (unsigned int i = 0; i < JOYSTICK_MOTION_AXIS_COUNT; i++)
+  {
+    const float unit = i < 3 ? STANDARD_GRAVITY : RADIANS_PER_DEGREE;
+    values[i] = m_motionResolution[i] != 0 ? m_motionRaw[i] * unit / m_motionResolution[i] : 0.0f;
+  }
+
+  // hid-nintendo orders its axes differently from SDL's coordinate system
+  if (VendorID() == NINTENDO_VENDOR_ID)
+  {
+    for (unsigned int i = 0; i < JOYSTICK_MOTION_AXIS_COUNT; i += 3)
+    {
+      const float x = values[i];
+      const float y = values[i + 1];
+      const float z = values[i + 2];
+      values[i] = -y;
+      values[i + 1] = z;
+      values[i + 2] = -x;
+    }
+  }
+
+  for (unsigned int i = 0; i < JOYSTICK_MOTION_AXIS_COUNT; i++)
+    SetMotionValue(i, values[i]);
+}
+
+void CJoystickUdev::CloseMotionSensor()
+{
+  if (m_motionFd >= 0)
+  {
+    close(m_motionFd);
+    m_motionFd = INVALID_FD;
+  }
+}
+#endif
 
 bool CJoystickUdev::OpenJoystick()
 {

@@ -25,6 +25,16 @@ if(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
   add_definitions(-DHAVE_PERIPHERAL_JOYSTICK_BATTERY)
 endif()
 
+# Kodi 22 has no motion events in its peripheral API
+set(CMAKE_REQUIRED_INCLUDES ${KODI_INCLUDE_DIR} ${KODI_INCLUDE_DIR}/..)
+check_cxx_source_compiles("#include <kodi/c-api/addon-instance/peripheral.h>
+int main() { return PERIPHERAL_EVENT_TYPE_DRIVER_MOTION + JOYSTICK_MOTION_AXIS_COUNT; }"
+                          HAVE_PERIPHERAL_JOYSTICK_MOTION)
+unset(CMAKE_REQUIRED_INCLUDES)
+if(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+  add_definitions(-DHAVE_PERIPHERAL_JOYSTICK_MOTION)
+endif()
+
 set(JOYSTICK_SOURCES src/addon.cpp
                      src/api/IJoystickInterface.cpp
                      src/api/Joystick.cpp

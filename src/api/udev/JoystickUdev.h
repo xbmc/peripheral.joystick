@@ -31,6 +31,7 @@
 #include "api/Joystick.h"
 
 #include <array>
+#include <chrono>
 #include <linux/input.h>
 #include <map>
 #include <mutex>
@@ -84,6 +85,16 @@ namespace JOYSTICK
     bool OpenJoystick();
     bool GetProperties();
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    // Motion sensor, a separate input device of the same HID device
+    void FindMotionSensor(udev_device* dev);
+    bool OpenMotionSensor();
+    void ReadMotionAxes();
+    void ScanMotionEvents();
+    void ReportMotion();
+    void CloseMotionSensor();
+#endif
+
     // Udev properties
     udev_device* m_dev;
     std::string  m_path;
@@ -98,6 +109,18 @@ namespace JOYSTICK
     std::map<unsigned int, Axis>         m_axes_bind;   // Maps keycodes -> axis and axis info
     std::array<uint16_t, MOTOR_COUNT>    m_motors;
     std::array<uint16_t, MOTOR_COUNT>    m_previousMotors;
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    // Motion sensor properties
+    std::string m_motionPath;
+    int m_motionFd = -1;
+    std::chrono::steady_clock::time_point m_created;
+    std::chrono::steady_clock::time_point m_nextMotionSearch;
+    bool m_motionReported = false;
+    bool m_motionDropped = false;
+    std::array<int, JOYSTICK_MOTION_AXIS_COUNT> m_motionResolution{};
+    std::array<int, JOYSTICK_MOTION_AXIS_COUNT> m_motionRaw{};
+#endif
     std::recursive_mutex m_mutex;
   };
 }

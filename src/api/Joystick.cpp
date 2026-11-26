@@ -86,6 +86,9 @@ bool CJoystick::GetEvents(std::vector<kodi::addon::PeripheralEvent>& events)
     GetButtonEvents(events);
     GetHatEvents(events);
     GetAxisEvents(events);
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    GetMotionEvents(events);
+#endif
 
     return true;
   }
@@ -164,6 +167,26 @@ void CJoystick::GetAxisEvents(std::vector<kodi::addon::PeripheralEvent>& events)
   m_state.axes.assign(axes.begin(), axes.end());
 }
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+void CJoystick::GetMotionEvents(std::vector<kodi::addon::PeripheralEvent>& events)
+{
+  if (!m_motionChanged)
+    return;
+
+  m_motionChanged = false;
+
+  for (unsigned int i = 0; i < m_motion.size(); i++)
+  {
+    kodi::addon::PeripheralEvent event;
+    event.SetPeripheralIndex(Index());
+    event.SetType(PERIPHERAL_EVENT_TYPE_DRIVER_MOTION);
+    event.SetDriverIndex(i);
+    event.SetAxisState(m_motion[i]);
+    events.push_back(event);
+  }
+}
+#endif
+
 void CJoystick::SetButtonValue(unsigned int buttonIndex, JOYSTICK_STATE_BUTTON buttonValue)
 {
   Activate();
@@ -192,6 +215,18 @@ void CJoystick::SetAxisValue(unsigned int axisIndex, JOYSTICK_STATE_AXIS axisVal
     m_stateBuffer.axes[axisIndex].bSeen = true;
   }
 }
+
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+void CJoystick::SetMotionValue(unsigned int motionAxis, float value)
+{
+  // A motion sensor reports all the time, so it doesn't make the joystick active
+  if (motionAxis < m_motion.size())
+  {
+    m_motion[motionAxis] = value;
+    m_motionChanged = true;
+  }
+}
+#endif
 
 void CJoystick::SetAxisValue(unsigned int axisIndex, long value, long maxAxisAmount)
 {
