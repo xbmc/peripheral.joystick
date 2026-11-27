@@ -12,6 +12,7 @@
 
 #include <kodi/addon-instance/Peripheral.h>
 
+#include <array>
 #include <string>
 #include <vector>
 
@@ -71,6 +72,15 @@ namespace JOYSTICK
      */
     virtual void PowerOff() { }
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+    /*!
+     * Get how the joystick is powered and how charged it is
+     *
+     * \return False if the driver can't tell
+     */
+    virtual bool GetBattery(JOYSTICK_BATTERY& battery) { return false; }
+#endif
+
   protected:
     /*!
      * Implemented by derived class to scan for events
@@ -84,12 +94,22 @@ namespace JOYSTICK
     virtual void SetAxisValue(unsigned int axisIndex, JOYSTICK_STATE_AXIS axisValue);
     void SetAxisValue(unsigned int axisIndex, long value, long maxAxisAmount);
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    /*!
+     * Set an axis of the joystick's motion sensor, see JOYSTICK_MOTION_AXIS
+     */
+    void SetMotionValue(unsigned int motionAxis, float value);
+#endif
+
   private:
     void Activate();
 
     void GetButtonEvents(std::vector<kodi::addon::PeripheralEvent>& events);
     void GetHatEvents(std::vector<kodi::addon::PeripheralEvent>& events);
     void GetAxisEvents(std::vector<kodi::addon::PeripheralEvent>& events);
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    void GetMotionEvents(std::vector<kodi::addon::PeripheralEvent>& events);
+#endif
 
     struct JoystickAxis
     {
@@ -106,6 +126,10 @@ namespace JOYSTICK
 
     JoystickState                     m_state;
     JoystickState                     m_stateBuffer;
+#if defined(HAVE_PERIPHERAL_JOYSTICK_MOTION)
+    std::array<float, JOYSTICK_MOTION_AXIS_COUNT> m_motion{};
+    bool m_motionChanged = false;
+#endif
     bool m_isActive = false;
   };
 }
