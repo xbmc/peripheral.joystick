@@ -59,6 +59,53 @@ void CJoystickXInput::PowerOff()
     CXInputDLL::Get().PowerOff(m_controllerID);
 }
 
+#if defined(HAVE_PERIPHERAL_JOYSTICK_BATTERY)
+bool CJoystickXInput::GetBattery(JOYSTICK_BATTERY& battery)
+{
+  XINPUT_BATTERY_INFORMATION info{};
+  if (!CXInputDLL::Get().GetBatteryInformation(m_controllerID,
+                                               CXInputDLL::BatteryDeviceType::Controller, info))
+    return false;
+
+  switch (info.BatteryType)
+  {
+    case BATTERY_TYPE_DISCONNECTED:
+    case BATTERY_TYPE_UNKNOWN:
+      return false;
+
+    case BATTERY_TYPE_WIRED:
+      battery.state = JOYSTICK_BATTERY_STATE_WIRED;
+      battery.level = -1;
+      return true;
+
+    default:
+      break;
+  }
+
+  // XInput only reports the charge in four steps
+  battery.state = JOYSTICK_BATTERY_STATE_DISCHARGING;
+  switch (info.BatteryLevel)
+  {
+    case BATTERY_LEVEL_EMPTY:
+      battery.level = 5;
+      break;
+    case BATTERY_LEVEL_LOW:
+      battery.level = 20;
+      break;
+    case BATTERY_LEVEL_MEDIUM:
+      battery.level = 60;
+      break;
+    case BATTERY_LEVEL_FULL:
+      battery.level = 100;
+      break;
+    default:
+      return false;
+  }
+
+  return true;
+}
+#endif
+
 bool CJoystickXInput::ScanEvents(void)
 {
   if (CXInputDLL::Get().HasGuideButton())
