@@ -17,6 +17,8 @@ using namespace JOYSTICK;
 
 namespace
 {
+  constexpr char MICROSOFT_USB_VENDOR_ID[] = "045e";
+
   // From the input node, the battery hangs off the HID device or the USB
   // interface: event5 -> input12 -> 0005:045E:02E0.0006/power_supply
   constexpr unsigned int MAX_PARENT_DEPTH = 3;
@@ -63,6 +65,21 @@ bool CPowerSupply::GetBattery(const std::string& sysfsPath, JOYSTICK_BATTERY& ba
       break;
 
     devicePath.erase(lastSlash);
+  }
+
+  if (ReadAttribute(sysfsPath + "/device/id/vendor") == MICROSOFT_USB_VENDOR_ID)
+  {
+    // Microsoft's wired Xbox One and Xbox 360 USB interfaces differ from its wireless receivers.
+    std::ifstream usbInterface(sysfsPath + "/device/device/uevent");
+    std::string line;
+    while (std::getline(usbInterface, line))
+    {
+      if (line == "INTERFACE=255/71/208" || line == "INTERFACE=255/93/1")
+      {
+        battery = {JOYSTICK_BATTERY_STATE_WIRED, -1};
+        return true;
+      }
+    }
   }
 
   return false;

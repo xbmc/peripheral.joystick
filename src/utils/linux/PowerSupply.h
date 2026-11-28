@@ -17,13 +17,13 @@ namespace JOYSTICK
   {
   public:
     /*!
-     * \brief Read the battery the kernel reports for an input device
+     * \brief Read the battery or wired state the kernel reports for an input device
      *
      * \param sysfsPath The input device's directory in sysfs, such as
      *                  /sys/class/input/event5
-     * \param battery   The battery, if the device has one
+     * \param battery   The battery state and charge, if known
      *
-     * \return True if the kernel reports a battery for the device
+     * \return True if battery information or a wired connection is available
      */
     static bool GetBattery(const std::string& sysfsPath, JOYSTICK_BATTERY& battery);
 
